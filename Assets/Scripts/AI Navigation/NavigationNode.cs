@@ -12,12 +12,22 @@ public class NavigationNode : MonoBehaviour
 
     public virtual Vector3 Centre => transform.position;
     
+    
+    public virtual Vector3 ClosestPoint(Vector3 to)
+    {
+        return transform.position;
+    }
+
+    public virtual void UpdateNode() { }
+    
+    
+#if UNITY_EDITOR
     protected virtual void Label()
     {
         Handles.Label(
             transform.position,
             gameObject.name
-            );
+        );
     }
 
     protected virtual void Visualise()
@@ -28,13 +38,7 @@ public class NavigationNode : MonoBehaviour
             Quaternion.identity,
             0.7f,
             EventType.Repaint
-            );
+        );
     }
-
-    public virtual Vector3 ClosestPoint(Vector3 to)
-    {
-        return transform.position;
-    }
-
-    public virtual void UpdateNode() { }
+#endif
 }

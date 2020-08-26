@@ -26,35 +26,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8da9afe1-fb09-46ea-b54a-5670f37d1747" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Materials.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Agent.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Agent.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Ground.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Ground.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Obstacle.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Obstacle.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Player.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Player.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Blender Projects.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Blender Projects/Intersection.blend" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Blender Projects/Intersection.blend.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/LightingData.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/LightingData.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/ReflectionProbe-0.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/ReflectionProbe-0.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AINavigator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AINavigator.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Editor/NavigationGraphEditor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Editor/NavigationGraphEditor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/NavigationGate.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/NavigationGraph.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/NavigationGraph.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/NavigationNode.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Shaders.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/AI Navigation.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/AI Navigation/AI Manager.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/AI Navigation/AI Manager.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/Blender Projects/Box.blend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/Blender Projects/Box.blend.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/Blender Projects/Box.blend1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/Blender Projects/Box.blend1.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIUpdater.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Editor/AIContextMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AINavigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AINavigator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/NavigationNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/NavigationNode.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +51,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI Navigation/Editor/AIContextMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI Navigation/NavigationNode.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIUpdater.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI Navigation/NavigationGate.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI Navigation/Editor/NavigationGraphEditor.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -75,8 +64,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Gate.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Editor/NavigationGraphEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/NavigationGraph.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/NavigationNode.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/NavigationGate.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/NavigationNode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Editor/AIContextMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIUpdater.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AINavigator.cs" />
       </list>
     </option>
   </component>
@@ -122,7 +115,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1598169090901</updated>
-      <workItem from="1598169107573" duration="14030000" />
+      <workItem from="1598169107573" duration="14323000" />
+      <workItem from="1598313178361" duration="3591000" />
+      <workItem from="1598336615570" duration="3089000" />
     </task>
     <servers />
   </component>
@@ -141,6 +136,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

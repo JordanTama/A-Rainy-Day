@@ -10,8 +10,11 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="AI Navigation" t="Include">
+            <e p="AIManager.cs" t="Include" />
             <e p="AINavigator.cs" t="Include" />
+            <e p="AIUpdater.cs" t="Include" />
             <e p="Editor" t="Include">
+              <e p="AIContextMenu.cs" t="Include" />
               <e p="NavigationGraphEditor.cs" t="Include" />
             </e>
             <e p="NavigationGate.cs" t="Include" />
