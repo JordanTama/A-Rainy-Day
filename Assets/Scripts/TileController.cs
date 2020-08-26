@@ -19,7 +19,6 @@ public class TileController : MonoBehaviour
         inputManager = ServiceLocator.Current.Get<InputManager>();
         cameraManager = ServiceLocator.Current.Get<CameraManager>();
 
-        inputManager.P_MouseDelta.performed += MouseMoved;
         tileManager.OnTileSelect += (e) =>
         {
             if(e == gameObject)
@@ -28,33 +27,41 @@ public class TileController : MonoBehaviour
         tileManager.OnTileDeselect += () => startMousePos = Vector3.zero;
     }
 
-    private void MouseMoved(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        if (obj.ReadValue<Vector2>().magnitude < 0.5f)
-            return;
-
-
-    }
-
     private void Update()
     {
+        // This can all be moved into some MouseMoved function later on
         if (tileManager.CurrentTile == gameObject)
         {
             if (Vector3.Distance(startMousePos, cameraManager.worldSpaceMousePos) > 2.5f && !tweening)
             {
                 var dir = (cameraManager.worldSpaceMousePos.RoundToNearest(5) - transform.position).normalized;
                 //newPos += (dir.normalized);
-                if (CheckAdjacent(dir))
+                if (CheckDot(dir))
                 {
-                    transform.DOMove((transform.position + (dir * 5)).RoundToNearest(5), 0.5f)
-                        .OnStart(()=>tweening = true)
-                        .OnComplete(()=> {
-                        startMousePos = cameraManager.worldSpaceMousePos;
-                        tweening = false;
-                    });
+                    if (CheckAdjacent(dir))
+                    {
+                        transform.DOMove((transform.position + (dir * 5)).RoundToNearest(5), 0.5f)
+                            .OnStart(() => tweening = true)
+                            .OnComplete(() =>
+                            {
+                                startMousePos = cameraManager.worldSpaceMousePos;
+                                tweening = false;
+                            });
+                    }
                 }
             }
         }
+    }
+
+    bool CheckDot(Vector3 dir)
+    {
+        if (Mathf.Abs(Vector3.Dot(dir, transform.forward)) > 0.75f)
+            return true;
+
+        if (Mathf.Abs(Vector3.Dot(dir, transform.right)) > 0.75f)
+            return true;
+
+        return false;
     }
 
     bool CheckAdjacent(Vector3 dir)
@@ -65,10 +72,5 @@ public class TileController : MonoBehaviour
             return false;
         }
         return true;
-    }
-
-    private void OnDrawGizmos()
-    {
-        
     }
 }
