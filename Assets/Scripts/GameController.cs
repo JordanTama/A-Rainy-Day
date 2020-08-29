@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private GameLoopManager _gameLoopManager;
+    private GameManager _gameManager;
 
     private void Start()
     {
-        _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
+        _gameManager = ServiceLocator.Current.Get<GameManager>();
     }
 
     public void Execute()
     {
-        _gameLoopManager.Execute();
+        _gameManager.Execute();
     }
 
     public void Reset()
     {
-        _gameLoopManager.SoftResetLevel();
+        _gameManager.SoftResetLevel();
     }
 
     public void Restart()
     {
-        _gameLoopManager.RestartLevel();
+        _gameManager.RestartLevel();
     }
 }

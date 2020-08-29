@@ -3,18 +3,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class ExecuteButtonState : MonoBehaviour
+public class ResetButtonState : MonoBehaviour
 {
-    private GameLoopManager _gameLoopManager;
+    private GameManager _gameManager;
     private Button _myButton;
 
     private void Start()
     {
-        _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
+        _gameManager = ServiceLocator.Current.Get<GameManager>();
         _myButton = GetComponent<Button>();
-        _gameLoopManager.OnPreparation += EnableInteraction;
-        _gameLoopManager.OnExecution += DisableInteraction;
-        EnableInteraction();
+        _gameManager.OnPreparation += DisableInteraction;
+        _gameManager.OnExecution += EnableInteraction;
+        DisableInteraction();
     }
 
     private void EnableInteraction()

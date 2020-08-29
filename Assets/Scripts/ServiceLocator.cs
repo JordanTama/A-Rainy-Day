@@ -14,9 +14,9 @@ public class ServiceLocator
         // Register them with
         // Register(PlayerManager);
         Register(new InputManager());
-        Register(new GameLoopManager());
+        Register(new GameManager());
         Register(new CameraManager(Get<InputManager>()));
-        Register(new TileManager(Get<CameraManager>(), Get<InputManager>(),Get<GameLoopManager>()));
+        Register(new TileManager(Get<CameraManager>(), Get<InputManager>(),Get<GameManager>()));
         
     }
 

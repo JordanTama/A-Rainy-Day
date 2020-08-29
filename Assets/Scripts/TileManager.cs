@@ -11,12 +11,12 @@ public class TileManager : IGameService
 
     private CameraManager cameraManager;
     private InputManager inputManager;
-    private GameLoopManager _gameLoopManager;
+    private GameManager _gameManager;
 
     private bool _canMoveTiles;
 
 
-    public TileManager(CameraManager camMan, InputManager input, GameLoopManager gameLoopMan)
+    public TileManager(CameraManager camMan, InputManager input, GameManager gameMan)
     {
         cameraManager = camMan;
         cameraManager.OnCameraRaycastHit += TileSelect;
@@ -24,9 +24,9 @@ public class TileManager : IGameService
         inputManager = input;
         inputManager.P_LeftClick.canceled += TileDeselect;
 
-        _gameLoopManager = gameLoopMan;
-        _gameLoopManager.OnPreparation += EnableTileMove;
-        _gameLoopManager.OnExecution += DisableTileMove;
+        _gameManager = gameMan;
+        _gameManager.OnPreparation += EnableTileMove;
+        _gameManager.OnExecution += DisableTileMove;
         EnableTileMove();
     }
 
