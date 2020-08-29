@@ -9,8 +9,13 @@ public class TileController : MonoBehaviour
     private TileManager tileManager;
     private InputManager inputManager;
     private CameraManager cameraManager;
+    private GameLoopManager gameLoopManager;
+    
     private Vector3 startMousePos;
     private bool tweening;
+    
+    private Vector3 _startPosition;
+    private Quaternion _startRotation;
 
 
     // Start is called before the first frame update
@@ -19,6 +24,7 @@ public class TileController : MonoBehaviour
         tileManager = ServiceLocator.Current.Get<TileManager>();
         inputManager = ServiceLocator.Current.Get<InputManager>();
         cameraManager = ServiceLocator.Current.Get<CameraManager>();
+        gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
 
         tileManager.OnTileSelect += (e) =>
         {
@@ -26,6 +32,10 @@ public class TileController : MonoBehaviour
                 startMousePos = cameraManager.worldSpaceMousePos;
         };
         tileManager.OnTileDeselect += () => startMousePos = Vector3.zero;
+
+        gameLoopManager.OnRestart += ResetPosition;
+        SetStartPosition();
+
     }
 
     private void Update()
@@ -73,5 +83,16 @@ public class TileController : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    public void SetStartPosition()
+    {
+        _startPosition = transform.position;
+        _startRotation = transform.rotation;
+    }
+    
+    public void ResetPosition()
+    {
+        transform.SetPositionAndRotation(_startPosition,_startRotation);
     }
 }
