@@ -11,15 +11,23 @@ public class TileManager : IGameService
 
     private CameraManager cameraManager;
     private InputManager inputManager;
+    private GameLoopManager _gameLoopManager;
+
+    private bool _canMoveTiles;
 
 
-    public TileManager(CameraManager camMan, InputManager input)
+    public TileManager(CameraManager camMan, InputManager input, GameLoopManager gameLoopMan)
     {
         cameraManager = camMan;
         cameraManager.OnCameraRaycastHit += TileSelect;
 
         inputManager = input;
         inputManager.P_LeftClick.canceled += TileDeselect;
+
+        _gameLoopManager = gameLoopMan;
+        _gameLoopManager.OnPreparation += EnableTileMove;
+        _gameLoopManager.OnExecution += DisableTileMove;
+        EnableTileMove();
     }
 
     private void TileDeselect(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -34,12 +42,24 @@ public class TileManager : IGameService
 
     public void TileSelect(RaycastHit hit)
     {
-        if (hit.collider.CompareTag("Tile") && CurrentTile == null)
+        if (hit.collider.CompareTag("Tile") && CurrentTile == null && _canMoveTiles)
         {
             CurrentTile = hit.collider.gameObject;
             CurrentTile.layer = 2;
             OnTileSelect?.Invoke(CurrentTile);
         }
     }
+
+    private void EnableTileMove()
+    {
+        _canMoveTiles = true;
+    }
+    
+    private void DisableTileMove()
+    {
+        _canMoveTiles = false;
+    }
+    
+    
 
 }
