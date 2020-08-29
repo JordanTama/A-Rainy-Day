@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using TMPro;
 using UnityEngine;
 
 public class Goal : MonoBehaviour
@@ -8,6 +9,8 @@ public class Goal : MonoBehaviour
     public Collider _collider;
     public ParticleSystem OpenPs;
     public AudioSource openAS;
+
+    public TMP_Text goalText;
 
     [SerializeField] private int objectiveCount = 0;
     [SerializeField] private int objectiveActivated = 0;
@@ -51,6 +54,11 @@ public class Goal : MonoBehaviour
             CloseGoal();
         }
 
+        if (goalText)
+        {
+            goalText.alpha = IsOpen() ? 0 : 1;
+            goalText.text = "" + objectiveActivated + "/" + objectiveCount;
+        }
     }
 
     private void CloseGoal()
