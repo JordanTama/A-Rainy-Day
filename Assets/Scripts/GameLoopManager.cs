@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.SceneManagement;
 
 public class GameLoopManager:IGameService
@@ -11,6 +12,7 @@ public class GameLoopManager:IGameService
     public GameState gameState;
     public Action OnPreparation;
     public Action OnExecution;
+    public Action OnRestart;
     
     
     public GameLoopManager()
@@ -26,7 +28,11 @@ public class GameLoopManager:IGameService
     public void RestartLevel()
     {
         // Reload the current active scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log("Restart Level");
+        SoftResetLevel();
+        OnRestart?.Invoke();
+        
     }
 
     public void SoftResetLevel()
