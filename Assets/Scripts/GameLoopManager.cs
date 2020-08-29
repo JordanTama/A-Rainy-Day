@@ -27,12 +27,8 @@ public class GameLoopManager:IGameService
 
     public void RestartLevel()
     {
-        // Reload the current active scene
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log("Restart Level");
         SoftResetLevel();
         OnRestart?.Invoke();
-        
     }
 
     public void SoftResetLevel()
