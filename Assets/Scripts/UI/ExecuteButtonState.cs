@@ -27,4 +27,11 @@ public class ExecuteButtonState : MonoBehaviour
     {
         _myButton.interactable = false;
     }
+
+    private void OnDestroy()
+    {
+        _gameLoopManager.OnPreparation -= EnableInteraction;
+        _gameLoopManager.OnExecution -= DisableInteraction;
+        _gameLoopManager.OnComplete -= DisableInteraction;
+    }
 }

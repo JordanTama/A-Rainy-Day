@@ -45,4 +45,13 @@ public class AIController : MonoBehaviour
         manager.Pause();
         manager.ClearAgents();
     }
+
+    private void OnDestroy()
+    {
+        _gameLoopManager.OnPreparation -= StopSpawning;
+        _gameLoopManager.OnExecution -= StartSpawning;
+        _gameLoopManager.OnComplete -= StopSpawning;
+        _tileManager.OnNewTilePosition -= BakeNavMesh;
+        _tileManager.OnRebakeMesh -= BakeNavMesh;
+    }
 }

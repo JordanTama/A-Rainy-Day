@@ -18,6 +18,8 @@ public class CameraController : MonoBehaviour
 
         cameraManager = ServiceLocator.Current.Get<CameraManager>();
 
+        Debug.Log(input == null);
+
         cam = GetComponent<Camera>();
     }
 
@@ -42,5 +44,11 @@ public class CameraController : MonoBehaviour
             Debug.Log("Hit");
             cameraManager.FireOnRaycastHit(hits);
         }
+    }
+
+    private void OnDestroy()
+    {
+        input.P_LeftClick.performed -= OnLeftClickDown;
+        input.P_MouseDelta.performed -= OnMouseMoved;
     }
 }

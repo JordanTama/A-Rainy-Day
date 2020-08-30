@@ -157,4 +157,9 @@ public class Goal : MonoBehaviour
     {
         return otherTag.Equals("Player") ? playerPoints : npcPoints;
     }
+
+    private void OnDestroy()
+    {
+        _gameLoopManager.OnPreparation -= Reset;
+    }
 }

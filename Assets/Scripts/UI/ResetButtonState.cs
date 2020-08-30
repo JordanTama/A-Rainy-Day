@@ -27,4 +27,11 @@ public class ResetButtonState : MonoBehaviour
     {
         _myButton.interactable = false;
     }
+
+    private void OnDestroy()
+    {
+        _gameLoopManager.OnPreparation -= DisableInteraction;
+        _gameLoopManager.OnExecution -= EnableInteraction;
+        _gameLoopManager.OnComplete -= DisableInteraction;
+    }
 }

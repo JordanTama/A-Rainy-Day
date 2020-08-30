@@ -32,7 +32,13 @@ public class TileManager : IGameService
         _gameLoopManager.OnComplete += DisableTileMove;
         EnableTileMove();
 
-        SceneManager.activeSceneChanged += (s,i) => CurrentTile = null;
+        SceneManager.activeSceneChanged += SceneChanged;
+    }
+
+    private void SceneChanged(Scene arg0, Scene arg1)
+    {
+        CurrentTile = null;
+        _canMoveTiles = true;
     }
 
     private void TileDeselect(UnityEngine.InputSystem.InputAction.CallbackContext obj)

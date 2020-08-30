@@ -51,28 +51,4 @@ public class FeedbackController : MonoBehaviour
         isOpen = false;
         feedbackOpenBtnText.text = "^^ Feedback ^^";
     }
-
-    IEnumerator SendForm()
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("entry.1886026233", feedbackText.text);
-
-        using (var w = UnityWebRequest.Post("https://docs.google.com/forms/u/1/d/e/1FAIpQLScdY6tqH9NTJMjoYoCIPWkUb3icXs78g5k-SSLsNoSUfF4lfA/formResponse", form))
-        {
-            yield return w.SendWebRequest();
-            if(w.isNetworkError || w.isHttpError)
-            {
-                Debug.LogError(w.error);
-                responseText.text = "Something went wrong. :(";
-            }
-            else
-            {
-                Debug.Log("Feedback sent.");
-                responseText.text = "Thank you! :)";
-            }
-        }
-
-        yield return new WaitForSecondsRealtime(1);
-        Close();
-    }
 }
