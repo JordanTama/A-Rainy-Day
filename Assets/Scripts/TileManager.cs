@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class TileManager : IGameService
 {
     public GameObject CurrentTile { get; private set; }
@@ -28,6 +28,8 @@ public class TileManager : IGameService
         _gameLoopManager.OnPreparation += EnableTileMove;
         _gameLoopManager.OnExecution += DisableTileMove;
         EnableTileMove();
+
+        SceneManager.activeSceneChanged += (s,i) => CurrentTile = null;
     }
 
     private void TileDeselect(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -40,13 +42,19 @@ public class TileManager : IGameService
         OnTileDeselect?.Invoke();
     }
 
-    public void TileSelect(RaycastHit hit)
+    public void TileSelect(RaycastHit[] hits)
     {
-        if (hit.collider.CompareTag("Tile") && CurrentTile == null && _canMoveTiles)
+        if (!_canMoveTiles)
+            return;
+
+        foreach (RaycastHit hit in hits)
         {
-            CurrentTile = hit.collider.gameObject;
-            CurrentTile.layer = 2;
-            OnTileSelect?.Invoke(CurrentTile);
+            if (hit.collider.CompareTag("Tile") && CurrentTile == null)
+            {
+                CurrentTile = hit.collider.gameObject;
+                CurrentTile.layer = 2;
+                OnTileSelect?.Invoke(CurrentTile);
+            }
         }
     }
 

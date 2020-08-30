@@ -6,6 +6,10 @@ using UnityEngine.UIElements;
 
 public class TileController : MonoBehaviour
 {
+    const float TILE_MOVE_SPEED = 0.5f;
+
+    [SerializeField] private bool fixedInPlace;
+
     private TileManager tileManager;
     private InputManager inputManager;
     private CameraManager cameraManager;
@@ -16,7 +20,7 @@ public class TileController : MonoBehaviour
     
     private Vector3 _startPosition;
     private Quaternion _startRotation;
-
+    private Vector2 _tileSize;
 
     // Start is called before the first frame update
     void Start()
@@ -26,32 +30,39 @@ public class TileController : MonoBehaviour
         cameraManager = ServiceLocator.Current.Get<CameraManager>();
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
 
-        tileManager.OnTileSelect += (e) =>
-        {
-            if(e == gameObject)
-                startMousePos = cameraManager.worldSpaceMousePos;
-        };
-        tileManager.OnTileDeselect += () => startMousePos = Vector3.zero;
+        tileManager.OnTileSelect += TileSelect;
+        tileManager.OnTileDeselect += TileDeselect;
 
         _gameLoopManager.OnRestart += ResetPosition;
+        _tileSize = new Vector2(transform.localScale.x, transform.localScale.z);
         SetStartPosition();
-
     }
+
+    void TileSelect(GameObject g)
+    {
+        if (g == gameObject)
+            startMousePos = cameraManager.worldSpaceMousePos;
+    }
+
+    void TileDeselect() => startMousePos = Vector3.zero;
 
     private void Update()
     {
+        if (fixedInPlace)
+            return;
+
         // This can all be moved into some MouseMoved function later on
         if (tileManager.CurrentTile == gameObject)
         {
-            if (Vector3.Distance(startMousePos, cameraManager.worldSpaceMousePos) > 2.5f && !tweening)
+            if (Vector3.Distance(startMousePos, cameraManager.worldSpaceMousePos) > (_tileSize.x * 0.5f) && !tweening)
             {
-                var dir = (cameraManager.worldSpaceMousePos.RoundToNearest(5) - transform.position).normalized;
+                var dir = (cameraManager.worldSpaceMousePos.RoundToNearest(_tileSize.x) - transform.position).normalized;
                 //newPos += (dir.normalized);
                 if (CheckDot(dir))
                 {
                     if (CheckAdjacent(dir))
                     {
-                        transform.DOMove((transform.position + (dir * 5)).RoundToNearest(5), 0.5f)
+                        transform.DOMove((transform.position + (dir * _tileSize.x)).RoundToNearest(_tileSize.x), TILE_MOVE_SPEED)
                             .OnStart(() => tweening = true)
                             .OnComplete(() =>
                             {
@@ -94,5 +105,11 @@ public class TileController : MonoBehaviour
     public void ResetPosition()
     {
         transform.SetPositionAndRotation(_startPosition,_startRotation);
+    }
+
+    private void OnDestroy()
+    {
+        tileManager.OnTileSelect -= TileSelect;   
+        tileManager.OnTileDeselect -= TileDeselect;
     }
 }
