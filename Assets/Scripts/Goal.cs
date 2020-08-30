@@ -18,8 +18,10 @@ public class Goal : MonoBehaviour
 
     public TMP_Text goalText;
 
-    private int objectiveCount = 0;
-    private int objectiveActivated = 0;
+    private int _objectiveCount = 0;
+    private int _objectiveActivated = 0;
+
+    private bool _isPlayerEntered;
     
     private void Start()
     {
@@ -34,19 +36,19 @@ public class Goal : MonoBehaviour
 
     public void IncreaseObjectivesCount()
     {
-        objectiveCount++;
+        _objectiveCount++;
         OpenGoal();
     }
 
     private void ResetActiveObjectives()
     {
-        objectiveActivated = 0;
+        _objectiveActivated = 0;
         OpenGoal();
     }
 
     public void IncreaseActiveCount()
     {
-        objectiveActivated++;
+        _objectiveActivated++;
         OpenGoal();
     }
 
@@ -65,7 +67,7 @@ public class Goal : MonoBehaviour
         if (goalText)
         {
             goalText.alpha = IsOpen() ? 0 : 1;
-            goalText.text = "" + objectiveActivated + "/" + objectiveCount;
+            goalText.text = "" + _objectiveActivated + "/" + _objectiveCount;
         }
     }
 
@@ -78,11 +80,12 @@ public class Goal : MonoBehaviour
 
     private bool IsOpen()
     {
-        return objectiveActivated >= objectiveCount;
+        return _objectiveActivated >= _objectiveCount;
     }
 
     private void Reset()
     {
+        _isPlayerEntered = false;
         CloseGoal();
         ResetActiveObjectives();
 
@@ -94,12 +97,21 @@ public class Goal : MonoBehaviour
         if(openAs.isPlaying) openAs.Stop();
     }
 
-
-
+    
     private void Entered()
     {
         AddScore();
         PlayAudio();
+        if (_isPlayerEntered)
+        {
+            LevelComplete();
+        }
+    }
+
+    private void LevelComplete()
+    {
+        _gameLoopManager.Complete();
+        CloseGoal();
     }
 
     private void PlayAudio()
@@ -135,6 +147,7 @@ public class Goal : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("NPC"))
         {
+            _isPlayerEntered = other.CompareTag("Player");
             _pointsToAdd = DeterminePoints(other.tag);
             Entered();
         }

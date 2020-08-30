@@ -8,11 +8,12 @@ using UnityEngine.SceneManagement;
 
 public class GameLoopManager:IGameService
 {
-    public enum GameState { Preparation,Execution};
+    public enum GameState { Preparation,Execution,Complete};
     public GameState gameState;
     public Action OnPreparation;
     public Action OnExecution;
     public Action OnRestart;
+    public Action OnComplete;
     
     
     public GameLoopManager()
@@ -41,5 +42,11 @@ public class GameLoopManager:IGameService
     {
         ChangeState(GameState.Execution);
         OnExecution?.Invoke();
+    }
+
+    public void Complete()
+    {
+        ChangeState(GameState.Complete);
+        OnComplete?.Invoke();
     }
 }

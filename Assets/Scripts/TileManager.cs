@@ -27,6 +27,7 @@ public class TileManager : IGameService
         _gameLoopManager = gameLoopMan;
         _gameLoopManager.OnPreparation += EnableTileMove;
         _gameLoopManager.OnExecution += DisableTileMove;
+        _gameLoopManager.OnComplete += DisableTileMove;
         EnableTileMove();
 
         SceneManager.activeSceneChanged += (s,i) => CurrentTile = null;
