@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 104156826}
   m_Layer: 0
   m_Name: Player
-  m_TagString: NPC
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -894,11 +894,11 @@ RectTransform:
   m_Father: {fileID: 200135589}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -428.5, y: -271}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1183013914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6559,6 +6559,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7029942986962091865, guid: 27cafb585763213459b5235bb3bc2bd6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7029942986962091869, guid: 27cafb585763213459b5235bb3bc2bd6,
         type: 3}
       propertyPath: m_Name
@@ -6573,6 +6578,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8692690053076814407, guid: f92c153575ab3894f8c42d31513e9c8a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8692690053076814521, guid: f92c153575ab3894f8c42d31513e9c8a,
         type: 3}
       propertyPath: m_Size.y
