@@ -31,14 +31,16 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void OnLeftClickDown(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void OnLeftClickDown(InputAction.CallbackContext obj)
     {
         Ray ray = cam.ScreenPointToRay(input.P_MousePosition.ReadValue<Vector2>());
-        RaycastHit hit;
-        if(Physics.Raycast(ray, out hit, 100))
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(ray, 100);
+        
+        if(hits.Length > 0)
         {
             Debug.Log("Hit");
-            cameraManager.FireOnRaycastHit(hit);
+            cameraManager.FireOnRaycastHit(hits);
         }
     }
 }

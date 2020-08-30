@@ -14,8 +14,11 @@ public class ServiceLocator
         // Register them with
         // Register(PlayerManager);
         Register(new InputManager());
+        Register(new GameLoopManager());
+        Register(new ScoreManager(Get<GameLoopManager>()));
         Register(new CameraManager(Get<InputManager>()));
-        Register(new TileManager(Get<CameraManager>(), Get<InputManager>()));
+        Register(new TileManager(Get<CameraManager>(), Get<InputManager>(),Get<GameLoopManager>()));
+        
     }
 
     public static ServiceLocator Current { get; private set; }
