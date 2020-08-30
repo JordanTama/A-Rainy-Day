@@ -2,12 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AIController : MonoBehaviour
 {
     [SerializeField] private AIManager manager;
     [SerializeField] private bool playOnAwake;
     private GameLoopManager _gameLoopManager;
+    private TileManager _tileManager;
+    [SerializeField] private NavMeshSurface navMeshSurface;
 
     private void Awake()
     {
@@ -18,9 +21,18 @@ public class AIController : MonoBehaviour
     private void Start()
     {
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
+        _tileManager = ServiceLocator.Current.Get<TileManager>();
         _gameLoopManager.OnPreparation += StopSpawning;
         _gameLoopManager.OnExecution += StartSpawning;
         _gameLoopManager.OnComplete += StopSpawning;
+
+        _tileManager.OnNewTilePosition += BakeNavMesh;
+        _tileManager.OnRebakeMesh += BakeNavMesh;
+    }
+
+    private void BakeNavMesh()
+    {
+        navMeshSurface.BuildNavMesh();
     }
 
     public void StartSpawning()

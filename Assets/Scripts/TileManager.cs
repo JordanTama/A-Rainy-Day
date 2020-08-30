@@ -9,6 +9,7 @@ public class TileManager : IGameService
     public Action<GameObject> OnTileSelect;
     public Action OnTileDeselect;
     public Action OnNewTilePosition;
+    public Action OnRebakeMesh;
 
     private CameraManager cameraManager;
     private InputManager inputManager;

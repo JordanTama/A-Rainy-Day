@@ -133,7 +133,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 2169345395443031905, guid: 433da30195162664a8f308567ee17276,
     type: 3}
   maxSpawned: 1
-  spawnTick: 0
+  spawnTick: 5
   liveUpdate: 1
   debugVisualization: 1
   debugLabels: 1
