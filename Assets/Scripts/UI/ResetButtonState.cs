@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class ResetButtonState : MonoBehaviour
 {
-    private GameManager _gameManager;
+    private GameLoopManager _gameLoopManager;
     private Button _myButton;
 
     private void Start()
     {
-        _gameManager = ServiceLocator.Current.Get<GameManager>();
+        _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _myButton = GetComponent<Button>();
-        _gameManager.OnPreparation += DisableInteraction;
-        _gameManager.OnExecution += EnableInteraction;
+        _gameLoopManager.OnPreparation += DisableInteraction;
+        _gameLoopManager.OnExecution += EnableInteraction;
         DisableInteraction();
     }
 

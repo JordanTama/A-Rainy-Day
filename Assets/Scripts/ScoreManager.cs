@@ -5,14 +5,14 @@ using UnityEngine.InputSystem.Interactions;
 
 public class ScoreManager:IGameService
 {
-    private GameManager _gameManager;
+    private GameLoopManager _gameLoopManager;
     private int _currentScore;
 
-    public ScoreManager(GameManager GameMan)
+    public ScoreManager(GameLoopManager gameLoopMan)
     {
-        _gameManager = GameMan;
+        _gameLoopManager = gameLoopMan;
         _currentScore = 0;
-        _gameManager.OnPreparation += ResetScore;
+        _gameLoopManager.OnPreparation += ResetScore;
     }
 
     public void AddScore(int points)

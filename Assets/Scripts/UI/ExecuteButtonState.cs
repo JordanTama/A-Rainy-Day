@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class ExecuteButtonState : MonoBehaviour
 {
-    private GameManager _gameManager;
+    private GameLoopManager _gameLoopManager;
     private Button _myButton;
 
     private void Start()
     {
-        _gameManager = ServiceLocator.Current.Get<GameManager>();
+        _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _myButton = GetComponent<Button>();
-        _gameManager.OnPreparation += EnableInteraction;
-        _gameManager.OnExecution += DisableInteraction;
+        _gameLoopManager.OnPreparation += EnableInteraction;
+        _gameLoopManager.OnExecution += DisableInteraction;
         EnableInteraction();
     }
 

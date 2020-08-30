@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    private GameManager _gameManager;
+    private GameLoopManager _gameLoopManager;
     private ScoreManager _scoreManager;
 
     public int playerPoints = 10;
@@ -23,9 +23,9 @@ public class Goal : MonoBehaviour
     
     private void Start()
     {
-        _gameManager = ServiceLocator.Current.Get<GameManager>();
+        _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _scoreManager = ServiceLocator.Current.Get<ScoreManager>();
-        _gameManager.OnPreparation += Reset;
+        _gameLoopManager.OnPreparation += Reset;
 
         _collider = GetComponent<Collider>();
         Reset();

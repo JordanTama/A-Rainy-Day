@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Objective : MonoBehaviour
     {
-        private GameManager _gameManager;
+        private GameLoopManager _gameLoopManager;
         private ScoreManager _scoreManager;
         private Collider _collider;
         public int points = 5;
@@ -17,9 +17,9 @@ public class Objective : MonoBehaviour
 
         private void Start()
         {
-            _gameManager = ServiceLocator.Current.Get<GameManager>();
+            _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
             _scoreManager = ServiceLocator.Current.Get<ScoreManager>();
-            _gameManager.OnPreparation += Reset;
+            _gameLoopManager.OnPreparation += Reset;
 
             _collider = GetComponent<Collider>();
 

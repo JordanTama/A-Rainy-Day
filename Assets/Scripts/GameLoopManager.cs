@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.SceneManagement;
 
-public class GameManager:IGameService
+public class GameLoopManager:IGameService
 {
     public enum GameState { Preparation,Execution};
     public GameState gameState;
@@ -15,7 +15,7 @@ public class GameManager:IGameService
     public Action OnRestart;
     
     
-    public GameManager()
+    public GameLoopManager()
     {
         gameState = GameState.Preparation;
     }

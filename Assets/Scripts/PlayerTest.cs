@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerTest : MonoBehaviour
 {
-    private GameManager _gameManager;
+    private GameLoopManager _gameLoopManager;
     public float speed;
     private bool _isMove;
     private Vector3 startPosition;
@@ -13,9 +13,9 @@ public class PlayerTest : MonoBehaviour
 
     private void Start()
     {
-        _gameManager = ServiceLocator.Current.Get<GameManager>();
-        _gameManager.OnExecution += MoveForward;
-        _gameManager.OnPreparation += Reset;
+        _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
+        _gameLoopManager.OnExecution += MoveForward;
+        _gameLoopManager.OnPreparation += Reset;
         
         _isMove = false;
         startPosition = transform.position;

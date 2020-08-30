@@ -9,7 +9,7 @@ public class TileController : MonoBehaviour
     private TileManager tileManager;
     private InputManager inputManager;
     private CameraManager cameraManager;
-    private GameManager _gameManager;
+    private GameLoopManager _gameLoopManager;
     
     private Vector3 startMousePos;
     private bool tweening;
@@ -24,7 +24,7 @@ public class TileController : MonoBehaviour
         tileManager = ServiceLocator.Current.Get<TileManager>();
         inputManager = ServiceLocator.Current.Get<InputManager>();
         cameraManager = ServiceLocator.Current.Get<CameraManager>();
-        _gameManager = ServiceLocator.Current.Get<GameManager>();
+        _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
 
         tileManager.OnTileSelect += (e) =>
         {
@@ -33,7 +33,7 @@ public class TileController : MonoBehaviour
         };
         tileManager.OnTileDeselect += () => startMousePos = Vector3.zero;
 
-        _gameManager.OnRestart += ResetPosition;
+        _gameLoopManager.OnRestart += ResetPosition;
         SetStartPosition();
 
     }
