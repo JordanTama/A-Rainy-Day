@@ -41,6 +41,11 @@ public class AIAgent : MonoBehaviour
     
     private float _moveMultiplier;
     private float _steerMultiplier;
+
+    private AIAgent[] others = new AIAgent[0];
+
+    private const float ForceRayMultiplier = 2f;
+    private const float RayMultiplier = .7f;
     
     
     private enum ForceType { None, All, Total, Separation, Alignment, Cohesion, Target, Environment }
@@ -49,20 +54,37 @@ public class AIAgent : MonoBehaviour
     // MonoBehaviour functions
     private void Update()
     {
-        AIAgent[] others = GetVisible();
+        others = GetVisible();
         
         Arbitration(others);
         
-        Vector3 avoidance = Separation(others) * separationProportion;
+        Vector3 separation = Separation(others) * separationProportion;
         Vector3 alignment = Alignment(others) * alignmentProportion;
-        Vector3 separation = Cohesion(others) * cohesionProportion;
+        Vector3 cohesion = Cohesion(others) * cohesionProportion;
         Vector3 target = Target() * targetProportion;
         Vector3 environment = Environment() * environmentProportion;
 
-        Vector3 totalForce = avoidance + alignment + target + separation + environment;
+        Vector3 totalForce = separation + alignment + target + cohesion + environment;
         totalForce.Normalize();
 
-        _moveMultiplier = Mathf.Pow((Vector3.Dot(totalForce, target) + 1f) * 0.5f, slowExponent);
+#if UNITY_EDITOR
+        if (debugType == ForceType.Separation)
+            Debug.DrawRay(transform.position, separation * ForceRayMultiplier, Color.green);
+        
+        if (debugType == ForceType.Alignment)
+            Debug.DrawRay(transform.position, alignment * ForceRayMultiplier, Color.green);
+        
+        if (debugType == ForceType.Cohesion)
+            Debug.DrawRay(transform.position, cohesion * ForceRayMultiplier, Color.green);
+        
+        if (debugType == ForceType.Target)
+            Debug.DrawRay(transform.position, target * ForceRayMultiplier, Color.green);
+        
+        if (debugType == ForceType.Environment)
+            Debug.DrawRay(transform.position, environment * ForceRayMultiplier, Color.green);
+#endif
+        
+        // _moveMultiplier = Mathf.Pow((Vector3.Dot(totalForce, target) + 1f) * 0.5f, slowExponent);
 
         Steer(totalForce);
         Move();
@@ -148,19 +170,16 @@ public class AIAgent : MonoBehaviour
     private Vector3 Separation(IEnumerable<AIAgent> others)
     {
         Vector3 force = new Vector3();
-        foreach (AIAgent other in manager.Navigators)
+        foreach (AIAgent other in others)
         {
-            if (other != this && IsVisible(other))
-            {
-                float distance = Mathf.Max(
-                    0f,
-                    Vector3.Distance(transform.position, other.transform.position) - other.sizeRadius
-                    ) / sightRadius;
-                distance = Mathf.Pow(1f - distance, 1f);
+            float distance = Mathf.Max(
+                0f,
+                Vector3.Distance(transform.position, other.transform.position) - other.sizeRadius
+            ) / sightRadius;
+            distance = 1f - distance;
                 
-                Vector3 direction = (transform.position - other.transform.position).normalized;
-                force += direction * distance;
-            }
+            Vector3 direction = (transform.position - other.transform.position).normalized;
+            force += direction * distance;
         }
         
         return (force / others.Count()).normalized;
@@ -218,7 +237,6 @@ public class AIAgent : MonoBehaviour
         Vector3 force = new Vector3();
         float angle = 0f;
         float sign = 1f;
-        int hitCount = 0;
         
         for (int i = 0; i <= (int) (sightAngle / obstacleAngleIncrement); i++)
         {
@@ -227,7 +245,11 @@ public class AIAgent : MonoBehaviour
             if (Physics.Raycast(transform.position, direction, out RaycastHit hit, sightRadius))
             {
                 force -= direction * (1f - (hit.distance / sightRadius));
-                ++hitCount;
+                
+#if UNITY_EDITOR
+                if (debugType == ForceType.Environment)
+                    Debug.DrawLine(transform.position, hit.point, Color.white);
+#endif
             }
             
             angle += (i + 1) * sign * obstacleAngleIncrement;
@@ -247,7 +269,8 @@ public class AIAgent : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(transform.forward * (maxMoveSpeed * _moveMultiplier * Time.deltaTime * manager.Speed), Space.World);
+        float speed = maxMoveSpeed * _moveMultiplier * manager.Speed * Time.deltaTime;
+        navMeshAgent.Move(transform.forward * speed);
     }
 
 
@@ -255,7 +278,96 @@ public class AIAgent : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (debugType != ForceType.None) VisualizeSight();
+        if (debugType != ForceType.None)
+            VisualizeSight();
+        
+        if (debugType == ForceType.Separation || debugType == ForceType.All)
+            VisualizeSeparation();
+        
+        if (debugType == ForceType.Alignment || debugType == ForceType.All)
+            VisualizeAlignment();
+        
+        if (debugType == ForceType.Cohesion || debugType == ForceType.All)
+            VisualizeCohesion();
+        
+        if (debugType == ForceType.Target || debugType == ForceType.All)
+            VisualizeTarget();
+    }
+
+    private void DrawSize(Color color)
+    {
+        Handles.color = color;
+            
+        Handles.DrawWireArc(transform.position,
+            Vector3.up,
+            transform.forward,
+            360f,
+            sizeRadius
+        );
+    }
+
+    private void VisualizeSeparation()
+    {
+        foreach (AIAgent other in others)
+        {
+            Vector3 direction = (other.transform.position - transform.position).normalized;
+            float distance = Mathf.Max(0f,
+                Vector3.Distance(transform.position, other.transform.position) - other.sizeRadius);
+
+            Handles.color = Color.Lerp(Color.white, Color.red, 1f - (distance / sightRadius));
+            
+            Handles.DrawLine(
+                transform.position,
+                transform.position + direction * distance
+            );
+            
+            other.DrawSize(sightColour);
+        }
+    }
+
+    private void VisualizeAlignment()
+    {
+        foreach (AIAgent other in others)
+        {
+            Handles.color = Color.red;
+            Handles.DrawLine(other.transform.position, other.transform.position + other.transform.forward * RayMultiplier);
+            
+            other.DrawSize(sightColour);
+        }
+    }
+
+    private void VisualizeCohesion()
+    {
+        Vector3 centre = new Vector3();
+        
+        foreach (AIAgent other in others)
+        {
+            centre += other.transform.position;
+        }
+
+        centre /= others.Length;
+
+        Handles.color = Color.white;
+        
+        foreach (AIAgent other in others)
+        {
+            Handles.DrawLine(other.transform.position, centre);
+        }
+
+        Handles.color = Color.red;
+        Handles.DrawLine(transform.position, centre);
+
+    }
+
+    private void VisualizeTarget()
+    {
+        NavMeshPath path = navMeshAgent.path;
+        Handles.color = Color.white;
+        
+        for (int i = 0; i < path.corners.Length - 1; i++)
+        {
+            Handles.DrawLine(path.corners[i], path.corners[i + 1]);
+        }
     }
 
     private void VisualizeSight()
@@ -266,8 +378,7 @@ public class AIAgent : MonoBehaviour
         Vector3 arcStartVector = Quaternion.AngleAxis(-sightAngle / 2f, Vector3.up) * transform.forward;
         
         // Draw sizeRadius
-        Handles.color = Color.white;
-        Handles.DrawWireArc(centre, Vector3.up, arcStartVector, 360f, sizeRadius);
+        DrawSize(Color.white);
         
         // Draw sightRadius
         Handles.color = Color.white;

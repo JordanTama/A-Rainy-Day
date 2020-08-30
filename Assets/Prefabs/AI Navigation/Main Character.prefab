@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2169345395443031905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -5}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalPosition: {x: 0, y: 0.2, z: -5}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,16 +96,19 @@ MonoBehaviour:
   manager: {fileID: 11400000, guid: 0dbc6708021360a468bf9eb1248d6969, type: 2}
   navMeshAgent: {fileID: 2169345395443031908}
   maxMoveSpeed: 1
-  maxSteerSpeed: 5
+  maxSteerSpeed: 1
   targetRadius: 0.5
+  slowExponent: 0.8
   sightRadius: 1
   sightAngle: 240
-  sizeRadius: 1
-  separationProportion: 0.392
+  sizeRadius: 0.5
+  obstacleAngleIncrement: 10
+  separationProportion: 0.749
   alignmentProportion: 0
-  targetProportion: 0.753
-  cohesionProportion: 0
-  debugVisualization: 0
+  targetProportion: 0.473
+  cohesionProportion: 0.562
+  environmentProportion: 0.2
+  debugType: 0
   sightColour: {r: 1, g: 1, b: 1, a: 0.050980393}
 --- !u!195 &2169345395443031908
 NavMeshAgent:
@@ -128,4 +131,4 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 1

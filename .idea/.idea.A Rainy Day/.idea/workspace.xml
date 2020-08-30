@@ -26,14 +26,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8da9afe1-fb09-46ea-b54a-5670f37d1747" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AISpawner.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AISpawner.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Cube (1) 1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Cube (1) 1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Cube (1).asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Cube (1).asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Cube 1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Cube 1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Cube.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Cube.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-GameObject.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-GameObject.asset.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AI Navigation/AI Manager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AI Navigation/AI Manager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Box.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Box.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Obsolete/AISpawner.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Obsolete/AISpawner.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,11 +72,11 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIUpdater.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Obsolete/AISpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AINavigator.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AISpawner.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Editor/AIManagerEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AISpawner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" />
       </list>
     </option>
   </component>
@@ -122,7 +132,7 @@
       <workItem from="1598599559881" duration="8262000" />
       <workItem from="1598670895176" duration="11057000" />
       <workItem from="1598759292662" duration="2275000" />
-      <workItem from="1598764418147" duration="1128000" />
+      <workItem from="1598764418147" duration="10482000" />
     </task>
     <servers />
   </component>
