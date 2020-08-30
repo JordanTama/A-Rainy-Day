@@ -94,7 +94,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 10, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &8692690053076814404
 ParticleSystem:
@@ -4830,7 +4830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20095400190641cf8e42a09fe60dc083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 0
+  points: 5
   activatedPs: {fileID: 8692690053076814404}
   audioSource: {fileID: 0}
   testActivate: 0
