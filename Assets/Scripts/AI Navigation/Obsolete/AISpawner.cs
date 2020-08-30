@@ -1,28 +1,72 @@
 ﻿using System;
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Random = UnityEngine.Random;
 
-[ExecuteInEditMode]
-public class NavigationGate : NavigationNode
+public class AISpawner : MonoBehaviour
 {
-    [Header("Gate Geometry")]
-    [SerializeField] private float gatePadding;
+    [Header("Component References")] 
+    [SerializeField] private AIManager manager;
+    
+    [Header("Spawner Settings")]
+    [SerializeField] private GameObject spawnPrefab;
+    [SerializeField] private int maxSpawned;
+    [SerializeField] private float spawnTick;
 
     [Header("Debug Settings")]
-    [SerializeField] private Color pathColour;
-    [SerializeField] private float pathHeight;
-    [SerializeField] private float pathOffset;
-
-    private Transform[] _points;
-    [SerializeField] private NavigationNode[] _connectedNodes;
-
-
-    public NavigationNode[] ConnectedNodes => _connectedNodes.Clone() as NavigationNode[];
-    public override Vector3 Centre => Lerp(0.5f);
+    [SerializeField] private bool liveUpdate;
+    [SerializeField] private bool debugVisualization;
+    [SerializeField] private bool debugLabels;
+    [SerializeField] private Color visColor;
+    [SerializeField] private float visHeight;
+    [SerializeField] private float visOffset;
     
-    public override void UpdateNode() => _points = Array.FindAll(GetComponentsInChildren<Transform>(), child => child != transform);
+    private Transform[] _points;
+    private int _spawned;
+    private float _lastSpawnTime;
+
+    private float SpawnTick => spawnTick / manager.Speed;
+    private Vector3 Centre => Lerp(0.5f);
+    private bool CanSpawn => Time.timeSinceLevelLoad - _lastSpawnTime >= SpawnTick && _spawned < maxSpawned;
+
+    private void Start()
+    {
+        manager.AddSpawner(this);
+        
+        UpdatePoints();
+
+        _spawned = 0;
+        _lastSpawnTime = -SpawnTick;
+    }
+
+    private void Update()
+    {
+        if (CanSpawn)
+            Spawn();
+    }
+
+    private void Spawn()
+    {
+        AIAgent agent = Instantiate(spawnPrefab, Lerp(Random.value), transform.rotation).GetComponent<AIAgent>();
+        agent.Travel(this, manager.RandomSpawner(this));
+        
+        _lastSpawnTime = Time.timeSinceLevelLoad;
+        _spawned++;
+    }
+
+    public void Remove(AIAgent agent)
+    {
+        --_spawned;
+        Destroy(agent.gameObject);
+    }
+
+    private void UpdatePoints()
+    {
+        _points = Array.FindAll(GetComponentsInChildren<Transform>(), child => child != transform);
+    }
 
     private Vector3 Lerp(float t)
     {
@@ -62,7 +106,7 @@ public class NavigationGate : NavigationNode
         return Vector3.Lerp(_points[index].position, _points[index + 1].position, t);
     }
     
-    public override Vector3 ClosestPoint(Vector3 to)
+    public Vector3 ClosestPoint(Vector3 to)
     {
         int nodeIndex = 0;
         float distance = float.MaxValue;
@@ -116,65 +160,54 @@ public class NavigationGate : NavigationNode
         return result;
     }
 
-    private Vector3 ClosestPointOnLine(Vector3 to, Vector3 pointA, Vector3 pointB)
+    private static Vector3 ClosestPointOnLine(Vector3 to, Vector3 pointA, Vector3 pointB)
     {
         Vector3 normal = (pointB - pointA).normalized;
-        Vector3 projection = Vector3.Project(to - pointA, normal) + pointA;
-        float projectionDistance = Vector3.Distance(projection, to);
+        Vector3 centre = (pointA + pointB) / 2f;
         
-        if (Vector3.Distance(to, pointA) < projectionDistance) return pointA;
-        if (Vector3.Distance(to, pointB) < projectionDistance) return pointB;
+        Vector3 projection = Vector3.Project(to - pointA, normal) + pointA;
+        Vector3 toProjection = Vector3.ClampMagnitude(projection - centre, Vector3.Distance(pointA, pointB) / 2f);
+        
+        projection = centre + toProjection;
         
         return projection;
     }
 
-    private Vector3 LerpPadded()
-    {
-        throw new System.NotImplementedException();
-    }
-    
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        if (debugVisualisation) Visualise();
+        if (liveUpdate) UpdatePoints();
+        if (debugVisualization) Visualise();
         if (debugLabels && _points.Length > 0) Label();
     }
 
-    protected override void Label()
+    private void Label()
     {
         Handles.Label(
-            Centre + Vector3.up * (pathHeight / 2f + pathOffset),
+            Centre + Vector3.up * (visHeight / 2f + visOffset),
             gameObject.name
             );
     }
     
-    protected override void Visualise()
+    private void Visualise()
     {
         // Wall between nodes
         Handles.zTest = CompareFunction.Less;
         for (int i = 0; i < _points.Length; i++)
         {
-            Handles.CubeHandleCap(0, _points[i].position, Quaternion.identity, .07f, EventType.Repaint);
+            Handles.CubeHandleCap(0, _points[i].position, transform.rotation, .07f, EventType.Repaint);
             
             if (i == _points.Length - 1) break;
             
             Vector3[] verts = {
-                _points[i].position + Vector3.up * pathOffset,
-                _points[i].position + Vector3.up * (pathHeight + pathOffset),
-                _points[i + 1].position + Vector3.up * (pathHeight + pathOffset),
-                _points[i + 1].position + Vector3.up * pathOffset
+                _points[i].position + Vector3.up * visOffset,
+                _points[i].position + Vector3.up * (visHeight + visOffset),
+                _points[i + 1].position + Vector3.up * (visHeight + visOffset),
+                _points[i + 1].position + Vector3.up * visOffset
             };
             
-            Handles.DrawSolidRectangleWithOutline(verts, pathColour, Color.green);
-        }
-
-        foreach (NavigationNode other in _connectedNodes)
-        {
-            Handles.DrawLine(
-                Centre,
-                other.Centre
-            );
+            Handles.DrawSolidRectangleWithOutline(verts, visColor, Color.green);
         }
     }
 #endif

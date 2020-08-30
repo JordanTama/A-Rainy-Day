@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIUpdater : MonoBehaviour
+public class AIController : MonoBehaviour
 {
     [SerializeField] private AIManager manager;
 

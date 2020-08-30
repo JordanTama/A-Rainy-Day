@@ -10,19 +10,66 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="AI Navigation" t="Include">
+            <e p="AIAgent.cs" t="Include" />
+            <e p="AIController.cs" t="Include" />
             <e p="AIManager.cs" t="Include" />
-            <e p="AINavigator.cs" t="Include" />
-            <e p="AIUpdater.cs" t="Include" />
             <e p="Editor" t="Include">
               <e p="AIContextMenu.cs" t="Include" />
               <e p="NavigationGraphEditor.cs" t="Include" />
             </e>
-            <e p="NavigationGate.cs" t="Include" />
-            <e p="NavigationGraph.cs" t="Include" />
-            <e p="NavigationNode.cs" t="Include" />
+            <e p="Obsolete" t="Include">
+              <e p="AISpawner.cs" t="Include" />
+              <e p="NavigationGraph.cs" t="Include" />
+              <e p="NavigationNode.cs" t="Include" />
+            </e>
           </e>
+          <e p="Input" t="Include">
+            <e p="Input Controls.cs" t="Include" />
+            <e p="InputManager.cs" t="Include" />
+          </e>
+          <e p="NavMeshComponents" t="Include">
+            <e p="NavMeshComponents" t="Include">
+              <e p="Editor" t="Include">
+                <e p="NavMeshAssetManager.cs" t="Include" />
+                <e p="NavMeshComponentsEditor.asmdef" t="Include" />
+                <e p="NavMeshComponentsGUIUtility.cs" t="Include" />
+                <e p="NavMeshLinkEditor.cs" t="Include" />
+                <e p="NavMeshModifierEditor.cs" t="Include" />
+                <e p="NavMeshModifierVolumeEditor.cs" t="Include" />
+                <e p="NavMeshSurfaceEditor.cs" t="Include" />
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="NavMeshComponents.asmdef" t="Include" />
+                <e p="NavMeshLink.cs" t="Include" />
+                <e p="NavMeshModifier.cs" t="Include" />
+                <e p="NavMeshModifierVolume.cs" t="Include" />
+                <e p="NavMeshSurface.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Tests" t="Include">
+              <e p="Editor" t="Include">
+                <e p="NavMeshComponentsTestsEditmode.asmdef" t="Include" />
+                <e p="NavMeshModifierVolumeInPrefabTests.cs" t="Include" />
+                <e p="NavMeshSurfaceInPrefabTests.cs" t="Include" />
+                <e p="NavMeshSurfaceInPrefabVariantTests.cs" t="Include" />
+                <e p="PrefabSavingUtil.cs" t="Include" />
+                <e p="PrefabStageAutoSavingUtil.cs" t="Include" />
+              </e>
+              <e p="NavMeshComponentsTestsPlaymode.asmdef" t="Include" />
+              <e p="NavMeshSurfaceAgentTests.cs" t="Include" />
+              <e p="NavMeshSurfaceLinkTests.cs" t="Include" />
+              <e p="NavMeshSurfaceModifierTests.cs" t="Include" />
+              <e p="NavMeshSurfaceModifierVolumeTests.cs" t="Include" />
+              <e p="NavMeshSurfaceTests.cs" t="Include" />
+            </e>
+          </e>
+          <e p="ServiceLocator.cs" t="Include" />
         </e>
       </e>
+      <e p="NavMeshComponents.csproj" t="IncludeRecursive" />
+      <e p="NavMeshComponentsEditor.csproj" t="IncludeRecursive" />
+      <e p="NavMeshComponentsTestsEditmode.csproj" t="IncludeRecursive" />
+      <e p="NavMeshComponentsTestsPlaymode.csproj" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
