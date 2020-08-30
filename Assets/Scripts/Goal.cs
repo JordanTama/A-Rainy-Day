@@ -6,25 +6,33 @@ using UnityEngine;
 public class Goal : MonoBehaviour
 {
     private GameManager _gameManager;
+    private ScoreManager _scoreManager;
+
+    public int playerPoints = 10;
+    public int npcPoints = 1;
+    private int _pointsToAdd = 0;
+    
     public Collider _collider;
-    public ParticleSystem OpenPs;
-    public AudioSource openAS;
+    public ParticleSystem openPs;
+    public AudioSource openAs;
 
     public TMP_Text goalText;
 
-    [SerializeField] private int objectiveCount = 0;
-    [SerializeField] private int objectiveActivated = 0;
+    private int objectiveCount = 0;
+    private int objectiveActivated = 0;
     
     private void Start()
     {
         _gameManager = ServiceLocator.Current.Get<GameManager>();
+        _scoreManager = ServiceLocator.Current.Get<ScoreManager>();
         _gameManager.OnPreparation += Reset;
 
         _collider = GetComponent<Collider>();
         Reset();
     }
+    
 
-    public void IncreaseObjectives()
+    public void IncreaseObjectivesCount()
     {
         objectiveCount++;
         OpenGoal();
@@ -70,7 +78,7 @@ public class Goal : MonoBehaviour
 
     private bool IsOpen()
     {
-        return objectiveActivated == objectiveCount;
+        return objectiveActivated >= objectiveCount;
     }
 
     private void Reset()
@@ -82,8 +90,8 @@ public class Goal : MonoBehaviour
 
     private void StopAudio()
     {
-        if (!openAS) return;
-        if(openAS.isPlaying) openAS.Stop();
+        if (!openAs) return;
+        if(openAs.isPlaying) openAs.Stop();
     }
 
 
@@ -96,33 +104,44 @@ public class Goal : MonoBehaviour
 
     private void PlayAudio()
     {
-        if (!openAS) return;
-        if(!openAS.isPlaying) openAS.Play();
+        if (!openAs) return;
+        if(!openAs.isPlaying) openAs.Play();
     }
 
     private void PlayParticles()
     {
-        if (!OpenPs) return;
-        if(!OpenPs.isPlaying) OpenPs.Play();
+        if (!openPs) return;
+        if(!openPs.isPlaying) openPs.Play();
     }
     
     private void StopParticles()
     {
-        if (!OpenPs) return;
-        if (OpenPs.isPlaying)
+        if (!openPs) return;
+        if (openPs.isPlaying)
         {
-            OpenPs.Stop();
-            OpenPs.Clear();
+            openPs.Stop();
+            openPs.Clear();
         }
     }
 
     private void AddScore()
     {
         // Add score from player crossing goal, modify for an npc as well
+        _scoreManager.AddScore(_pointsToAdd);
+        _pointsToAdd = 0;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player")) Entered();
+        if (other.CompareTag("Player") || other.CompareTag("NPC"))
+        {
+            _pointsToAdd = DeterminePoints(other.tag);
+            Entered();
+        }
+    }
+
+    private int DeterminePoints(string otherTag)
+    {
+        return otherTag.Equals("Player") ? playerPoints : npcPoints;
     }
 }

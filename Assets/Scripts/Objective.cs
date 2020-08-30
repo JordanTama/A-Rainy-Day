@@ -5,7 +5,9 @@ using UnityEngine;
 public class Objective : MonoBehaviour
     {
         private GameManager _gameManager;
+        private ScoreManager _scoreManager;
         private Collider _collider;
+        public int points = 5;
         public ParticleSystem activatedPs;
         public AudioSource audioSource;
 
@@ -16,12 +18,13 @@ public class Objective : MonoBehaviour
         private void Start()
         {
             _gameManager = ServiceLocator.Current.Get<GameManager>();
+            _scoreManager = ServiceLocator.Current.Get<ScoreManager>();
             _gameManager.OnPreparation += Reset;
 
             _collider = GetComponent<Collider>();
 
             _goal = GameObject.FindObjectOfType<Goal>();
-            if(_goal) _goal.IncreaseObjectives();
+            if(_goal) _goal.IncreaseObjectivesCount();
         }
 
         private void Update()
@@ -33,8 +36,7 @@ public class Objective : MonoBehaviour
             }
 
         }
-
-
+        
         private void Reset()
         {
             HideTextMessage();
@@ -102,7 +104,7 @@ public class Objective : MonoBehaviour
 
         private void AddScore()
         {
-            // Access Scoremanager and update current score accordingly
+            _scoreManager.AddScore(points);
         }
 
         private void ShowTextMessage()
