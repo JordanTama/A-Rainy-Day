@@ -130,7 +130,11 @@ public class AIAgent : MonoBehaviour
     private void CheckExit()
     {
         if (Vector3.Distance(transform.position, _target.ClosestPoint(transform.position)) > targetRadius) return;
-        
+        Clear();
+    }
+
+    public void Clear()
+    {
         manager.RemoveNavigator(this);
         _spawner.Remove(this);
     }

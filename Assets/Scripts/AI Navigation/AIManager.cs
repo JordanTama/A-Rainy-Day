@@ -8,31 +8,55 @@ public class AIManager : ScriptableObject
     [Header("System Settings")] 
     [SerializeField] private float simulationSpeed;
     
-    private List<AIAgent> _navigators = new List<AIAgent>();
+    private List<AIAgent> _agents = new List<AIAgent>();
     private List<AISpawner> _spawners = new List<AISpawner>();
 
+    private float _speed;
 
-    public float Speed => simulationSpeed;
-    public AIAgent[] Navigators => _navigators.ToArray();
+    public float Speed => _speed;
+    public AIAgent[] Navigators => _agents.ToArray();
     public AISpawner[] Spawners => _spawners.ToArray();
 
 
     public void Initialize()
     {
-        _navigators = new List<AIAgent>();
+        _agents = new List<AIAgent>();
         _spawners = new List<AISpawner>();
+        
+        Pause();
+    }
+
+    [ContextMenu("Pause")]
+    public void Pause()
+    {
+        _speed = 0f;
+    }
+
+    [ContextMenu("Play")]
+    public void Play()
+    {
+        _speed = simulationSpeed;
+    }
+    
+    [ContextMenu("Clear Agents")]
+    public void ClearAgents()
+    {
+        for (int i = _agents.Count - 1; i >= 0; i--)
+        {
+            _agents[i].Clear();
+        }
     }
     
     public void AddNavigator(AIAgent agent)
     {
-        if (!_navigators.Contains(agent))
-            _navigators.Add(agent);
+        if (!_agents.Contains(agent))
+            _agents.Add(agent);
     }
 
     public void RemoveNavigator(AIAgent agent)
     {
-        if (_navigators.Contains(agent))
-            _navigators.Remove(agent);
+        if (_agents.Contains(agent))
+            _agents.Remove(agent);
     }
 
     public void AddSpawner(AISpawner spawner)

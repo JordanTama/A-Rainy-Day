@@ -30,7 +30,7 @@ public class AISpawner : MonoBehaviour
 
     private float SpawnTick => spawnTick / manager.Speed;
     private Vector3 Centre => Lerp(0.5f);
-    private bool CanSpawn => Time.timeSinceLevelLoad - _lastSpawnTime >= SpawnTick && _spawned < maxSpawned;
+    private bool CanSpawn => Time.timeSinceLevelLoad - _lastSpawnTime > SpawnTick && _spawned < maxSpawned;
 
     private void Start()
     {
