@@ -68,6 +68,7 @@ public class TileController : MonoBehaviour
                             {
                                 startMousePos = cameraManager.worldSpaceMousePos;
                                 tweening = false;
+                                tileManager.NewTilePosition();
                             });
                     }
                 }

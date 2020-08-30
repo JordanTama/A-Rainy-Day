@@ -8,6 +8,7 @@ public class TileManager : IGameService
     public GameObject CurrentTile { get; private set; }
     public Action<GameObject> OnTileSelect;
     public Action OnTileDeselect;
+    public Action OnNewTilePosition;
 
     private CameraManager cameraManager;
     private InputManager inputManager;
@@ -57,6 +58,11 @@ public class TileManager : IGameService
                 OnTileSelect?.Invoke(CurrentTile);
             }
         }
+    }
+
+    public void NewTilePosition()
+    {
+        OnNewTilePosition?.Invoke();
     }
 
     private void EnableTileMove()
