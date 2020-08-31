@@ -36,6 +36,7 @@ public class TileController : MonoBehaviour
         _gameLoopManager.OnRestart += ResetPosition;
         _tileSize = new Vector2(transform.localScale.x, transform.localScale.z);
         SetStartPosition();
+        ResetPosition();
     }
 
     void TileSelect(GameObject g)
@@ -113,5 +114,6 @@ public class TileController : MonoBehaviour
     {
         tileManager.OnTileSelect -= TileSelect;   
         tileManager.OnTileDeselect -= TileDeselect;
+        _gameLoopManager.OnRestart -= ResetPosition;
     }
 }
