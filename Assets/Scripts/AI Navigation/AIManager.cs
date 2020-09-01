@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -73,20 +74,7 @@ public class AIManager : ScriptableObject
 
     public AISpawner RandomSpawner(AISpawner exclude)
     {
-        //AISpawner spawner = exclude;
-
-        int index = Random.Range(0, _spawners.Count - 1);
-        AISpawner spawner = index >= _spawners.IndexOf(exclude) ? _spawners[index + 1] : _spawners[index];
-        
-        // int range = Random.Range(0, _spawners.Count - 1);
-        //
-        // for (int i = 0; i <= range; i++)
-        // {
-        //     if (_spawners[i] == exclude) range++;
-        //     spawner = _spawners[i];
-        //     
-        // }
-
-        return spawner;
+        List<AISpawner> destinations = _spawners.FindAll(spawner => spawner.IsDestination && spawner != exclude);
+        return destinations.Count == 0 ? exclude : destinations[Random.Range(0, destinations.Count)];
     }
 }
