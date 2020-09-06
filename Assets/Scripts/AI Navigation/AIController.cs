@@ -10,6 +10,8 @@ public class AIController : MonoBehaviour
     [SerializeField] private bool playOnAwake;
     private GameLoopManager _gameLoopManager;
     private TileManager _tileManager;
+    private InteractableManager _interactableManager;
+    
     [SerializeField] private NavMeshSurface navMeshSurface;
 
     private void Awake()
@@ -22,12 +24,14 @@ public class AIController : MonoBehaviour
     {
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _tileManager = ServiceLocator.Current.Get<TileManager>();
+        _interactableManager = ServiceLocator.Current.Get<InteractableManager>();
         _gameLoopManager.OnPreparation += StopSpawning;
         _gameLoopManager.OnExecution += StartSpawning;
         _gameLoopManager.OnComplete += StopSpawning;
 
         _tileManager.OnNewTilePosition += BakeNavMesh;
         _tileManager.OnRebakeMesh += BakeNavMesh;
+        _interactableManager.OnInteractableStateChange += BakeNavMesh;
     }
 
     private void BakeNavMesh()
