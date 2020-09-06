@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class TrafficLights:InteractableReceiver
 {
-    private NavMeshModifierVolume blocker;
+    private NavMeshObstacle _obstacle;
     private MeshRenderer myMesh;
     private MaterialPropertyBlock block;
 
@@ -13,7 +13,7 @@ public class TrafficLights:InteractableReceiver
 
     private void Awake()
     {
-        blocker = GetComponent<NavMeshModifierVolume>();
+        _obstacle = GetComponent<NavMeshObstacle>();
         block = new MaterialPropertyBlock();
         myMesh = GetComponent<MeshRenderer>();
         ResetState();
@@ -37,15 +37,19 @@ public class TrafficLights:InteractableReceiver
     private void Close()
     {
         isOpen = false;
-        blocker.area = 1;
+        _obstacle.enabled = true;
+        _obstacle.carving = true;
         ChangeColor(Color.red);
+        transform.localScale = new Vector3(transform.localScale.x,1f,transform.localScale.z);
     }
 
     private void Open()
     {
         isOpen = true;
-        blocker.area = 0;
+        _obstacle.carving = false;    
+        _obstacle.enabled = false;    
         ChangeColor(Color.green);
+        transform.localScale = new Vector3(transform.localScale.x,0.03f,transform.localScale.z);
     }
 
     private void ChangeColor(Color c)
