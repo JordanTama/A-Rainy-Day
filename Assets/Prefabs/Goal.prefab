@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 11400000, guid: 0dbc6708021360a468bf9eb1248d6969, type: 2}
+  isDestination: 0
   spawnPrefab: {fileID: 2169345395443031905, guid: 0a1aa0c21518ab44aaf3de24dc27e901,
     type: 3}
   maxSpawned: 0
@@ -230,7 +231,7 @@ GameObject:
   - component: {fileID: 1645824957959938449}
   - component: {fileID: 1645824957959938448}
   - component: {fileID: 1645824957959938442}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
