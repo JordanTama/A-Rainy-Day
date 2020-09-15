@@ -9,6 +9,8 @@ public class TrafficLights:InteractableReceiver
     private MeshRenderer myMesh;
     private MaterialPropertyBlock block;
 
+    public bool isOpenDefault;
+    
     private bool isOpen;
 
     private void Awake()
@@ -31,7 +33,15 @@ public class TrafficLights:InteractableReceiver
     protected override void ResetState()
     {
         base.ResetState();
-        Close();
+        if (isOpenDefault)
+        {
+            Open();
+        }
+        else
+        {
+            Close();    
+        }
+        
     }
 
     private void Close()
