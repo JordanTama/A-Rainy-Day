@@ -5,9 +5,13 @@ using UnityEngine;
 public abstract class InteractableReceiver : MonoBehaviour
 {
     public InteractableController interactableController;
-    private void Start()
+    protected void Start()
     {
-        if (interactableController) interactableController.OnInteractableStateChange += ChangeState;
+        if (interactableController)
+        {
+            interactableController.OnInteractableStateChange += ChangeState;
+            
+        }
     }
 
     protected virtual void ChangeState()

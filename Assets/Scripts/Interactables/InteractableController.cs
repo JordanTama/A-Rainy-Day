@@ -6,20 +6,20 @@ using System.Collections.Generic;
 public class InteractableController : MonoBehaviour
 {
     public Action OnInteractableStateChange;
-    
-    private InteractableManager interactableManager;
-    private InputManager inputManager;
-    private CameraManager cameraManager;
-    private GameLoopManager _gameLoopManager;
 
-    [SerializeField] private int numStates;
-    [SerializeField] private int currentState;
-    private int nextState;
-    [SerializeField] private int defaultState;
+    protected InteractableManager interactableManager;
+    protected InputManager inputManager;
+    protected CameraManager cameraManager;
+    protected GameLoopManager _gameLoopManager;
+
+    [SerializeField] protected int numStates;
+    [SerializeField] protected int currentState;
+    protected int nextState;
+    [SerializeField] protected int defaultState;
     private bool isChangeState;
     
 
-    private void Start()
+    protected void Start()
     {
         interactableManager = ServiceLocator.Current.Get<InteractableManager>();
         inputManager = ServiceLocator.Current.Get<InputManager>();
@@ -34,12 +34,12 @@ public class InteractableController : MonoBehaviour
         ResetInteractable();
     }
 
-    private void ResetInteractable()
+    protected virtual void ResetInteractable()
     {
         ChangeState(defaultState);
     }
 
-    private void ChangeState(int newState)
+    protected void ChangeState(int newState)
     {
         currentState = newState;
         SetNextState();
@@ -47,12 +47,12 @@ public class InteractableController : MonoBehaviour
         interactableManager.OnInteractableStateChange?.Invoke();
     }
 
-    private void SetNextState()
+    protected void SetNextState()
     {
         nextState = (currentState + 1) % numStates;
     }
 
-    private void InteractableSelect(GameObject obj)
+    protected void InteractableSelect(GameObject obj)
     {
         if (obj == gameObject)
         {
@@ -60,7 +60,7 @@ public class InteractableController : MonoBehaviour
         }
     }
     
-    private void InteractableDeselect()
+    protected void InteractableDeselect()
     {
         // Cancel highlighting
     }
