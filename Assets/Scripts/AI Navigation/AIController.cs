@@ -28,8 +28,10 @@ public class AIController : MonoBehaviour
         _gameLoopManager.OnPreparation += StopSpawning;
         _gameLoopManager.OnExecution += StartSpawning;
         _gameLoopManager.OnComplete += StopSpawning;
+        
+        _gameLoopManager.OnExecution += BakeNavMesh;
 
-        _tileManager.OnNewTilePosition += BakeNavMesh;
+        // _tileManager.OnNewTilePosition += BakeNavMesh;
         _tileManager.OnRebakeMesh += BakeNavMesh;
         // _interactableManager.OnInteractableStateChange += BakeNavMesh;
     }
@@ -55,7 +57,8 @@ public class AIController : MonoBehaviour
         _gameLoopManager.OnPreparation -= StopSpawning;
         _gameLoopManager.OnExecution -= StartSpawning;
         _gameLoopManager.OnComplete -= StopSpawning;
-        _tileManager.OnNewTilePosition -= BakeNavMesh;
+        // _tileManager.OnNewTilePosition -= BakeNavMesh;
         _tileManager.OnRebakeMesh -= BakeNavMesh;
+        _gameLoopManager.OnExecution -= BakeNavMesh;
     }
 }
