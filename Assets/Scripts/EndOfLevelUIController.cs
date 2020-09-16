@@ -24,6 +24,7 @@ public class EndOfLevelUIController : MonoBehaviour
     {
         _loopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _loopManager.OnComplete += ShowUI;
+        _loopManager.OnRestart += HideUI;
     }
 
     [ContextMenu("Show")]
@@ -31,6 +32,12 @@ public class EndOfLevelUIController : MonoBehaviour
     {
         canvasGroup.DOFade(1, 1);
         canvasGroup.blocksRaycasts = true;
+    }
+    
+    private void HideUI()
+    {
+        canvasGroup.DOFade(0, 1);
+        canvasGroup.blocksRaycasts = false;
     }
 
     public void SendFeedback()

@@ -23,4 +23,9 @@ public abstract class InteractableReceiver : MonoBehaviour
     {
         
     }
+
+    protected void OnDestroy()
+    {
+        interactableController.OnInteractableStateChange -= ChangeState;
+    }
 }

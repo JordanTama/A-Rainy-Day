@@ -208,6 +208,14 @@ PrefabInstance:
       propertyPath: isDestination
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1251876405, guid: 58a28d21080d3b743b14e64f47ea452b, type: 3}
+      propertyPath: initialSpawnFactor
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1251876405, guid: 58a28d21080d3b743b14e64f47ea452b, type: 3}
+      propertyPath: spawnTick
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 688629852489720617, guid: 58a28d21080d3b743b14e64f47ea452b,
         type: 3}
       propertyPath: m_LocalPosition.x

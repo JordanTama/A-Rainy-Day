@@ -29,7 +29,7 @@ public class InteractableController : MonoBehaviour
         interactableManager.OnInteractableSelect+=InteractableSelect;
         interactableManager.OnInteractableDeselect+=InteractableDeselect;
 
-        _gameLoopManager.OnRestart += ResetInteractable;
+        _gameLoopManager.OnPreparation += ResetInteractable;
 
         ResetInteractable();
     }
@@ -63,5 +63,13 @@ public class InteractableController : MonoBehaviour
     protected void InteractableDeselect()
     {
         // Cancel highlighting
+    }
+
+    protected void OnDestroy()
+    {
+        interactableManager.OnInteractableSelect-=InteractableSelect;
+        interactableManager.OnInteractableDeselect-=InteractableDeselect;
+
+        _gameLoopManager.OnPreparation -= ResetInteractable;
     }
 }
