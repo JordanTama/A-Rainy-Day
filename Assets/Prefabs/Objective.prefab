@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3025010675254263293}
   - component: {fileID: 3025010675254263292}
   - component: {fileID: 3025010675254263294}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Objective
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4833,4 +4833,5 @@ MonoBehaviour:
   points: 5
   activatedPs: {fileID: 3025010675254263293}
   audioSource: {fileID: 0}
+  _goal: {fileID: 0}
   testActivate: 0

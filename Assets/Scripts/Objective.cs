@@ -11,7 +11,7 @@ public class Objective : MonoBehaviour
         public ParticleSystem activatedPs;
         public AudioSource audioSource;
 
-        private Goal _goal;
+        [SerializeField] private Goal _goal;
 
         public bool testActivate = false;
 
