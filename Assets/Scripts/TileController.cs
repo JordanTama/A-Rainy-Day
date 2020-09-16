@@ -107,7 +107,7 @@ public class TileController : MonoBehaviour
     public void ResetPosition()
     {
         transform.SetPositionAndRotation(_startPosition,_startRotation);
-        tileManager.OnRebakeMesh?.Invoke();
+        // tileManager.OnRebakeMesh?.Invoke();
     }
 
     private void OnDestroy()
