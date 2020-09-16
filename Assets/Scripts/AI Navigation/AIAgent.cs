@@ -46,6 +46,9 @@ public class AIAgent : MonoBehaviour
 
     private const float ForceRayMultiplier = 2f;
     private const float RayMultiplier = .7f;
+
+    private AIAgent _prev;
+    private AIAgent _next;
     
     
     private enum ForceType { None, All, Total, Separation, Alignment, Cohesion, Target, Environment }

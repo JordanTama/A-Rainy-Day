@@ -16,7 +16,7 @@ public class AIController : MonoBehaviour
 
     private void Awake()
     {
-        manager.Initialize(transform.position);
+        InitializeManager();
         if (playOnAwake) manager.Play();
     }
 
@@ -34,6 +34,18 @@ public class AIController : MonoBehaviour
         // _tileManager.OnNewTilePosition += BakeNavMesh;
         _tileManager.OnRebakeMesh += BakeNavMesh;
         // _interactableManager.OnInteractableStateChange += BakeNavMesh;
+    }
+
+
+    [ContextMenu("Initialize Manager")]
+    private void InitializeManager()
+    {
+        manager.Initialize(transform.localToWorldMatrix);
+    }
+
+    private void OnDrawGizmos()
+    {
+        manager.DrawDebug();
     }
 
     private void BakeNavMesh()

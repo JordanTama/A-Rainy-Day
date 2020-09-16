@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: AI Manager
   m_EditorClassIdentifier: 
   simulationSpeed: 3
+  width: 5
+  height: 7

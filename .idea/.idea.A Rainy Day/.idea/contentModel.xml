@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\jorda\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\jorda\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_A Rainy Day.1482797232.00" t="ExcludeRecursive" />
-    <e p="C:\Users\jorda\Documents\School\2020 Spring\Game Design Studio 2\Assignments\A Rainy Day" t="IncludeRecursive">
+    <e p="C:\Users\jorda\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_A Rainy Day.1055084666.00" t="ExcludeRecursive" />
+    <e p="C:\Users\jorda\Documents\School\2020 Spring\31103 Game Design Studio 2\Assignments\A Rainy Day" t="IncludeRecursive">
       <e p="A Rainy Day.sln" t="IncludeFlat" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
@@ -42,6 +42,7 @@
           </e>
           <e p="CameraController.cs" t="Include" />
           <e p="CameraManager.cs" t="Include" />
+          <e p="EndOfLevelUIController.cs" t="Include" />
           <e p="FeedbackController.cs" t="Include" />
           <e p="GameLoopController.cs" t="Include" />
           <e p="GameLoopManager.cs" t="Include" />
@@ -49,6 +50,14 @@
           <e p="Input" t="Include">
             <e p="Input Controls.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
+          </e>
+          <e p="Interactables" t="Include">
+            <e p="InteractableController.cs" t="Include" />
+            <e p="InteractableManager.cs" t="Include" />
+            <e p="InteractableReceiver.cs" t="Include" />
+            <e p="PressurePlate.cs" t="Include" />
+            <e p="PressurePlateText.cs" t="Include" />
+            <e p="TrafficLights.cs" t="Include" />
           </e>
           <e p="NavMeshComponents" t="Include">
             <e p="NavMeshComponents" t="Include">
@@ -94,6 +103,7 @@
           <e p="TileManager.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="ExecuteButtonState.cs" t="Include" />
+            <e p="QuitButton.cs" t="Include" />
             <e p="ResetButtonState.cs" t="Include" />
           </e>
           <e p="Vector3Extension.cs" t="Include" />
