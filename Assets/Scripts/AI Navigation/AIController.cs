@@ -14,7 +14,7 @@ public class AIController : MonoBehaviour
 
     private void Awake()
     {
-        manager.Initialize();
+        manager.Initialize(transform.position);
         if (playOnAwake) manager.Play();
     }
 

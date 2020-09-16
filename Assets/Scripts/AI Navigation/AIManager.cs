@@ -1,25 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class AIManager : ScriptableObject
 {
-    [Header("System Settings")] 
+    [Header("Simulation Settings")] 
     [SerializeField] private float simulationSpeed;
+
+    [Header("Spatial Partitioning Settings")]
+    [SerializeField] private float size;
+    [SerializeField] private int numCells;
+    
+    
     
     private List<AIAgent> _agents = new List<AIAgent>();
     private List<AISpawner> _spawners = new List<AISpawner>();
-
     private float _speed;
+    private List<AIAgent>[] _map;
+    private Vector3 _mapCentre;
 
+    
+    
     public float Speed => _speed;
-    public AIAgent[] Navigators => _agents.ToArray();
+    public IEnumerable<AIAgent> Navigators => _agents.ToArray();
     public AISpawner[] Spawners => _spawners.ToArray();
+    public float CellSize => size / numCells;
 
 
-    public void Initialize()
+    
+    public void Initialize(Vector3 centre)
     {
         _agents = new List<AIAgent>();
         _spawners = new List<AISpawner>();
@@ -47,19 +57,23 @@ public class AIManager : ScriptableObject
             _agents[i].Clear();
         }
     }
+
     
-    public void AddNavigator(AIAgent agent)
+    
+    public void AddAgent(AIAgent agent)
     {
         if (!_agents.Contains(agent))
             _agents.Add(agent);
     }
 
-    public void RemoveNavigator(AIAgent agent)
+    public void RemoveAgent(AIAgent agent)
     {
         if (_agents.Contains(agent))
             _agents.Remove(agent);
     }
 
+    
+    
     public void AddSpawner(AISpawner spawner)
     {
         if (!_spawners.Contains(spawner))

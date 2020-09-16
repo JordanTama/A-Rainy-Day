@@ -101,7 +101,7 @@ public class AIAgent : MonoBehaviour
     // General functions
     public void Travel(AISpawner from, AISpawner to)
     {
-        manager.AddNavigator(this);
+        manager.AddAgent(this);
         
         _target = to;
         _spawner = from;
@@ -157,7 +157,7 @@ public class AIAgent : MonoBehaviour
 
     public void Clear()
     {
-        manager.RemoveNavigator(this);
+        manager.RemoveAgent(this);
         _spawner.Remove(this);
     }
     
