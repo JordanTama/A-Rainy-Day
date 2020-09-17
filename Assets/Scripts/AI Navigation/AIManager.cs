@@ -7,22 +7,34 @@ using Random = UnityEngine.Random;
 public class AIManager : ScriptableObject
 {
     [Header("System Settings")] 
-    [SerializeField] private float simulationSpeed;
+    public float defaultSimulationSpeed;
+    public float simulationSpeed;
     
     private List<AIAgent> _agents = new List<AIAgent>();
     private List<AISpawner> _spawners = new List<AISpawner>();
 
-    private float _speed;
+    [SerializeField] private float _speed;
 
     public float Speed => _speed;
-    public AIAgent[] Navigators => _agents.ToArray();
-    public AISpawner[] Spawners => _spawners.ToArray();
+
+    public AIAgent[] Navigators
+    {
+        get => _agents.ToArray();
+        set => throw new System.NotImplementedException();
+    }
+
+    public AISpawner[] Spawners
+    {
+        get => _spawners.ToArray();
+        set => throw new System.NotImplementedException();
+    }
 
 
     public void Initialize()
     {
         _agents = new List<AIAgent>();
         _spawners = new List<AISpawner>();
+        simulationSpeed = defaultSimulationSpeed;
         
         Pause();
     }
