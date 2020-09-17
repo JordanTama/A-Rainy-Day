@@ -2088,6 +2088,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 2658121902150904230, guid: a65d8a8373ca1ad4ea097b8cf1dde44a,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2658121902150904231, guid: a65d8a8373ca1ad4ea097b8cf1dde44a,
         type: 3}
       propertyPath: m_LocalPosition.x

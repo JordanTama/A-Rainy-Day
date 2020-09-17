@@ -9,12 +9,17 @@ public class ButtonState : MonoBehaviour
     private Button _myButton;
     public Image playImage;
     public Image stopImage;
+    private Material _playMat;
+    private Material _stopMat;
+    public Material disabledMat;
     [SerializeField] private bool isPreparationState;
 
     private void Start()
     {
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _myButton = GetComponent<Button>();
+        _playMat = playImage.material;
+        _stopMat = stopImage.material;
         _gameLoopManager.OnPreparation += PreparationState;
         _gameLoopManager.OnExecution += ExecutionState;
         _gameLoopManager.OnRestart += EnableInteraction;
@@ -53,10 +58,14 @@ public class ButtonState : MonoBehaviour
     private void EnableInteraction()
     {
         _myButton.interactable = true;
+        playImage.material = _playMat;
+        stopImage.material = _stopMat;
     }
     private void DisableInteraction()
     {
         _myButton.interactable = false;
+        playImage.material = disabledMat;
+        stopImage.material = disabledMat;
     }
 
     private void OnDestroy()
