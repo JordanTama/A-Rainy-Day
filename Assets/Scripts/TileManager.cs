@@ -46,7 +46,6 @@ public class TileManager : IGameService
         if (CurrentTile == null)
             return;
 
-        CurrentTile.layer = 0;
         CurrentTile = null;
         OnTileDeselect?.Invoke();
     }
@@ -60,8 +59,7 @@ public class TileManager : IGameService
         {
             if (hit.collider.CompareTag("Tile") && CurrentTile == null)
             {
-                CurrentTile = hit.collider.gameObject;
-                CurrentTile.layer = 2;
+                CurrentTile = hit.collider.transform.parent.gameObject;
                 OnTileSelect?.Invoke(CurrentTile);
             }
         }

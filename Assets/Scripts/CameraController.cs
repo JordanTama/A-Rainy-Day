@@ -18,8 +18,6 @@ public class CameraController : MonoBehaviour
 
         cameraManager = ServiceLocator.Current.Get<CameraManager>();
 
-        Debug.Log(input == null);
-
         cam = GetComponent<Camera>();
     }
 
@@ -27,9 +25,10 @@ public class CameraController : MonoBehaviour
     {
         Ray ray = cam.ScreenPointToRay(input.P_MousePosition.ReadValue<Vector2>());
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100))
+        if (Physics.Raycast(ray, out hit, 100, LayerMask.GetMask("Hit Detection")))
         {
             cameraManager.worldSpaceMousePos = hit.point;
+            cameraManager.worldSpaceMousePos.y = 0;
         }
     }
 
@@ -41,7 +40,6 @@ public class CameraController : MonoBehaviour
         
         if(hits.Length > 0)
         {
-            Debug.Log("Hit");
             cameraManager.FireOnRaycastHit(hits);
         }
     }
