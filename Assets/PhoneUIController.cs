@@ -28,20 +28,17 @@ public class PhoneUIController : MonoBehaviour, IPointerClickHandler
         myRect = GetComponent<RectTransform>();
         messageManager = ServiceLocator.Current.Get<TextMessageManager>();
         messageManager.OnNewTextMessage += ShowNewMessage;
-        SendMessage();
+
+        foreach (var m in messageManager.AllSentMessages)
+        {
+            ShowNewMessage(m);
+        }
     }
 
     public void ShowNewMessage(TextMessage textMessage)
     {
         var msg = Instantiate(msgMap[textMessage.Sender], messageParent.transform).GetComponent<TextMessageUIController>();
         msg.SetText(textMessage.MessageText);
-    }
-
-    [ContextMenu("Send Message")]
-    public void SendMessage()
-    {
-        ServiceLocator.Current.Get<TextMessageManager>().SendNewMessage(new TextMessage() { Sender = MessageSender.DAD, MessageText = "Yo. If you want to move tiles around, click and drag them in the direction you want to move them." });
-        ServiceLocator.Current.Get<TextMessageManager>().SendNewMessage(new TextMessage() { Sender = MessageSender.PLAYER, MessageText = "Thank you." });
     }
 
     private void OnDestroy()

@@ -76,5 +76,6 @@ public class EndOfLevelUIController : MonoBehaviour
     private void OnDestroy()
     {
         _loopManager.OnComplete -= ShowUI;
+        _loopManager.OnRestart -= HideUI;
     }
 }

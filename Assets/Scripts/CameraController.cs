@@ -57,5 +57,6 @@ public class CameraController : MonoBehaviour
     {
         input.P_LeftClick.performed -= OnLeftClickDown;
         input.P_MouseDelta.performed -= OnMouseMoved;
+        cameraManager.OnCameraToRotate -= RotateCamera;
     }
 }
