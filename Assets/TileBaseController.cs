@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -110,5 +111,11 @@ public class TileBaseController : MonoBehaviour
             return true;
 
         return false;
+    }
+
+    private void OnDestroy()
+    {
+        tileManager.OnTileSelect -= TileSelect;
+        tileManager.OnTileDeselect -= TileDeselect;
     }
 }
