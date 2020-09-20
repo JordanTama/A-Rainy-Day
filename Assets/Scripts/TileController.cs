@@ -43,18 +43,12 @@ public class TileController : MonoBehaviour
         if (g == gameObject)
         {
             startMousePos = cameraManager.worldSpaceMousePos;
-            MaterialPropertyBlock block = new MaterialPropertyBlock();
-            block.SetColor("_HighlightColor", Color.yellow);
-            gameObject.GetComponent<Renderer>().SetPropertyBlock(block);
         }
     }
 
     void TileDeselect()
     {
         startMousePos = Vector3.zero;
-        MaterialPropertyBlock block = new MaterialPropertyBlock();
-        block.SetColor("_HighlightColor", Color.black);
-        gameObject.GetComponent<Renderer>().SetPropertyBlock(block);
     }
 
     private void Update()

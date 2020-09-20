@@ -17,7 +17,7 @@ public class TileBaseController : MonoBehaviour
     private Vector3 startMousePos;
     private float _tileSize = 5;
     private bool tweening;
-
+    private Renderer[] childRenderers;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +29,7 @@ public class TileBaseController : MonoBehaviour
 
         tileManager.OnTileSelect += TileSelect;
         tileManager.OnTileDeselect += TileDeselect;
+        childRenderers = GetComponentsInChildren<Renderer>();
     }
 
     void TileDeselect()
@@ -38,10 +39,15 @@ public class TileBaseController : MonoBehaviour
         foreach (TileController t in _allTiles)
         {
             t.gameObject.layer = 0;
+
         }
-        //MaterialPropertyBlock block = new MaterialPropertyBlock();
-        //block.SetColor("_HighlightColor", Color.black);
-        //gameObject.GetComponent<Renderer>().SetPropertyBlock(block);
+
+        foreach (Renderer r in childRenderers)
+        {
+            MaterialPropertyBlock block = new MaterialPropertyBlock();
+            block.SetColor("_HighlightColor", Color.black);
+            r.SetPropertyBlock(block);
+        }
     }
 
     void TileSelect(GameObject g)
@@ -54,9 +60,14 @@ public class TileBaseController : MonoBehaviour
             }
             
             startMousePos = cameraManager.worldSpaceMousePos;
-            //MaterialPropertyBlock block = new MaterialPropertyBlock();
-            //block.SetColor("_HighlightColor", Color.yellow);
-            //gameObject.GetComponent<Renderer>().SetPropertyBlock(block);
+
+
+            foreach (Renderer r in childRenderers)
+            {
+                MaterialPropertyBlock block = new MaterialPropertyBlock();
+                block.SetColor("_HighlightColor", Color.yellow);
+                r.SetPropertyBlock(block);
+            }
         }
     }
 

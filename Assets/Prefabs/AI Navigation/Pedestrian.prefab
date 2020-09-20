@@ -95,13 +95,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 11400000, guid: 0dbc6708021360a468bf9eb1248d6969, type: 2}
   navMeshAgent: {fileID: 2169345395443031908}
-  maxMoveSpeed: 1
+  behaviourType: 0
+  maxMoveSpeed: 0.3
   maxSteerSpeed: 1
   targetRadius: 0.5
   slowExponent: 0.8
   sightRadius: 1
   sightAngle: 240
-  sizeRadius: 0.5
+  sizeRadius: 0.05
   obstacleAngleIncrement: 10
   separationProportion: 0.749
   alignmentProportion: 0
@@ -110,6 +111,10 @@ MonoBehaviour:
   environmentProportion: 0.2
   debugType: 0
   sightColour: {r: 1, g: 1, b: 1, a: 0.050980393}
+  prev: {fileID: 0}
+  next: {fileID: 0}
+  timeHorizon: 4
+  maxAvoidanceForce: 2
 --- !u!195 &2169345395443031908
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -131,4 +136,4 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 0

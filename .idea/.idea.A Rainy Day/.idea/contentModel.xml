@@ -9,6 +9,13 @@
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="MainUIController.cs" t="Include" />
+        <e p="Materials" t="Include">
+          <e p="Shaders" t="Include">
+            <e p="StandardWithHighlight.shader" t="Include" />
+          </e>
+        </e>
+        <e p="PhoneUIController.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="Demigiant" t="Include">
             <e p="DOTween" t="Include">
@@ -104,6 +111,8 @@
           <e p="PlayerTest.cs" t="Include" />
           <e p="ScoreManager.cs" t="Include" />
           <e p="ServiceLocator.cs" t="Include" />
+          <e p="TextMessage.cs" t="Include" />
+          <e p="TextMessageManager.cs" t="Include" />
           <e p="TileController.cs" t="Include" />
           <e p="TileManager.cs" t="Include" />
           <e p="UI" t="Include">
@@ -150,6 +159,8 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
+        <e p="TextMessageUIController.cs" t="Include" />
+        <e p="TileBaseController.cs" t="Include" />
       </e>
       <e p="NavMeshComponents.csproj" t="IncludeRecursive" />
       <e p="NavMeshComponentsEditor.csproj" t="IncludeRecursive" />

@@ -644,41 +644,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2164845402126820624, guid: fcfca91eb4f18804abb90c6551482846,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2164845402126820624, guid: fcfca91eb4f18804abb90c6551482846,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2164845402126820624, guid: fcfca91eb4f18804abb90c6551482846,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2164845402126820624, guid: fcfca91eb4f18804abb90c6551482846,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2164845402126820624, guid: fcfca91eb4f18804abb90c6551482846,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2164845402126820624, guid: fcfca91eb4f18804abb90c6551482846,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2164845402126820624, guid: fcfca91eb4f18804abb90c6551482846,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 343919250, guid: fcfca91eb4f18804abb90c6551482846, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 184579d32b12a4b448d95223b1c1e71c,
+        type: 2}
     - target: {fileID: 2164845402126820624, guid: fcfca91eb4f18804abb90c6551482846,
         type: 3}
       propertyPath: m_RootOrder
@@ -973,6 +943,7 @@ MonoBehaviour:
   sendMessageUI: {fileID: 3186429310609556738, guid: f7a1ca40cc948a8488546fb9b4321af2,
     type: 3}
   messageParent: {fileID: 864336358}
+  notificationLight: {fileID: 0}
 --- !u!114 &864336362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2354,6 +2325,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857043232960045111, guid: 5a0f6415645473d469245cb593f64fc6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8976506394954436997, guid: 5a0f6415645473d469245cb593f64fc6,
         type: 3}
