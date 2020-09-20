@@ -117,6 +117,7 @@
         </e>
         <e p="Shaders" t="Include">
           <e p="DoubleSided.shader" t="Include" />
+          <e p="Refraction.shader" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
