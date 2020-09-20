@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -13,6 +14,9 @@ public class AIAgent : MonoBehaviour
     [SerializeField] private AIManager manager;
     [SerializeField] private NavMeshAgent navMeshAgent;
 
+    [Header("Behaviour Type")]
+    [SerializeField] private BehaviourType behaviourType;
+    
     [Header("Movement Settings")] 
     [SerializeField] private float maxMoveSpeed;
     [SerializeField] private float maxSteerSpeed;
@@ -46,50 +50,167 @@ public class AIAgent : MonoBehaviour
 
     private const float ForceRayMultiplier = 2f;
     private const float RayMultiplier = .7f;
+
+    public AIAgent prev;
+    public AIAgent next;
+
+    private Vector3 prevPosition;
+
+    [Header("Anticipation Settings")]
+    
+    public float timeHorizon;
+    public float maxAvoidanceForce;
+    private Vector3 velocity;
+    private Vector3 goalVelocity;
     
     
     private enum ForceType { None, All, Total, Separation, Alignment, Cohesion, Target, Environment }
+    
+    private enum BehaviourType { Boids, Anticipatory }
 
 
     // MonoBehaviour functions
+    private void Awake()
+    {
+        prevPosition = transform.position;
+    }
+
     private void Update()
     {
+        switch (behaviourType)
+        {
+            case BehaviourType.Anticipatory:
+                UpdateAnticipatory(Time.deltaTime);
+                break;
+            case BehaviourType.Boids:
+                UpdateBoids();
+                break;
+        }
+    }
+
+    private void UpdateAnticipatory(float timeStep)
+    {
         others = GetVisible();
+        goalVelocity = Target() * maxMoveSpeed;
         
-        Arbitration(others);
+        goalVelocity = Target() * maxMoveSpeed;
         
-        Vector3 separation = Separation(others) * separationProportion;
-        Vector3 alignment = Alignment(others) * alignmentProportion;
-        Vector3 cohesion = Cohesion(others) * cohesionProportion;
-        Vector3 target = Target() * targetProportion;
-        Vector3 environment = Environment() * environmentProportion;
+        const float k = 2.0f;
+        Vector3 goalForce = k * (goalVelocity - velocity);
+        Vector3 avoidanceForce = Avoidance(others);
+        
+        Vector3 totalForce = goalForce + avoidanceForce;
+        velocity += totalForce * timeStep;
+        velocity.y = 0.0f;
 
-        Vector3 totalForce = separation + alignment + target + cohesion + environment;
-        totalForce.Normalize();
+        velocity = Vector3.ClampMagnitude(velocity, maxMoveSpeed);
 
-#if UNITY_EDITOR
-        if (debugType == ForceType.Separation)
-            Debug.DrawRay(transform.position, separation * ForceRayMultiplier, Color.green);
+        navMeshAgent.Move(velocity * (Time.deltaTime * manager.Speed));
+        transform.LookAt(transform.position + velocity, Vector3.up);
         
-        if (debugType == ForceType.Alignment)
-            Debug.DrawRay(transform.position, alignment * ForceRayMultiplier, Color.green);
-        
-        if (debugType == ForceType.Cohesion)
-            Debug.DrawRay(transform.position, cohesion * ForceRayMultiplier, Color.green);
-        
-        if (debugType == ForceType.Target)
-            Debug.DrawRay(transform.position, target * ForceRayMultiplier, Color.green);
-        
-        if (debugType == ForceType.Environment)
-            Debug.DrawRay(transform.position, environment * ForceRayMultiplier, Color.green);
-#endif
-        
-        // _moveMultiplier = Mathf.Pow((Vector3.Dot(totalForce, target) + 1f) * 0.5f, slowExponent);
-
-        Steer(totalForce);
-        Move();
+        manager.UpdateAgent(this, prevPosition);
+        prevPosition = transform.position;
         
         CheckExit();
+    }
+
+    private void UpdateBoids()
+    {
+         others = GetVisible();
+        
+         Arbitration(others);
+        
+         Vector3 separation = Separation(others) * separationProportion;
+         Vector3 alignment = Alignment(others) * alignmentProportion;
+         Vector3 cohesion = Cohesion(others) * cohesionProportion;
+         Vector3 target = Target() * targetProportion;
+         Vector3 environment = Environment() * environmentProportion;
+
+         Vector3 totalForce = separation + alignment + target + cohesion + environment; 
+         totalForce.Normalize();
+
+ #if UNITY_EDITOR
+         if (debugType == ForceType.Separation)
+             Debug.DrawRay(transform.position, separation * ForceRayMultiplier, Color.green);
+         
+         if (debugType == ForceType.Alignment)
+             Debug.DrawRay(transform.position, alignment * ForceRayMultiplier, Color.green);
+         
+         if (debugType == ForceType.Cohesion)
+             Debug.DrawRay(transform.position, cohesion * ForceRayMultiplier, Color.green);
+         
+         if (debugType == ForceType.Target)
+             Debug.DrawRay(transform.position, target * ForceRayMultiplier, Color.green);
+         
+         if (debugType == ForceType.Environment)
+             Debug.DrawRay(transform.position, environment * ForceRayMultiplier, Color.green);
+ #endif
+        
+         _moveMultiplier = Mathf.Pow((Vector3.Dot(totalForce, target) + 1f) * 0.5f, slowExponent);
+
+         Steer(totalForce);
+        
+         Move();
+        
+        manager.UpdateAgent(this, prevPosition);
+        prevPosition = transform.position;
+        
+        CheckExit();
+    }
+
+    private Vector3 Avoidance(AIAgent[] neighbours)
+    {
+        Vector3 avoidanceForce = Vector3.zero;
+
+        foreach (AIAgent neighbour in neighbours)
+        {
+            float t = TimeUntilCollision(this, neighbour);
+
+            Vector3 force = (float.IsPositiveInfinity(t)) ? Vector3.zero : transform.position + velocity * t - neighbour.transform.position - neighbour.velocity * t;
+            
+            if (force.magnitude != 0)
+                force /= Mathf.Sqrt(Vector3.Dot(force, force));
+
+            float mag = 0;
+            
+            if (t >= 0 && t <= timeHorizon)
+                mag = (timeHorizon - t) / (t + 0.001f);
+
+            if (mag > maxAvoidanceForce)
+                mag = maxAvoidanceForce;
+
+            force *= mag;
+
+            avoidanceForce += force;
+        }
+        
+        return avoidanceForce;
+    }
+
+    private static float TimeUntilCollision(AIAgent i, AIAgent j)
+    {
+        float r = i.sizeRadius + j.sizeRadius;
+        Vector3 w = j.transform.position - i.transform.position;
+
+        float c = Vector3.Dot(w, w) - r * r;
+
+        if (c < 0)
+            return 0;
+
+        Vector3 v = i.velocity - j.velocity;
+        float a = Vector3.Dot(v, v);
+        float b = Vector3.Dot(w, v);
+        float discr = b * b - a * c;
+        
+        if (discr <= 0)
+            return Mathf.Infinity;
+
+        float tau = (b - Mathf.Sqrt(discr)) / a;
+
+        if (tau < 0)
+            return Mathf.Infinity;
+        
+        return tau;
     }
 
     private void LateUpdate()
@@ -101,7 +222,7 @@ public class AIAgent : MonoBehaviour
     // General functions
     public void Travel(AISpawner from, AISpawner to)
     {
-        manager.AddNavigator(this);
+        manager.AddAgent(this);
         
         _target = to;
         _spawner = from;
@@ -115,13 +236,27 @@ public class AIAgent : MonoBehaviour
     private AIAgent[] GetVisible()
     {
         List<AIAgent> visible = new List<AIAgent>();
+        AIAgent[] heads = manager.GetAgents(this);
 
-        foreach (AIAgent other in manager.Navigators)
+        int limit = 20;
+        int numChecked = 0;
+        
+        foreach (AIAgent other in heads)
         {
-            if (other != this && IsVisible(other))
+            AIAgent current = other;
+
+            while (current != null && numChecked < limit)
             {
-                visible.Add(other);
+                if (!visible.Contains(current) && current != this && IsVisible(current))
+                {
+                    visible.Add(current);
+                }
+
+                numChecked++;
+                current = current.next;
             }
+
+            if (numChecked >= 20) break;
         }
 
         return visible.ToArray();
@@ -157,7 +292,7 @@ public class AIAgent : MonoBehaviour
 
     public void Clear()
     {
-        manager.RemoveNavigator(this);
+        manager.RemoveAgent(this);
         _spawner.Remove(this);
     }
     

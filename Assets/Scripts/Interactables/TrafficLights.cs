@@ -18,6 +18,7 @@ public class TrafficLights:InteractableReceiver
         _obstacle = GetComponent<NavMeshObstacle>();
         block = new MaterialPropertyBlock();
         myMesh = GetComponent<MeshRenderer>();
+        isOpen = isOpenDefault;
         ResetState();
     }
     

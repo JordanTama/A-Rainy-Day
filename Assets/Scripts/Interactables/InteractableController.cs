@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class InteractableController : MonoBehaviour
 {
     public Action OnInteractableStateChange;
+    public Action OnInteractableReset;
 
     protected InteractableManager interactableManager;
     protected InputManager inputManager;
@@ -36,7 +37,7 @@ public class InteractableController : MonoBehaviour
 
     protected virtual void ResetInteractable()
     {
-        ChangeState(defaultState);
+        OnInteractableReset?.Invoke();
     }
 
     protected void ChangeState(int newState)
