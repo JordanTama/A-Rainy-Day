@@ -95,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 11400000, guid: 0dbc6708021360a468bf9eb1248d6969, type: 2}
   navMeshAgent: {fileID: 2169345395443031908}
+  behaviourType: 0
   maxMoveSpeed: 0.3
   maxSteerSpeed: 1
   targetRadius: 0.5

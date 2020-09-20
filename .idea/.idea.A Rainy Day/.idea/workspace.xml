@@ -26,19 +26,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8da9afe1-fb09-46ea-b54a-5670f37d1747" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian 2.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian 2.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AI Navigation/AI Manager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AI Navigation/AI Manager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian 1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-AI Controller 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-AI Controller 1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-AI Controller 1.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-AI Controller 1.asset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Intersection.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Intersection.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -14,6 +14,9 @@ public class AIAgent : MonoBehaviour
     [SerializeField] private AIManager manager;
     [SerializeField] private NavMeshAgent navMeshAgent;
 
+    [Header("Behaviour Type")]
+    [SerializeField] private BehaviourType behaviourType;
+    
     [Header("Movement Settings")] 
     [SerializeField] private float maxMoveSpeed;
     [SerializeField] private float maxSteerSpeed;
@@ -53,6 +56,8 @@ public class AIAgent : MonoBehaviour
 
     private Vector3 prevPosition;
 
+    [Header("Anticipation Settings")]
+    
     public float timeHorizon;
     public float maxAvoidanceForce;
     private Vector3 velocity;
@@ -60,6 +65,8 @@ public class AIAgent : MonoBehaviour
     
     
     private enum ForceType { None, All, Total, Separation, Alignment, Cohesion, Target, Environment }
+    
+    private enum BehaviourType { Boids, Anticipatory }
 
 
     // MonoBehaviour functions
@@ -68,7 +75,20 @@ public class AIAgent : MonoBehaviour
         prevPosition = transform.position;
     }
 
-    private void AgentUpdate(float timeStep)
+    private void Update()
+    {
+        switch (behaviourType)
+        {
+            case BehaviourType.Anticipatory:
+                UpdateAnticipatory(Time.deltaTime);
+                break;
+            case BehaviourType.Boids:
+                UpdateBoids();
+                break;
+        }
+    }
+
+    private void UpdateAnticipatory(float timeStep)
     {
         others = GetVisible();
         goalVelocity = Target() * maxMoveSpeed;
@@ -84,63 +104,53 @@ public class AIAgent : MonoBehaviour
         velocity.y = 0.0f;
 
         velocity = Vector3.ClampMagnitude(velocity, maxMoveSpeed);
-    }
 
-    private void Update()
-    {
-        AgentUpdate(Time.deltaTime);
-        
-        // others = GetVisible();
-        //
-        // Arbitration(others);
-        //
-        // Vector3 separation = Separation(others) * separationProportion;
-        // Vector3 alignment = Alignment(others) * alignmentProportion;
-        // Vector3 cohesion = Cohesion(others) * cohesionProportion;
-        // Vector3 target = Target() * targetProportion;
-        // Vector3 environment = Environment() * environmentProportion;
-        //
-        // goalVelocity = Target() * maxMoveSpeed;
-        //
-        // const float k = 2.0f;
-        // Vector3 goalForce = k * (goalVelocity - velocity);
-        // Vector3 avoidanceForce = Avoidance(others);
-        //
-        // Vector3 totalForce = goalForce + avoidanceForce;
-        // velocity += totalForce * Time.deltaTime;
-        // velocity.y = 0.0f;
-        //
-        // velocity = Vector3.ClampMagnitude(velocity, maxMoveSpeed);
-        
-        //Vector3 totalForce = separation + alignment + target + cohesion + environment;
-        //totalForce.Normalize();
-
-// #if UNITY_EDITOR
-//         if (debugType == ForceType.Separation)
-//             Debug.DrawRay(transform.position, separation * ForceRayMultiplier, Color.green);
-//         
-//         if (debugType == ForceType.Alignment)
-//             Debug.DrawRay(transform.position, alignment * ForceRayMultiplier, Color.green);
-//         
-//         if (debugType == ForceType.Cohesion)
-//             Debug.DrawRay(transform.position, cohesion * ForceRayMultiplier, Color.green);
-//         
-//         if (debugType == ForceType.Target)
-//             Debug.DrawRay(transform.position, target * ForceRayMultiplier, Color.green);
-//         
-//         if (debugType == ForceType.Environment)
-//             Debug.DrawRay(transform.position, environment * ForceRayMultiplier, Color.green);
-// #endif
-        
-        // _moveMultiplier = Mathf.Pow((Vector3.Dot(totalForce, target) + 1f) * 0.5f, slowExponent);
-
-        // Steer(totalForce);
-        //
-        // Move();
-        
-        
         navMeshAgent.Move(velocity * (Time.deltaTime * manager.Speed));
         transform.LookAt(transform.position + velocity, Vector3.up);
+        
+        manager.UpdateAgent(this, prevPosition);
+        prevPosition = transform.position;
+        
+        CheckExit();
+    }
+
+    private void UpdateBoids()
+    {
+         others = GetVisible();
+        
+         Arbitration(others);
+        
+         Vector3 separation = Separation(others) * separationProportion;
+         Vector3 alignment = Alignment(others) * alignmentProportion;
+         Vector3 cohesion = Cohesion(others) * cohesionProportion;
+         Vector3 target = Target() * targetProportion;
+         Vector3 environment = Environment() * environmentProportion;
+
+         Vector3 totalForce = separation + alignment + target + cohesion + environment; 
+         totalForce.Normalize();
+
+ #if UNITY_EDITOR
+         if (debugType == ForceType.Separation)
+             Debug.DrawRay(transform.position, separation * ForceRayMultiplier, Color.green);
+         
+         if (debugType == ForceType.Alignment)
+             Debug.DrawRay(transform.position, alignment * ForceRayMultiplier, Color.green);
+         
+         if (debugType == ForceType.Cohesion)
+             Debug.DrawRay(transform.position, cohesion * ForceRayMultiplier, Color.green);
+         
+         if (debugType == ForceType.Target)
+             Debug.DrawRay(transform.position, target * ForceRayMultiplier, Color.green);
+         
+         if (debugType == ForceType.Environment)
+             Debug.DrawRay(transform.position, environment * ForceRayMultiplier, Color.green);
+ #endif
+        
+         _moveMultiplier = Mathf.Pow((Vector3.Dot(totalForce, target) + 1f) * 0.5f, slowExponent);
+
+         Steer(totalForce);
+        
+         Move();
         
         manager.UpdateAgent(this, prevPosition);
         prevPosition = transform.position;
