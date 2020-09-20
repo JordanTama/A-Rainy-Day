@@ -46,10 +46,8 @@ public class TileBaseController : MonoBehaviour
 
     void TileSelect(GameObject g)
     {
-        Debug.Log("yo");
         if (g == gameObject)
         {
-            Debug.Log("yo2");
             foreach (TileController t in _allTiles)
             {
                 t.gameObject.layer = 2;
