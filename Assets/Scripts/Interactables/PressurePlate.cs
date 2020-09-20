@@ -13,7 +13,6 @@ public class PressurePlate : InteractableController
     protected new void Start()
     {
         base.Start();
-        _gameLoopManager.OnPreparation += ResetInteractable;
         ResetInteractable();
 
 
@@ -75,9 +74,5 @@ public class PressurePlate : InteractableController
     {
         return currentCount == goalCount;
     }
-
-    private void OnDestroy()
-    {
-        _gameLoopManager.OnPreparation -= ResetInteractable;
-    }
+    
 }

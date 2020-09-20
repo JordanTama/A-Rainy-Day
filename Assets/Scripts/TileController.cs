@@ -20,7 +20,7 @@ public class TileController : MonoBehaviour
     
     private Vector3 _startPosition;
     private Quaternion _startRotation;
-    private Vector2 _tileSize;
+    private float _tileSize = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,6 @@ public class TileController : MonoBehaviour
         tileManager.OnTileDeselect += TileDeselect;
 
         _gameLoopManager.OnRestart += ResetPosition;
-        _tileSize = new Vector2(transform.localScale.x, transform.localScale.z);
         SetStartPosition();
         ResetPosition();
     }
@@ -42,40 +41,51 @@ public class TileController : MonoBehaviour
     void TileSelect(GameObject g)
     {
         if (g == gameObject)
+        {
             startMousePos = cameraManager.worldSpaceMousePos;
+            MaterialPropertyBlock block = new MaterialPropertyBlock();
+            block.SetColor("_HighlightColor", Color.yellow);
+            gameObject.GetComponent<Renderer>().SetPropertyBlock(block);
+        }
     }
 
-    void TileDeselect() => startMousePos = Vector3.zero;
+    void TileDeselect()
+    {
+        startMousePos = Vector3.zero;
+        MaterialPropertyBlock block = new MaterialPropertyBlock();
+        block.SetColor("_HighlightColor", Color.black);
+        gameObject.GetComponent<Renderer>().SetPropertyBlock(block);
+    }
 
     private void Update()
     {
         if (fixedInPlace)
             return;
 
-        // This can all be moved into some MouseMoved function later on
-        if (tileManager.CurrentTile == gameObject)
-        {
-            if (Vector3.Distance(startMousePos, cameraManager.worldSpaceMousePos) > (_tileSize.x * 0.5f) && !tweening)
-            {
-                var dir = (cameraManager.worldSpaceMousePos.RoundToNearest(_tileSize.x) - transform.position).normalized;
-                //newPos += (dir.normalized);
-                if (CheckDot(dir))
-                {
-                    if (CheckAdjacent(dir))
-                    {
-                        transform.DOMove((transform.position + (dir * _tileSize.x)).RoundToNearest(_tileSize.x), TILE_MOVE_SPEED)
-                            .OnStart(() => tweening = true)
-                            .OnComplete(() =>
-                            {
-                                startMousePos = cameraManager.worldSpaceMousePos;
-                                tweening = false;
-                                tileManager.NewTilePosition();
-                            });
-                    }
-                }
-            }
-        }
-    }
+        //// This can all be moved into some MouseMoved function later on
+        //if (tileManager.CurrentTile == gameObject)
+        //{
+        //    if (Vector3.Distance(startMousePos, cameraManager.worldSpaceMousePos) > (_tileSize * 0.5f) && !tweening)
+        //    {
+        //        var dir = (cameraManager.worldSpaceMousePos.RoundToNearest(_tileSize) - transform.position).normalized;
+        //        //newPos += (dir.normalized);
+        //        if (CheckDot(dir))
+        //        {
+        //            if (CheckAdjacent(dir))
+        //            {
+        //                transform.DOMove((transform.position + (dir * _tileSize)).RoundToNearest(_tileSize), TILE_MOVE_SPEED)
+        //                    .OnStart(() => tweening = true)
+        //                    .OnComplete(() =>
+        //                    {
+        //                        startMousePos = cameraManager.worldSpaceMousePos;
+        //                        tweening = false;
+        //                        tileManager.NewTilePosition();
+        //                    });
+        //            }
+        //        }
+        //    }
+        //}
+    } 
 
     bool CheckDot(Vector3 dir)
     {
@@ -88,12 +98,16 @@ public class TileController : MonoBehaviour
         return false;
     }
 
-    bool CheckAdjacent(Vector3 dir)
+    public bool CheckAdjacent(Vector3 dir)
     {
         Debug.DrawRay(transform.position, dir.normalized * 2.55f);
-        if(Physics.BoxCast(transform.position, new Vector3(2f, 0.5f, 2f), dir.normalized, Quaternion.identity, 2.5f))
+        RaycastHit hit;
+        if(Physics.BoxCast(transform.position, new Vector3(2f, 0.5f, 2f), dir.normalized, out hit, Quaternion.identity, 2.5f))
         {
-            return false;
+            if (!hit.transform.IsChildOf(transform.parent))
+            {
+                return false;
+            }
         }
         return true;
     }
@@ -112,6 +126,7 @@ public class TileController : MonoBehaviour
 
     private void OnDestroy()
     {
+        _gameLoopManager.OnRestart -= ResetPosition;
         tileManager.OnTileSelect -= TileSelect;   
         tileManager.OnTileDeselect -= TileDeselect;
         _gameLoopManager.OnRestart -= ResetPosition;

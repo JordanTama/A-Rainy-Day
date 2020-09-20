@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3025010675254263293}
   - component: {fileID: 3025010675254263292}
   - component: {fileID: 3025010675254263294}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Objective
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3025010675254263047}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1.25, y: 0.01, z: 1.25}
   m_Children: []
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 25071dd8ad961ac44845f041a3867356, type: 2}
+  - {fileID: 2100000, guid: 318cc984b4d23a245bf0d9d54ee0fb46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4833,4 +4833,5 @@ MonoBehaviour:
   points: 5
   activatedPs: {fileID: 3025010675254263293}
   audioSource: {fileID: 0}
+  _goal: {fileID: 0}
   testActivate: 0

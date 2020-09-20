@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class CameraManager : IGameService
 {
     public Action<RaycastHit[]> OnCameraRaycastHit;
+    public Action<int> OnCameraToRotate;
     public Vector3 worldSpaceMousePos;
 
     private InputManager inputManager;
@@ -21,5 +22,10 @@ public class CameraManager : IGameService
     public void FireOnRaycastHit(RaycastHit[] hits)
     {
         OnCameraRaycastHit?.Invoke(hits);
+    }
+
+    public void RotateCamera(int dir)
+    {
+        OnCameraToRotate?.Invoke(dir);
     }
 }

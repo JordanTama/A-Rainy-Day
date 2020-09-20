@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class InteractableController : MonoBehaviour
 {
     public Action OnInteractableStateChange;
+    public Action OnInteractableReset;
 
     protected InteractableManager interactableManager;
     protected InputManager inputManager;
@@ -29,14 +30,14 @@ public class InteractableController : MonoBehaviour
         interactableManager.OnInteractableSelect+=InteractableSelect;
         interactableManager.OnInteractableDeselect+=InteractableDeselect;
 
-        _gameLoopManager.OnRestart += ResetInteractable;
+        _gameLoopManager.OnPreparation += ResetInteractable;
 
         ResetInteractable();
     }
 
     protected virtual void ResetInteractable()
     {
-        ChangeState(defaultState);
+        OnInteractableReset?.Invoke();
     }
 
     protected void ChangeState(int newState)
@@ -63,5 +64,13 @@ public class InteractableController : MonoBehaviour
     protected void InteractableDeselect()
     {
         // Cancel highlighting
+    }
+
+    protected void OnDestroy()
+    {
+        interactableManager.OnInteractableSelect-=InteractableSelect;
+        interactableManager.OnInteractableDeselect-=InteractableDeselect;
+
+        _gameLoopManager.OnPreparation -= ResetInteractable;
     }
 }

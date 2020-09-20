@@ -10,6 +10,7 @@ public abstract class InteractableReceiver : MonoBehaviour
         if (interactableController)
         {
             interactableController.OnInteractableStateChange += ChangeState;
+            interactableController.OnInteractableReset += ResetState;
             
         }
     }
@@ -22,5 +23,11 @@ public abstract class InteractableReceiver : MonoBehaviour
     protected virtual void ResetState()
     {
         
+    }
+
+    protected void OnDestroy()
+    {
+        interactableController.OnInteractableStateChange -= ChangeState;
+        interactableController.OnInteractableReset -= ResetState;
     }
 }

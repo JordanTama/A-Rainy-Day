@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private Vector3 levelCenter;
+
     private CameraManager cameraManager;
     private InputManager input;
     private Camera cam;
@@ -17,8 +20,7 @@ public class CameraController : MonoBehaviour
         input.P_MouseDelta.performed += OnMouseMoved;
 
         cameraManager = ServiceLocator.Current.Get<CameraManager>();
-
-        Debug.Log(input == null);
+        cameraManager.OnCameraToRotate += RotateCamera;
 
         cam = GetComponent<Camera>();
     }
@@ -27,9 +29,10 @@ public class CameraController : MonoBehaviour
     {
         Ray ray = cam.ScreenPointToRay(input.P_MousePosition.ReadValue<Vector2>());
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100))
+        if (Physics.Raycast(ray, out hit, 100, LayerMask.GetMask("Hit")))
         {
             cameraManager.worldSpaceMousePos = hit.point;
+            cameraManager.worldSpaceMousePos.y = 0;
         }
     }
 
@@ -41,14 +44,19 @@ public class CameraController : MonoBehaviour
         
         if(hits.Length > 0)
         {
-            Debug.Log("Hit");
             cameraManager.FireOnRaycastHit(hits);
         }
+    }
+
+    public void RotateCamera(int dir)
+    {
+        transform.RotateAround(levelCenter, Vector3.up * dir, 90);
     }
 
     private void OnDestroy()
     {
         input.P_LeftClick.performed -= OnLeftClickDown;
         input.P_MouseDelta.performed -= OnMouseMoved;
+        cameraManager.OnCameraToRotate -= RotateCamera;
     }
 }

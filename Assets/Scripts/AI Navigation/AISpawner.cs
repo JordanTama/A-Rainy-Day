@@ -16,6 +16,7 @@ public class AISpawner : MonoBehaviour
     [SerializeField] private GameObject spawnPrefab;
     [SerializeField] private int maxSpawned;
     [SerializeField] private float spawnTick;
+    [SerializeField] private float initialSpawnFactor;
 
     [Header("Debug Settings")]
     [SerializeField] private bool liveUpdate;
