@@ -99,9 +99,9 @@ MonoBehaviour:
   manager: {fileID: 11400000, guid: 0dbc6708021360a468bf9eb1248d6969, type: 2}
   navMeshAgent: {fileID: 2169345395443031908}
   maxMoveSpeed: 0.67
-  maxSteerSpeed: 76.65
+  maxSteerSpeed: 2.4
   targetRadius: 0.5
-  slowExponent: 0.8
+  slowExponent: 0.89
   sightRadius: 1
   sightAngle: 240
   sizeRadius: 0.5
