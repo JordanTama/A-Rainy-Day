@@ -12,9 +12,11 @@ public class AISpawner : MonoBehaviour
     [SerializeField] private AIManager manager;
     
     [Header("Spawner Settings")]
+    [SerializeField] private bool isDestination;
     [SerializeField] private GameObject spawnPrefab;
     [SerializeField] private int maxSpawned;
     [SerializeField] private float spawnTick;
+    [SerializeField] private float initialSpawnFactor;
 
     [Header("Debug Settings")]
     [SerializeField] private bool liveUpdate;
@@ -31,6 +33,7 @@ public class AISpawner : MonoBehaviour
     private float SpawnTick => spawnTick / manager.Speed;
     private Vector3 Centre => Lerp(0.5f);
     private bool CanSpawn => Time.timeSinceLevelLoad - _lastSpawnTime > SpawnTick && _spawned < maxSpawned;
+    public bool IsDestination => isDestination;
 
     private void Start()
     {

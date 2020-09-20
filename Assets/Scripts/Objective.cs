@@ -11,7 +11,7 @@ public class Objective : MonoBehaviour
         public ParticleSystem activatedPs;
         public AudioSource audioSource;
 
-        private Goal _goal;
+        [SerializeField] private Goal _goal;
 
         public bool testActivate = false;
 
@@ -119,7 +119,7 @@ public class Objective : MonoBehaviour
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player")||other.CompareTag("NPC"))
             {
                 Activate();
             }

@@ -1,27 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class AIManager : ScriptableObject
 {
     [Header("System Settings")] 
-    [SerializeField] private float simulationSpeed;
+    public float defaultSimulationSpeed;
+    public float simulationSpeed;
     
     private List<AIAgent> _agents = new List<AIAgent>();
     private List<AISpawner> _spawners = new List<AISpawner>();
 
-    private float _speed;
+    [SerializeField] private float _speed;
 
     public float Speed => _speed;
-    public AIAgent[] Navigators => _agents.ToArray();
-    public AISpawner[] Spawners => _spawners.ToArray();
+
+    public AIAgent[] Navigators
+    {
+        get => _agents.ToArray();
+        set => throw new System.NotImplementedException();
+    }
+
+    public AISpawner[] Spawners
+    {
+        get => _spawners.ToArray();
+        set => throw new System.NotImplementedException();
+    }
 
 
     public void Initialize()
     {
         _agents = new List<AIAgent>();
         _spawners = new List<AISpawner>();
+        simulationSpeed = defaultSimulationSpeed;
         
         Pause();
     }
@@ -73,20 +86,7 @@ public class AIManager : ScriptableObject
 
     public AISpawner RandomSpawner(AISpawner exclude)
     {
-        //AISpawner spawner = exclude;
-
-        int index = Random.Range(0, _spawners.Count - 1);
-        AISpawner spawner = index >= _spawners.IndexOf(exclude) ? _spawners[index + 1] : _spawners[index];
-        
-        // int range = Random.Range(0, _spawners.Count - 1);
-        //
-        // for (int i = 0; i <= range; i++)
-        // {
-        //     if (_spawners[i] == exclude) range++;
-        //     spawner = _spawners[i];
-        //     
-        // }
-
-        return spawner;
+        List<AISpawner> destinations = _spawners.FindAll(spawner => spawner.IsDestination && spawner != exclude);
+        return destinations.Count == 0 ? exclude : destinations[Random.Range(0, destinations.Count)];
     }
 }

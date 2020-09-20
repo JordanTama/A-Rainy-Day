@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6cf292b1f10372478ca77b7ddf59891, type: 3}
   m_Name: AI Manager
   m_EditorClassIdentifier: 
+  defaultSimulationSpeed: 3
   simulationSpeed: 3
+  _speed: 0
