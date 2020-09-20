@@ -61,6 +61,7 @@ public class TileManager : IGameService
             {
                 CurrentTile = hit.collider.transform.parent.gameObject;
                 OnTileSelect?.Invoke(CurrentTile);
+                Debug.Log(CurrentTile.name); 
             }
         }
     }
