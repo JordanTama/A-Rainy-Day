@@ -26,11 +26,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8da9afe1-fb09-46ea-b54a-5670f37d1747" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian 2.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian 2.prefab.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/AI Navigation/AI Manager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AI Navigation/AI Manager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-AI Controller 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-AI Controller 1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-AI Controller 1.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-AI Controller 1.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Intersection.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting/NavMesh-Intersection.asset.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +70,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Editor/AIManagerEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AISpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" />
       </list>
     </option>
   </component>
@@ -124,6 +132,7 @@
       <workItem from="1598961347290" duration="314000" />
       <workItem from="1600246964710" duration="12829000" />
       <workItem from="1600555461162" duration="7620000" />
+      <workItem from="1600574338776" duration="10113000" />
     </task>
     <servers />
   </component>
@@ -217,9 +226,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="140" y="-17" width="1096" height="1028" maximized="true" key="dock-window-1/0.0.1920.1040/-1080.-416.1080.1880/1920.0.1920.1040@-1080.-416.1080.1880" timestamp="1598174858427" />
-    <state x="-877" y="19" width="672" height="678" key="search.everywhere.popup" timestamp="1598175342544">
-      <screen x="-1080" y="-416" width="1080" height="1880" />
+    <state x="-877" y="8" width="672" height="678" key="search.everywhere.popup" timestamp="1600580715027">
+      <screen x="-1080" y="-427" width="1080" height="1880" />
     </state>
     <state x="-877" y="19" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1080.-416.1080.1880/1920.0.1920.1040@-1080.-416.1080.1880" timestamp="1598175342544" />
+    <state x="-877" y="8" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1080.-427.1080.1880/1920.9.1920.1040@-1080.-427.1080.1880" timestamp="1600580715027" />
   </component>
 </project>

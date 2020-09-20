@@ -51,7 +51,12 @@ public class AIAgent : MonoBehaviour
     public AIAgent prev;
     public AIAgent next;
 
-    private Vector3 prevPosition; 
+    private Vector3 prevPosition;
+
+    public float timeHorizon;
+    public float maxAvoidanceForce;
+    private Vector3 velocity;
+    private Vector3 goalVelocity;
     
     
     private enum ForceType { None, All, Total, Separation, Alignment, Cohesion, Target, Environment }
@@ -63,48 +68,139 @@ public class AIAgent : MonoBehaviour
         prevPosition = transform.position;
     }
 
-    private void Update()
+    private void AgentUpdate(float timeStep)
     {
         others = GetVisible();
+        goalVelocity = Target() * maxMoveSpeed;
         
-        Arbitration(others);
+        goalVelocity = Target() * maxMoveSpeed;
         
-        Vector3 separation = Separation(others) * separationProportion;
-        Vector3 alignment = Alignment(others) * alignmentProportion;
-        Vector3 cohesion = Cohesion(others) * cohesionProportion;
-        Vector3 target = Target() * targetProportion;
-        Vector3 environment = Environment() * environmentProportion;
+        const float k = 2.0f;
+        Vector3 goalForce = k * (goalVelocity - velocity);
+        Vector3 avoidanceForce = Avoidance(others);
+        
+        Vector3 totalForce = goalForce + avoidanceForce;
+        velocity += totalForce * timeStep;
+        velocity.y = 0.0f;
 
-        Vector3 totalForce = separation + alignment + target + cohesion + environment;
-        totalForce.Normalize();
+        velocity = Vector3.ClampMagnitude(velocity, maxMoveSpeed);
+    }
 
-#if UNITY_EDITOR
-        if (debugType == ForceType.Separation)
-            Debug.DrawRay(transform.position, separation * ForceRayMultiplier, Color.green);
+    private void Update()
+    {
+        AgentUpdate(Time.deltaTime);
         
-        if (debugType == ForceType.Alignment)
-            Debug.DrawRay(transform.position, alignment * ForceRayMultiplier, Color.green);
+        // others = GetVisible();
+        //
+        // Arbitration(others);
+        //
+        // Vector3 separation = Separation(others) * separationProportion;
+        // Vector3 alignment = Alignment(others) * alignmentProportion;
+        // Vector3 cohesion = Cohesion(others) * cohesionProportion;
+        // Vector3 target = Target() * targetProportion;
+        // Vector3 environment = Environment() * environmentProportion;
+        //
+        // goalVelocity = Target() * maxMoveSpeed;
+        //
+        // const float k = 2.0f;
+        // Vector3 goalForce = k * (goalVelocity - velocity);
+        // Vector3 avoidanceForce = Avoidance(others);
+        //
+        // Vector3 totalForce = goalForce + avoidanceForce;
+        // velocity += totalForce * Time.deltaTime;
+        // velocity.y = 0.0f;
+        //
+        // velocity = Vector3.ClampMagnitude(velocity, maxMoveSpeed);
         
-        if (debugType == ForceType.Cohesion)
-            Debug.DrawRay(transform.position, cohesion * ForceRayMultiplier, Color.green);
-        
-        if (debugType == ForceType.Target)
-            Debug.DrawRay(transform.position, target * ForceRayMultiplier, Color.green);
-        
-        if (debugType == ForceType.Environment)
-            Debug.DrawRay(transform.position, environment * ForceRayMultiplier, Color.green);
-#endif
+        //Vector3 totalForce = separation + alignment + target + cohesion + environment;
+        //totalForce.Normalize();
+
+// #if UNITY_EDITOR
+//         if (debugType == ForceType.Separation)
+//             Debug.DrawRay(transform.position, separation * ForceRayMultiplier, Color.green);
+//         
+//         if (debugType == ForceType.Alignment)
+//             Debug.DrawRay(transform.position, alignment * ForceRayMultiplier, Color.green);
+//         
+//         if (debugType == ForceType.Cohesion)
+//             Debug.DrawRay(transform.position, cohesion * ForceRayMultiplier, Color.green);
+//         
+//         if (debugType == ForceType.Target)
+//             Debug.DrawRay(transform.position, target * ForceRayMultiplier, Color.green);
+//         
+//         if (debugType == ForceType.Environment)
+//             Debug.DrawRay(transform.position, environment * ForceRayMultiplier, Color.green);
+// #endif
         
         // _moveMultiplier = Mathf.Pow((Vector3.Dot(totalForce, target) + 1f) * 0.5f, slowExponent);
 
-        Steer(totalForce);
-
-        Move();
+        // Steer(totalForce);
+        //
+        // Move();
+        
+        
+        navMeshAgent.Move(velocity * (Time.deltaTime * manager.Speed));
+        transform.LookAt(transform.position + velocity, Vector3.up);
         
         manager.UpdateAgent(this, prevPosition);
         prevPosition = transform.position;
         
         CheckExit();
+    }
+
+    private Vector3 Avoidance(AIAgent[] neighbours)
+    {
+        Vector3 avoidanceForce = Vector3.zero;
+
+        foreach (AIAgent neighbour in neighbours)
+        {
+            float t = TimeUntilCollision(this, neighbour);
+
+            Vector3 force = (float.IsPositiveInfinity(t)) ? Vector3.zero : transform.position + velocity * t - neighbour.transform.position - neighbour.velocity * t;
+            
+            if (force.magnitude != 0)
+                force /= Mathf.Sqrt(Vector3.Dot(force, force));
+
+            float mag = 0;
+            
+            if (t >= 0 && t <= timeHorizon)
+                mag = (timeHorizon - t) / (t + 0.001f);
+
+            if (mag > maxAvoidanceForce)
+                mag = maxAvoidanceForce;
+
+            force *= mag;
+
+            avoidanceForce += force;
+        }
+        
+        return avoidanceForce;
+    }
+
+    private static float TimeUntilCollision(AIAgent i, AIAgent j)
+    {
+        float r = i.sizeRadius + j.sizeRadius;
+        Vector3 w = j.transform.position - i.transform.position;
+
+        float c = Vector3.Dot(w, w) - r * r;
+
+        if (c < 0)
+            return 0;
+
+        Vector3 v = i.velocity - j.velocity;
+        float a = Vector3.Dot(v, v);
+        float b = Vector3.Dot(w, v);
+        float discr = b * b - a * c;
+        
+        if (discr <= 0)
+            return Mathf.Infinity;
+
+        float tau = (b - Mathf.Sqrt(discr)) / a;
+
+        if (tau < 0)
+            return Mathf.Infinity;
+        
+        return tau;
     }
 
     private void LateUpdate()
