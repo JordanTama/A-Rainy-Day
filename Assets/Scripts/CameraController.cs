@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
     {
         Ray ray = cam.ScreenPointToRay(input.P_MousePosition.ReadValue<Vector2>());
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100, LayerMask.GetMask("Hit Detection")))
+        if (Physics.Raycast(ray, out hit, 100, LayerMask.GetMask("Hit")))
         {
             cameraManager.worldSpaceMousePos = hit.point;
             cameraManager.worldSpaceMousePos.y = 0;
