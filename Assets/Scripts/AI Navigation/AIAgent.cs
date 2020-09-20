@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -47,14 +48,21 @@ public class AIAgent : MonoBehaviour
     private const float ForceRayMultiplier = 2f;
     private const float RayMultiplier = .7f;
 
-    private AIAgent _prev;
-    private AIAgent _next;
+    public AIAgent prev;
+    public AIAgent next;
+
+    private Vector3 prevPosition; 
     
     
     private enum ForceType { None, All, Total, Separation, Alignment, Cohesion, Target, Environment }
 
 
     // MonoBehaviour functions
+    private void Awake()
+    {
+        prevPosition = transform.position;
+    }
+
     private void Update()
     {
         others = GetVisible();
@@ -90,7 +98,11 @@ public class AIAgent : MonoBehaviour
         // _moveMultiplier = Mathf.Pow((Vector3.Dot(totalForce, target) + 1f) * 0.5f, slowExponent);
 
         Steer(totalForce);
+
         Move();
+        
+        manager.UpdateAgent(this, prevPosition);
+        prevPosition = transform.position;
         
         CheckExit();
     }
@@ -118,13 +130,27 @@ public class AIAgent : MonoBehaviour
     private AIAgent[] GetVisible()
     {
         List<AIAgent> visible = new List<AIAgent>();
+        AIAgent[] heads = manager.GetAgents(this);
 
-        foreach (AIAgent other in manager.Navigators)
+        int limit = 20;
+        int numChecked = 0;
+        
+        foreach (AIAgent other in heads)
         {
-            if (other != this && IsVisible(other))
+            AIAgent current = other;
+
+            while (current != null && numChecked < limit)
             {
-                visible.Add(other);
+                if (!visible.Contains(current) && current != this && IsVisible(current))
+                {
+                    visible.Add(current);
+                }
+
+                numChecked++;
+                current = current.next;
             }
+
+            if (numChecked >= 20) break;
         }
 
         return visible.ToArray();

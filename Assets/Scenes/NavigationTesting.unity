@@ -1665,8 +1665,8 @@ MonoBehaviour:
   isDestination: 1
   spawnPrefab: {fileID: 2169345395443031905, guid: 0a1aa0c21518ab44aaf3de24dc27e901,
     type: 3}
-  maxSpawned: 50
-  spawnTick: 0.1
+  maxSpawned: 20
+  spawnTick: 0.5
   liveUpdate: 1
   debugVisualization: 1
   debugLabels: 1
@@ -6347,8 +6347,8 @@ MonoBehaviour:
   isDestination: 1
   spawnPrefab: {fileID: 2169345395443031905, guid: 0a1aa0c21518ab44aaf3de24dc27e901,
     type: 3}
-  maxSpawned: 50
-  spawnTick: 0.1
+  maxSpawned: 20
+  spawnTick: 0.5
   liveUpdate: 1
   debugVisualization: 1
   debugLabels: 1

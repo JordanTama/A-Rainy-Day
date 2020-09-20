@@ -26,10 +26,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8da9afe1-fb09-46ea-b54a-5670f37d1747" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AI Navigation/AI Manager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AI Navigation/AI Manager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,9 +60,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Obsolete/AISpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AINavigator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Editor/AIManagerEditor.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AISpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" />
       </list>
     </option>
@@ -122,7 +122,8 @@
       <workItem from="1598759292662" duration="2275000" />
       <workItem from="1598764418147" duration="10482000" />
       <workItem from="1598961347290" duration="314000" />
-      <workItem from="1600246964710" duration="5208000" />
+      <workItem from="1600246964710" duration="12829000" />
+      <workItem from="1600555461162" duration="7620000" />
     </task>
     <servers />
   </component>
