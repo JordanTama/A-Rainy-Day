@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -34,6 +35,13 @@ public class AIController : MonoBehaviour
         // _tileManager.OnNewTilePosition += BakeNavMesh;
         _tileManager.OnRebakeMesh += BakeNavMesh;
         // _interactableManager.OnInteractableStateChange += BakeNavMesh;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Handles.matrix = transform.localToWorldMatrix;
+        Handles.color = Color.white;
+        Handles.DrawWireCube(Vector3.zero, new Vector3(1, 0, 1));
     }
 
 

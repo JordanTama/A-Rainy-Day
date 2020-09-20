@@ -9,8 +9,8 @@ using Random = UnityEngine.Random;
 public class AIManager : ScriptableObject
 {
     [Header("Simulation Settings")]
-    [SerializeField] private float simulationSpeed;
-    [SerializeField] private float defaultSimulationSpeed;
+    public float simulationSpeed;
+    public float defaultSimulationSpeed;
 
     [Header("Spatial Partitioning Settings")]
     [SerializeField] private int width;

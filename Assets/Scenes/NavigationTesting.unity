@@ -246,6 +246,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -386,6 +387,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -607,6 +609,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -772,12 +775,82 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
   visColor: {r: 0, g: 0, b: 0, a: 0}
   visHeight: 0
   visOffset: 0
+--- !u!1001 &180223744
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1143806160991634867, guid: 783e4d2d93ce6df4ea57972945154405,
+        type: 3}
+      propertyPath: m_Name
+      value: Rain PS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143806160991634878, guid: 783e4d2d93ce6df4ea57972945154405,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143806160991634878, guid: 783e4d2d93ce6df4ea57972945154405,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143806160991634878, guid: 783e4d2d93ce6df4ea57972945154405,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143806160991634878, guid: 783e4d2d93ce6df4ea57972945154405,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143806160991634878, guid: 783e4d2d93ce6df4ea57972945154405,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143806160991634878, guid: 783e4d2d93ce6df4ea57972945154405,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143806160991634878, guid: 783e4d2d93ce6df4ea57972945154405,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143806160991634878, guid: 783e4d2d93ce6df4ea57972945154405,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143806160991634878, guid: 783e4d2d93ce6df4ea57972945154405,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143806160991634878, guid: 783e4d2d93ce6df4ea57972945154405,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143806160991634878, guid: 783e4d2d93ce6df4ea57972945154405,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 783e4d2d93ce6df4ea57972945154405, type: 3}
 --- !u!1 &191171264
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,6 +998,7 @@ MonoBehaviour:
     type: 3}
   maxSpawned: 1
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 1
   debugVisualization: 1
   debugLabels: 1
@@ -1046,6 +1120,7 @@ MonoBehaviour:
     type: 3}
   maxSpawned: 15
   spawnTick: 0.5
+  initialSpawnFactor: 0
   liveUpdate: 1
   debugVisualization: 1
   debugLabels: 1
@@ -1555,6 +1630,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -1724,6 +1800,7 @@ MonoBehaviour:
     type: 3}
   maxSpawned: 15
   spawnTick: 0.5
+  initialSpawnFactor: 0
   liveUpdate: 1
   debugVisualization: 1
   debugLabels: 1
@@ -1870,6 +1947,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -2186,6 +2264,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -2385,6 +2464,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -2614,6 +2694,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -2764,6 +2845,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -2980,6 +3062,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -3280,6 +3363,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -3442,6 +3526,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -3638,6 +3723,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -3711,6 +3797,7 @@ MonoBehaviour:
     type: 3}
   maxSpawned: 15
   spawnTick: 0.5
+  initialSpawnFactor: 0
   liveUpdate: 1
   debugVisualization: 1
   debugLabels: 1
@@ -3921,6 +4008,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -4056,6 +4144,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -4273,6 +4362,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -4458,6 +4548,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -5079,6 +5170,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -5552,6 +5644,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -5687,6 +5780,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -6022,6 +6116,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -6224,6 +6319,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -6354,6 +6450,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   maxSpawned: 0
   spawnTick: 0
+  initialSpawnFactor: 0
   liveUpdate: 0
   debugVisualization: 0
   debugLabels: 1
@@ -6598,6 +6695,7 @@ MonoBehaviour:
     type: 3}
   maxSpawned: 15
   spawnTick: 0.5
+  initialSpawnFactor: 0
   liveUpdate: 1
   debugVisualization: 1
   debugLabels: 1
@@ -6691,12 +6789,17 @@ PrefabInstance:
     - target: {fileID: 2164845402126820624, guid: fcfca91eb4f18804abb90c6551482846,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 7.9935
       objectReference: {fileID: 0}
     - target: {fileID: 2164845402126820624, guid: fcfca91eb4f18804abb90c6551482846,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 7.9935
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164845402126820624, guid: fcfca91eb4f18804abb90c6551482846,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.79935
       objectReference: {fileID: 0}
     - target: {fileID: 2164845402126820625, guid: fcfca91eb4f18804abb90c6551482846,
         type: 3}
