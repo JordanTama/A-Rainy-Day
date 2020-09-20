@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private Vector3 levelCenter;
+
     private CameraManager cameraManager;
     private InputManager input;
     private Camera cam;
@@ -17,6 +20,7 @@ public class CameraController : MonoBehaviour
         input.P_MouseDelta.performed += OnMouseMoved;
 
         cameraManager = ServiceLocator.Current.Get<CameraManager>();
+        cameraManager.OnCameraToRotate += RotateCamera;
 
         cam = GetComponent<Camera>();
     }
@@ -42,6 +46,11 @@ public class CameraController : MonoBehaviour
         {
             cameraManager.FireOnRaycastHit(hits);
         }
+    }
+
+    public void RotateCamera(int dir)
+    {
+        transform.RotateAround(levelCenter, Vector3.up * dir, 90);
     }
 
     private void OnDestroy()
