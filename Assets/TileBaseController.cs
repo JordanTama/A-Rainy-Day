@@ -19,6 +19,8 @@ public class TileBaseController : MonoBehaviour
     private bool tweening;
     private Renderer[] childRenderers;
 
+    static float ShaderLocalTime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,7 @@ public class TileBaseController : MonoBehaviour
     void TileDeselect()
     {
         startMousePos = Vector3.zero;
-
+        ShaderLocalTime = 0;
         foreach (TileController t in _allTiles)
         {
             t.gameObject.layer = 0;
@@ -52,7 +54,7 @@ public class TileBaseController : MonoBehaviour
 
     void TileSelect(GameObject g)
     {
-        if (g == gameObject)
+        if (g == gameObject && !_isFixed)
         {
             foreach (TileController t in _allTiles)
             {
@@ -79,6 +81,8 @@ public class TileBaseController : MonoBehaviour
         // This can all be moved into some MouseMoved function later on
         if (tileManager.CurrentTile == gameObject)
         {
+            ShaderLocalTime += Time.deltaTime * 3;
+            Shader.SetGlobalFloat("LocalTime", ShaderLocalTime);
             if (Vector3.Distance(startMousePos, cameraManager.worldSpaceMousePos) > (_tileSize * 0.5f) && !tweening)
             {
                 var dir = (cameraManager.worldSpaceMousePos.RoundToNearest(_tileSize) - startMousePos).normalized;
