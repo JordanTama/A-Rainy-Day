@@ -248,8 +248,8 @@ public class AIManager : ScriptableObject
 
         public void DrawGrid()
         {
-            Handles.matrix = _matrix;
-            Handles.color = Color.black;
+            // Handles.matrix = _matrix;
+            // Handles.color = Color.black;
 
             for (int itWidth = 0; itWidth < _width; itWidth++)
             {
@@ -270,7 +270,7 @@ public class AIManager : ScriptableObject
             cellCorner.z += cellY * (1f / _height);
             cellCorner += cellSize * .5f;
 
-            Handles.DrawWireCube(cellCorner, cellSize);
+            // Handles.DrawWireCube(cellCorner, cellSize);
 
             string label = cellX + " : " + cellY + " (" + (cellY * _width + cellX) + ")";
 
@@ -288,7 +288,7 @@ public class AIManager : ScriptableObject
 
             label += "\n" + (capped ? limit + "+" : numAgents + "") + " Agents";
 
-            Handles.Label(cellCorner, label);
+            // Handles.Label(cellCorner, label);
         }
     }
 }

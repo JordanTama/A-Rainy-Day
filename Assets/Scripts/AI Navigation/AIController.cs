@@ -39,9 +39,9 @@ public class AIController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Handles.matrix = transform.localToWorldMatrix;
-        Handles.color = Color.white;
-        Handles.DrawWireCube(Vector3.zero, new Vector3(1, 0, 1));
+        // Handles.matrix = transform.localToWorldMatrix;
+        // Handles.color = Color.white;
+        // Handles.DrawWireCube(Vector3.zero, new Vector3(1, 0, 1));
     }
 
 
