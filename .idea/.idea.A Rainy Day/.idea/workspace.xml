@@ -28,10 +28,12 @@
     <list default="true" id="8da9afe1-fb09-46ea-b54a-5670f37d1747" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AI Navigation/AI Manager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AI Navigation/AI Manager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameLoopTest_Profiles.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Silhouette.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Silhouette.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian 2.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/Pedestrian 2.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/TEST_pedestrian-1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/TEST_pedestrian-1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/TEST_pedestrian-2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/TEST_pedestrian-2.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AISpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AISpawner.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,9 +65,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/Editor/AIManagerEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AISpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Shaders/DoubleSided.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AISpawner.cs" />
       </list>
     </option>
   </component>
@@ -84,6 +86,7 @@
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -123,6 +126,7 @@
       <workItem from="1598759292662" duration="2275000" />
       <workItem from="1598764418147" duration="10482000" />
       <workItem from="1598961347290" duration="314000" />
+      <workItem from="1600754918636" duration="913000" />
     </task>
     <servers />
   </component>

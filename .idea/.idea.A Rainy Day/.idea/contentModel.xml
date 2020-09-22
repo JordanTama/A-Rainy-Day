@@ -125,8 +125,10 @@
           <e p="Vector3Extension.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
-          <e p="DoubleSided.shader" t="Include" />
+          <e p="DepthFog.shader" t="Include" />
+          <e p="Pedestrian.shader" t="Include" />
           <e p="Refraction.shader" t="Include" />
+          <e p="Umbrella.shader" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
