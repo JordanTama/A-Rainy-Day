@@ -1,4 +1,4 @@
-﻿Shader "Custom/DoubleSided"
+﻿Shader "Crowd/Umbrella"
 {
     Properties
     {
