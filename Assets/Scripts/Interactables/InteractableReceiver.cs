@@ -5,6 +5,12 @@ using UnityEngine;
 public abstract class InteractableReceiver : MonoBehaviour
 {
     public InteractableController interactableController;
+
+    protected void Awake()
+    {
+        
+    }
+
     protected void Start()
     {
         if (interactableController)
@@ -27,7 +33,11 @@ public abstract class InteractableReceiver : MonoBehaviour
 
     protected void OnDestroy()
     {
-        interactableController.OnInteractableStateChange -= ChangeState;
-        interactableController.OnInteractableReset -= ResetState;
+        if (interactableController)
+        {
+            interactableController.OnInteractableStateChange -= ChangeState;
+            interactableController.OnInteractableReset -= ResetState;
+        }
+        
     }
 }
