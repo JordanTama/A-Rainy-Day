@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,10 +10,12 @@ public class ExtendableRamp : InteractableReceiver
 {
     private Vector3 _retractPosition;
     private Vector3 _extendPosition;
-    [SerializeField]private NavMeshObstacle _obstacle;
-    [SerializeField] private Transform _visualsTransform;
+    private Transform _visualsTransform;
     private bool isExtended;
+    private bool isTweening;
     public bool bStartExtended;
+    private Tween _extendTween;
+    private TileManager _tileManager;
 
     protected new void Awake()
     {
@@ -24,6 +27,7 @@ public class ExtendableRamp : InteractableReceiver
     protected new void Start()
     {
         base.Start();
+        _tileManager = ServiceLocator.Current.Get<TileManager>();
         ResetState();
 
     }
@@ -31,12 +35,18 @@ public class ExtendableRamp : InteractableReceiver
     protected override void ChangeState()
     {
         base.ChangeState();
-        if(isExtended) RetractRamp();
-        else ExtendRamp();
+        if (!isTweening)
+        {
+            isTweening = true;
+            if(isExtended) RetractRamp(1);
+            else ExtendRamp(1);
+        }
+        
     }
 
     private void InitializePositions()
     {
+        _visualsTransform = transform;
         if (bStartExtended)
         {
             
@@ -55,29 +65,26 @@ public class ExtendableRamp : InteractableReceiver
     protected override void ResetState()
     {
         base.ResetState();
-        if(bStartExtended) ExtendRamp();
-        else RetractRamp();
+        _extendTween?.Complete();
+        if(bStartExtended) ExtendRamp(0);
+        else RetractRamp(0);
     }
 
-    private void ExtendRamp()
+    private void ExtendRamp(float t)
     {
         isExtended = true;
-        if (_obstacle)
-        {
-            _obstacle.carving = !isExtended;
-            _obstacle.enabled = !isExtended;
-        }
-        _visualsTransform.localPosition = _extendPosition;
+        _extendTween = _visualsTransform.DOLocalMove(_extendPosition,t).OnComplete(MeshUpdate);
     }
 
-    private void RetractRamp()
+    private void RetractRamp(float t)
     {
         isExtended = false;
-        if (_obstacle)
-        {
-            _obstacle.carving = !isExtended;
-            _obstacle.enabled = !isExtended;
-        }
-        _visualsTransform.localPosition = _retractPosition;
+        _extendTween = _visualsTransform.DOLocalMove(_retractPosition,t).OnComplete(MeshUpdate);
+    }
+    
+    private void MeshUpdate()
+    {
+        _tileManager.OnUpdateMesh?.Invoke();
+        isTweening = false;
     }
 }
