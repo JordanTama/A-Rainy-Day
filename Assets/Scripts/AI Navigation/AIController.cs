@@ -34,6 +34,7 @@ public class AIController : MonoBehaviour
 
         // _tileManager.OnNewTilePosition += BakeNavMesh;
         _tileManager.OnRebakeMesh += BakeNavMesh;
+        _tileManager.OnUpdateMesh += BakeNavMesh;
         // _interactableManager.OnInteractableStateChange += BakeNavMesh;
     }
 
@@ -59,6 +60,10 @@ public class AIController : MonoBehaviour
     private void BakeNavMesh()
     {
         navMeshSurface.BuildNavMesh();
+    }
+    private void UpdateNavMesh()
+    {
+        navMeshSurface.UpdateNavMesh(navMeshSurface.navMeshData);
     }
 
     public void StartSpawning()
