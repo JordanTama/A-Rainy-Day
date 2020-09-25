@@ -11,6 +11,7 @@ public class BuildingRotator : InteractableReceiver
     private Quaternion _defaultRotation;
     private TileManager _tileManager;
     private bool isRotating;
+    private Tween _rotateTween;
  
     protected new void Awake()
     {
@@ -25,16 +26,14 @@ public class BuildingRotator : InteractableReceiver
         ResetState();
     }
 
-    private void Rotate()
+    private void Rotate(float t)
     {
-        float t = 1f;
-        bool test;
         Quaternion newRotation = Quaternion.AngleAxis(90,Vector3.up);
         Quaternion endRotation = transformToRotate.rotation * newRotation;
         if (!isRotating)
         {
             isRotating = true;
-            transformToRotate.DORotate(endRotation.eulerAngles, t).OnComplete(MeshUpdate);
+            _rotateTween = transformToRotate.DORotate(endRotation.eulerAngles, t).OnComplete(MeshUpdate);
         }
     }
 
@@ -47,13 +46,13 @@ public class BuildingRotator : InteractableReceiver
     protected override void ChangeState()
     {
         base.ChangeState();
-        Rotate();
+        Rotate(1);
     }
 
     protected override void ResetState()
     {
         base.ResetState();
-        isRotating = false;
+        _rotateTween?.Complete();
         transformToRotate.rotation = _defaultRotation;
     }
 }

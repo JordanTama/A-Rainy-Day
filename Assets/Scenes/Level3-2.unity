@@ -1169,6 +1169,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5702950883195641744, guid: aeede37e497e2944c8449b3554a79a3e,
+        type: 3}
+      propertyPath: interactableController
+      value: 
+      objectReference: {fileID: 526700004}
+    - target: {fileID: 5702950883195641744, guid: aeede37e497e2944c8449b3554a79a3e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeede37e497e2944c8449b3554a79a3e, type: 3}
 --- !u!1001 &887092096
@@ -2123,6 +2133,7 @@ GameObject:
   - component: {fileID: 8662952853582067375}
   - component: {fileID: 1568363920060226432}
   - component: {fileID: 3121606276937980594}
+  - component: {fileID: 3121606276937980595}
   m_Layer: 0
   m_Name: House (1)
   m_TagString: Untagged
@@ -2137,13 +2148,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3121606276937980593}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb99034f623f7664d993081c13408221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactableController: {fileID: 526700004}
   transformToRotate: {fileID: 4529186798527720687}
+--- !u!114 &3121606276937980595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3121606276937980593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad2c43d18904266bc554243e550f022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableController: {fileID: 526700004}
+  transformToMove: {fileID: 4529186798527720687}
+  yAxisChange: -2.51
 --- !u!4 &4529186798527720687
 Transform:
   m_ObjectHideFlags: 0
