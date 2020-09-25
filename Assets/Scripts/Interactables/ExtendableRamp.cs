@@ -16,7 +16,12 @@ public class ExtendableRamp : InteractableReceiver
     public bool bStartExtended;
     private Tween _extendTween;
     private TileManager _tileManager;
+    public float lerpTime;
+    public Ease easeType;
 
+    // default lerp time is 1 sec
+    // default ease is InOutCubic
+    
     protected new void Awake()
     {
         base.Awake();
@@ -38,8 +43,8 @@ public class ExtendableRamp : InteractableReceiver
         if (!isTweening)
         {
             isTweening = true;
-            if(isExtended) RetractRamp(1);
-            else ExtendRamp(1);
+            if(isExtended) RetractRamp(lerpTime);
+            else ExtendRamp(lerpTime);
         }
         
     }
@@ -73,13 +78,13 @@ public class ExtendableRamp : InteractableReceiver
     private void ExtendRamp(float t)
     {
         isExtended = true;
-        _extendTween = _visualsTransform.DOLocalMove(_extendPosition,t).OnComplete(MeshUpdate);
+        _extendTween = _visualsTransform.DOLocalMove(_extendPosition,t).SetEase(easeType).OnComplete(MeshUpdate);
     }
 
     private void RetractRamp(float t)
     {
         isExtended = false;
-        _extendTween = _visualsTransform.DOLocalMove(_retractPosition,t).OnComplete(MeshUpdate);
+        _extendTween = _visualsTransform.DOLocalMove(_retractPosition,t).SetEase(easeType).OnComplete(MeshUpdate);
     }
     
     private void MeshUpdate()

@@ -5,27 +5,27 @@ using DG.Tweening;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
 
-public class BuildingHeightAdjuster : InteractableReceiver
+public class MovableTruck : InteractableReceiver
 {
     [SerializeField] private Transform transformToMove;
     private Vector3 _defaultLocalPosition;
     private Vector3 _endLocalPosition;
-    public float yAxisChange;
+    public float moveForwardDistance;
+    public float lerpTime;
     private TileManager _tileManager;
     private bool _bisAtEnd;
     private bool _isMoving;
     private Tween _moveTween;
-    public float lerpTime;
     public Ease easeType;
- 
-    // default lerp time is 1 sec
-    // default ease is InOutCubic
     
+    // default lerp time is 2 sec
+    // default ease is InOutCubic
+ 
     protected new void Awake()
     {
         base.Awake();
         _defaultLocalPosition = transformToMove.localPosition;
-        _endLocalPosition = _defaultLocalPosition + Vector3.up * yAxisChange;
+        _endLocalPosition = _defaultLocalPosition + (moveForwardDistance-transformToMove.localScale.z)*(transformToMove.localRotation.normalized*Vector3.forward);
 
     }
     protected new void Start()
@@ -38,6 +38,7 @@ public class BuildingHeightAdjuster : InteractableReceiver
     private void MoveToEnd(float t)
     {
         _bisAtEnd = true;
+        _endLocalPosition = _defaultLocalPosition + (moveForwardDistance-transformToMove.localScale.z) *(transformToMove.localRotation.normalized*Vector3.forward);
         _moveTween = transformToMove.DOLocalMove(_endLocalPosition, t).SetEase(easeType).OnComplete(MeshUpdate);
     }
     

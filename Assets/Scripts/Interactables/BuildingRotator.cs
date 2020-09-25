@@ -8,11 +8,17 @@ using UnityEngine.PlayerLoop;
 public class BuildingRotator : InteractableReceiver
 {
     [SerializeField] private Transform transformToRotate;
+    public int numRotationPositions;
     private Quaternion _defaultRotation;
     private TileManager _tileManager;
     private bool isRotating;
     private Tween _rotateTween;
+    public float lerpTime;
+    public Ease easeType;
  
+    // default lerp time is 1 sec
+    // default ease is InOutCubic
+    
     protected new void Awake()
     {
         base.Awake();
@@ -28,12 +34,16 @@ public class BuildingRotator : InteractableReceiver
 
     private void Rotate(float t)
     {
-        Quaternion newRotation = Quaternion.AngleAxis(90,Vector3.up);
+        if (numRotationPositions == 0)
+        {
+            numRotationPositions = 1;
+        }
+        Quaternion newRotation = Quaternion.AngleAxis(360.0f/numRotationPositions,Vector3.up);
         Quaternion endRotation = transformToRotate.rotation * newRotation;
         if (!isRotating)
         {
             isRotating = true;
-            _rotateTween = transformToRotate.DORotate(endRotation.eulerAngles, t).OnComplete(MeshUpdate);
+            _rotateTween = transformToRotate.DORotate(endRotation.eulerAngles, t).SetEase(easeType).OnComplete(MeshUpdate);
         }
     }
 
@@ -46,7 +56,7 @@ public class BuildingRotator : InteractableReceiver
     protected override void ChangeState()
     {
         base.ChangeState();
-        Rotate(1);
+        Rotate(lerpTime);
     }
 
     protected override void ResetState()
