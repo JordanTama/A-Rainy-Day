@@ -21,8 +21,6 @@ public class Goal : MonoBehaviour
     private int _objectiveCount = 0;
     private int _objectiveActivated = 0;
 
-    private bool _isPlayerEntered;
-    
     private void Start()
     {
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
@@ -85,7 +83,6 @@ public class Goal : MonoBehaviour
 
     private void Reset()
     {
-        _isPlayerEntered = false;
         CloseGoal();
         ResetActiveObjectives();
 
@@ -102,16 +99,12 @@ public class Goal : MonoBehaviour
     {
         AddScore();
         PlayAudio();
-        if (_isPlayerEntered)
-        {
-            LevelComplete();
-        }
     }
 
     private void LevelComplete()
     {
-        _gameLoopManager.Complete();
         CloseGoal();
+        _gameLoopManager.Complete();
     }
 
     private void PlayAudio()
@@ -147,7 +140,10 @@ public class Goal : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("NPC"))
         {
-            _isPlayerEntered = other.CompareTag("Player");
+            if (other.CompareTag("Player"))
+            {
+                LevelComplete();
+            }
             _pointsToAdd = DeterminePoints(other.tag);
             Entered();
         }
