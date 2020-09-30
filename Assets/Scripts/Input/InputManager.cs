@@ -8,6 +8,7 @@ public class InputManager : IGameService
     private InputControls input;
 
     public InputAction P_LeftClick { get; private set; }
+    public InputAction P_RightClick { get; private set; }
     public InputAction P_MouseDelta { get; private set; }
     public InputAction P_MousePosition { get; private set; }
 
@@ -17,6 +18,7 @@ public class InputManager : IGameService
         input.Player.Enable();
 
         P_LeftClick = input.Player.LeftClick;
+        P_RightClick = input.Player.RightClick;
         P_MouseDelta = input.Player.MouseDelta;
         P_MousePosition = input.Player.MousePosition;
     }

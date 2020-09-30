@@ -93,8 +93,6 @@ public class AIAgent : MonoBehaviour
         others = GetVisible();
         goalVelocity = Target() * maxMoveSpeed;
         
-        goalVelocity = Target() * maxMoveSpeed;
-        
         const float k = 2.0f;
         Vector3 goalForce = k * (goalVelocity - velocity);
         Vector3 avoidanceForce = Avoidance(others);
@@ -226,11 +224,20 @@ public class AIAgent : MonoBehaviour
         
         _target = to;
         _spawner = from;
-        
-        navMeshAgent.SetDestination(_target.ClosestPoint(transform.position));
+
+        UpdateDestination();
 
         _moveMultiplier = 1.0f;
         _steerMultiplier = 1.0f;
+    }
+
+    public void UpdateDestination()
+    {
+        if (_target)
+        {
+            navMeshAgent.SetDestination(_target.ClosestPoint(transform.position));
+        }
+        
     }
 
     private AIAgent[] GetVisible()
@@ -360,7 +367,7 @@ public class AIAgent : MonoBehaviour
     
     private Vector3 Target()
     {
-        if (!_target) return Vector3.zero;
+        if (!_target || navMeshAgent.path.status != NavMeshPathStatus.PathComplete) return Vector3.zero;
         
         Vector3 force = (navMeshAgent.desiredVelocity).normalized;
 
