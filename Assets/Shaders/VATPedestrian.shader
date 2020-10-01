@@ -7,14 +7,21 @@
         _Speed ("Animation Speed", Float) = 1
         _Offset ("Animation Cycle Offset", Range(0, 1)) = 0
     }
+    
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
-
         // Base pass
         Pass
         {
+            Stencil
+            {
+                Ref 100
+                Comp Always
+                Pass Replace
+            }
+            
+            Tags { "Queue"="Geometry" }
+            
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
