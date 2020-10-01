@@ -26,92 +26,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8da9afe1-fb09-46ea-b54a-5670f37d1747" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Animation.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Gate.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Gate/Activate.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Gate/Activate.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Gate/Deactivate.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Gate/Deactivate.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Gate/GateController.controller" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Gate/GateController.controller.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/NegativeDebug.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/NegativeDebug.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/Torii Burst.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/Torii Burst.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/Torii.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/Torii.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/VATPedestrian.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/VATPedestrian.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Blender Projects/Pedestrian.blend" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Blender Projects/Pedestrian.blend.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Blender Projects/Pedestrian.blend1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Blender Projects/Pedestrian.blend1.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Test Models.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Test Models/Suit_Male.blend" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Test Models/Suit_Male.blend.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Test Models/Suit_Male.blend1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Test Models/Suit_Male.blend1.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Test Models/Suit_Male.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Test Models/Suit_Male.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/LightingData.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/LightingData.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-4SideTile 1.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-4SideTile 1.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-4SideTile.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-4SideTile.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-AI Controller 1.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-AI Controller 1.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-AI Controller.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-AI Controller.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-Box.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-Box.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-Cube (1) 1.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-Cube (1) 1.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-Cube (1).asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-Cube (1).asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-Cube 1.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-Cube 1.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-Cube.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-Cube.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-GameObject 1.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-GameObject 1.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-GameObject.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-GameObject.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-Mesh.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/NavMesh-Mesh.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/ReflectionProbe-0.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting/ReflectionProbe-0.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/VATTesting.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/VATTesting.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/VATTesting.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/VATTesting/LightingData.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/VATTesting/LightingData.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/VATTesting/ReflectionProbe-0.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/VATTesting/ReflectionProbe-0.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vertex Animation/Editor/VATGeneratorEditor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vertex Animation/Editor/VatGeneratorEditor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vertex Animation/VATGenerator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Vertex Animation/VATGenerator.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Shaders/Dissolve.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Shaders/Dissolve.shader.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Shaders/NegativeDebug.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Shaders/VATPedestrian.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Shaders/VATPedestrian.shader.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/VAT.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/VAT/Cube-TEST_rotate-anim_001.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/VAT/Cube-TEST_rotate-anim_001.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/VAT/Suit_Male-CharacterArmatureWalk.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/VAT/Suit_Male-CharacterArmatureWalk.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/VAT/Suit_Male-CharacterArmatureWalk_Carry.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/VAT/Suit_Male-CharacterArmatureWalk_Carry.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/VAT/VATImporter.preset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/VAT/VATImporter.preset.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/TEST_pedestrian-1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/TEST_pedestrian-1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/TEST_pedestrian-2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/TEST_pedestrian-2.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/NavigationTesting.unity.meta" beforeDir="false" />
@@ -263,6 +179,7 @@
       <workItem from="1601337384415" duration="2655000" />
       <workItem from="1601347666275" duration="965000" />
       <workItem from="1601455791021" duration="496000" />
+      <workItem from="1601544422048" duration="763000" />
     </task>
     <servers />
   </component>
