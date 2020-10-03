@@ -14,6 +14,7 @@ public class AIAgent : MonoBehaviour
     [SerializeField] private AIManager manager;
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private MeshRenderer pedestrianRenderer;
+    [SerializeField] private MeshRenderer umbrellaRenderer;
 
     [Header("Behaviour Type")]
     [SerializeField] private BehaviourType behaviourType;
@@ -236,6 +237,7 @@ public class AIAgent : MonoBehaviour
         _steerMultiplier = 1.0f;
         
         if (pedestrianRenderer) pedestrianRenderer.material.SetFloat("_Offset", UnityEngine.Random.value);
+        if (umbrellaRenderer) umbrellaRenderer.material.SetFloat("_Offset", UnityEngine.Random.value);
     }
 
     private AIAgent[] GetVisible()
