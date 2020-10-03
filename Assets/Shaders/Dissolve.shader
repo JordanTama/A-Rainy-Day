@@ -17,6 +17,8 @@
         _Interp ("Interpolation", Range(0, 1)) = 1
         _DispAmt ("Displacement Amount", Float) = 1
         _DispScale ("Displacement Scale", Float) = 1
+        
+        _PanSpd ("Pan Speed", Vector) = (1, 0, 0, 0)
     }
     
     SubShader
@@ -48,6 +50,8 @@
 
         half _Edge;
 
+        fixed4 _PanSpd;
+
         struct Input
         {
             float2 uv_Displacement;
@@ -63,13 +67,14 @@
         void vert (inout appdata_full v, out Input o)
         {
             UNITY_INITIALIZE_OUTPUT(Input, o);
+            
             o.vertex = v.vertex;
             o.worldPos = mul(unity_ObjectToWorld, v.vertex);
         }
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            float displacement = tex2D(_Displacement, IN.worldPos.xz / _DispScale);
+            float displacement = tex2Dlod(_Displacement, float4((IN.worldPos.xz + _PanSpd * _Time[1]) / _DispScale, 0, 3));
             displacement = displacement * 2 - 1;
             displacement *= _DispAmt;
             
