@@ -41,15 +41,6 @@ public class MovableTruck : InteractableReceiver
         ResetState();
     }
 
-    private void Update()
-    {
-        if (test)
-        {
-            test = false;
-            IsPathClear();
-        }
-    }
-
     private void MoveToEnd(float t)
     {
         if (IsPathClear())
