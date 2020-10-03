@@ -16,8 +16,9 @@ public class ExtendableRamp : InteractableReceiver
     public bool bStartExtended;
     private Tween _extendTween;
     private TileManager _tileManager;
-    public float lerpTime;
-    public Ease easeType;
+
+    public AudioClip extendAudioClip;
+    public AudioClip retractAudioClip;
 
     // default lerp time is 1 sec
     // default ease is InOutCubic
@@ -63,8 +64,6 @@ public class ExtendableRamp : InteractableReceiver
             _extendPosition = _visualsTransform.localPosition + _visualsTransform.localScale.z * Vector3.forward;
             _retractPosition = _visualsTransform.localPosition;
         }
-        
-        
     }
 
     protected override void ResetState()
@@ -79,12 +78,14 @@ public class ExtendableRamp : InteractableReceiver
     {
         isExtended = true;
         _extendTween = _visualsTransform.DOLocalMove(_extendPosition,t).SetEase(easeType).OnComplete(MeshUpdate);
+        if(t>0f && extendAudioClip) PlayAudioWithClip(extendAudioClip);
     }
 
     private void RetractRamp(float t)
     {
         isExtended = false;
         _extendTween = _visualsTransform.DOLocalMove(_retractPosition,t).SetEase(easeType).OnComplete(MeshUpdate);
+        if(t>0f && retractAudioClip) PlayAudioWithClip(retractAudioClip);
     }
     
     private void MeshUpdate()

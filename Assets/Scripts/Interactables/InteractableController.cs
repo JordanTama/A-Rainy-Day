@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class InteractableController : MonoBehaviour
 {
@@ -12,13 +13,27 @@ public class InteractableController : MonoBehaviour
     protected InputManager inputManager;
     protected CameraManager cameraManager;
     protected GameLoopManager _gameLoopManager;
+    protected AudioManager audioManager;
 
     [SerializeField] protected int numStates;
     [SerializeField] protected int currentState;
     protected int nextState;
     [SerializeField] protected int defaultState;
     private bool isChangeState;
-    
+
+    protected AudioSource _myAudioSource;
+    public AudioClip myAudioClip;
+    public float audioVolume=1f;
+
+    private void Awake()
+    {
+        _myAudioSource = GetComponent<AudioSource>();
+        if (myAudioClip && _myAudioSource)
+        {
+            _myAudioSource.volume = audioVolume;
+            _myAudioSource.clip = myAudioClip;
+        }
+    }
 
     protected void Start()
     {
@@ -26,11 +41,14 @@ public class InteractableController : MonoBehaviour
         inputManager = ServiceLocator.Current.Get<InputManager>();
         cameraManager = ServiceLocator.Current.Get<CameraManager>();
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
+        audioManager = ServiceLocator.Current.Get<AudioManager>();
         
         interactableManager.OnInteractableSelect+=InteractableSelect;
         interactableManager.OnInteractableDeselect+=InteractableDeselect;
 
         _gameLoopManager.OnPreparation += ResetInteractable;
+
+        audioManager.OnAudioStop += StopAudio;
 
         ResetInteractable();
     }
@@ -38,6 +56,7 @@ public class InteractableController : MonoBehaviour
     protected virtual void ResetInteractable()
     {
         OnInteractableReset?.Invoke();
+        StopAudio();
     }
 
     protected void ChangeState(int newState)
@@ -58,9 +77,34 @@ public class InteractableController : MonoBehaviour
         if (obj == gameObject)
         {
             ChangeState(nextState);
+            PlayAudio();
         }
     }
-    
+
+    protected void PlayAudio()
+    {
+        if (!_myAudioSource) return;
+        if (!_myAudioSource.clip) return;
+        if(_myAudioSource.isPlaying) _myAudioSource.Stop();
+        _myAudioSource.Play();
+    }
+
+    protected void StopAudio()
+    {
+        if (!_myAudioSource) return;
+        if (!_myAudioSource.clip) return;
+        if (_myAudioSource.isPlaying)
+        {
+            _myAudioSource.DOFade(0f, 1f).OnComplete(ResetAudio);
+        }
+    }
+
+    protected void ResetAudio()
+    {
+        _myAudioSource.Stop();
+        _myAudioSource.volume = audioVolume;
+    }
+
     protected void InteractableDeselect()
     {
         // Cancel highlighting

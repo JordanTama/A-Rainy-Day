@@ -15,14 +15,15 @@ public class MovableTruck : InteractableReceiver
     private Vector3 _defaultLocalPosition;
     private Vector3 _endLocalPosition;
     public float moveForwardDistance;
-    public float lerpTime;
     private TileManager _tileManager;
     private bool _bisAtEnd;
     private bool _isMoving;
     private Tween _moveTween;
-    public Ease easeType;
     public LayerMask boxCastLayers;
-    
+
+    [SerializeField] private AudioClip MoveForwardAudioClip;
+    [SerializeField] private AudioClip MoveBackwardsAudioClip;
+
     // default lerp time is 2 sec
     // default ease is InOutCubic
  
@@ -56,6 +57,12 @@ public class MovableTruck : InteractableReceiver
             _bisAtEnd = true;
             _endLocalPosition = _defaultLocalPosition + (moveForwardDistance-transformToMove.localScale.z) *(transformToMove.localRotation.normalized*Vector3.forward);
             _moveTween = transformToMove.DOLocalMove(_endLocalPosition, t).SetEase(easeType).OnComplete(MeshUpdate);
+            
+            if (t > 0 && MoveForwardAudioClip)
+            {
+                _moveTween.OnUpdate(CheckForFade);
+                PlayAudioWithClip(MoveForwardAudioClip);
+            }
         }
         
     }
@@ -66,8 +73,22 @@ public class MovableTruck : InteractableReceiver
         {
             _bisAtEnd = false;
             _moveTween = transformToMove.DOLocalMove(_defaultLocalPosition, t).SetEase(easeType).OnComplete(MeshUpdate);
+
+            if (t > 0 && MoveBackwardsAudioClip)
+            {
+                _moveTween.OnUpdate(CheckForFade);
+                PlayAudioWithClip(MoveBackwardsAudioClip);
+            }
         }
         
+    }
+
+    private void CheckForFade()
+    {
+        if (_moveTween.ElapsedPercentage() > fadePercentage && !isFading)
+        {
+            FadeOutAudio((1f-fadePercentage)*lerpTime);
+        }
     }
 
     private void MeshUpdate()

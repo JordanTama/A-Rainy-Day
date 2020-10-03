@@ -13,9 +13,9 @@ public class BuildingRotator : InteractableReceiver
     private TileManager _tileManager;
     private bool isRotating;
     private Tween _rotateTween;
-    public float lerpTime;
-    public Ease easeType;
- 
+
+    [SerializeField] private AudioClip rotateAudioClip;
+
     // default lerp time is 1 sec
     // default ease is InOutCubic
     
@@ -23,6 +23,7 @@ public class BuildingRotator : InteractableReceiver
     {
         base.Awake();
         _defaultRotation = transformToRotate.rotation;
+        
         
     }
     protected new void Start()
@@ -44,6 +45,10 @@ public class BuildingRotator : InteractableReceiver
         {
             isRotating = true;
             _rotateTween = transformToRotate.DORotate(endRotation.eulerAngles, t).SetEase(easeType).OnComplete(MeshUpdate);
+            if (t > 0 && rotateAudioClip)
+            {
+                PlayAudioWithClip(rotateAudioClip);
+            }
         }
     }
 

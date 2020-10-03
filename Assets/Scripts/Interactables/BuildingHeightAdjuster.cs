@@ -15,9 +15,10 @@ public class BuildingHeightAdjuster : InteractableReceiver
     private bool _bisAtEnd;
     private bool _isMoving;
     private Tween _moveTween;
-    public float lerpTime;
-    public Ease easeType;
- 
+    
+    [SerializeField] private AudioClip MoveForwardAudioClip;
+    [SerializeField] private AudioClip MoveBackwardsAudioClip;
+
     // default lerp time is 1 sec
     // default ease is InOutCubic
     
@@ -39,12 +40,22 @@ public class BuildingHeightAdjuster : InteractableReceiver
     {
         _bisAtEnd = true;
         _moveTween = transformToMove.DOLocalMove(_endLocalPosition, t).SetEase(easeType).OnComplete(MeshUpdate);
+        
+        if (t > 0 && MoveForwardAudioClip)
+        {
+            PlayAudioWithClip(MoveForwardAudioClip);
+        }
     }
     
     private void MoveToStart(float t)
     {
         _bisAtEnd = false;
         _moveTween = transformToMove.DOLocalMove(_defaultLocalPosition, t).SetEase(easeType).OnComplete(MeshUpdate);
+        
+        if (t > 0 && MoveBackwardsAudioClip)
+        {
+            PlayAudioWithClip(MoveBackwardsAudioClip);
+        }
     }
 
     private void MeshUpdate()
