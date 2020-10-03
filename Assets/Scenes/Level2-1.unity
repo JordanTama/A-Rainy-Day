@@ -877,11 +877,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 500726221}
     m_Modifications:
-    - target: {fileID: 1645824957959938442, guid: 16570eed44e9b56418c2b77f045304f1,
-        type: 3}
-      propertyPath: audioVolume
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1645824957959938451, guid: 16570eed44e9b56418c2b77f045304f1,
         type: 3}
       propertyPath: m_Name
@@ -1542,11 +1537,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Objective
-      objectReference: {fileID: 0}
-    - target: {fileID: 3025010675254263294, guid: f5a5d4282751b25498a9372ad3f61e14,
-        type: 3}
-      propertyPath: audioVolume
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5a5d4282751b25498a9372ad3f61e14, type: 3}

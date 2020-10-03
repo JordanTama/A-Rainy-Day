@@ -4833,6 +4833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activatedPs: {fileID: 3025010675254263293}
   activatedAudioClip: {fileID: 8300000, guid: 85f55a27ab2168844ae9fc179ec6b0a1, type: 3}
+  audioVolume: 0.5
   _goal: {fileID: 0}
 --- !u!82 &4011642369245893393
 AudioSource:
