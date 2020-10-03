@@ -133,6 +133,7 @@
         <e p="Shaders" t="Include">
           <e p="DepthFog.shader" t="Include" />
           <e p="Dissolve.shader" t="Include" />
+          <e p="Helper.cginc" t="Include" />
           <e p="NegativeDebug.shader" t="Include" />
           <e p="Pedestrian.shader" t="Include" />
           <e p="Refraction.shader" t="Include" />

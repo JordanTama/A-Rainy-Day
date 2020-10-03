@@ -26,10 +26,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8da9afe1-fb09-46ea-b54a-5670f37d1747" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/UmbrellaMat.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/UmbrellaMat.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/UmbrellaMatMain.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/UmbrellaMatMain.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Shaders/Helper.cginc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Shaders/Helper.cginc.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.A Rainy Day/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Materials/Test Materials/VATPedestrian.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Test Materials/VATPedestrian.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/UmbrellaMat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/UmbrellaMat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/UmbrellaMatMain.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/UmbrellaMatMain.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Blender Projects/Umbrella.blend" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Blender Projects/Umbrella.blend" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/TEST_pedestrian-1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/TEST_pedestrian-1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/TEST_pedestrian-2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI Navigation/TEST_pedestrian-2.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TEST/NavigationTesting.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/VATPedestrian.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/VATPedestrian.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Umbrella.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Umbrella.shader" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +90,8 @@
         <option value="$PROJECT_DIR$/Assets/Shaders/Dissolve.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AI Navigation/AIAgent.cs" />
         <option value="$PROJECT_DIR$/Assets/Shaders/VATPedestrian.shader" />
+        <option value="$PROJECT_DIR$/Assets/Shaders/Helper.cginc" />
+        <option value="$PROJECT_DIR$/Assets/Shaders/Umbrella.shader" />
       </list>
     </option>
   </component>
@@ -147,7 +163,9 @@
       <workItem from="1601337384415" duration="2655000" />
       <workItem from="1601347666275" duration="965000" />
       <workItem from="1601455791021" duration="496000" />
-      <workItem from="1601544422048" duration="2507000" />
+      <workItem from="1601544422048" duration="2528000" />
+      <workItem from="1601599737779" duration="1866000" />
+      <workItem from="1601713642664" duration="6201000" />
     </task>
     <servers />
   </component>

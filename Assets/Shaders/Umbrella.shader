@@ -6,18 +6,24 @@
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
+        
+        _Offset ("Animation Cycle Offset", Range(0, 1)) = 0
+        
+        _BobSpd ("Bob Speed", Float) = 1
+        _BobAmt ("Bob Amount", Float) = 1
+        _SwayAmt ("Sway Amount", Float) = 1
     }
+    
     SubShader
     {
         Tags { "RenderType"="Opaque" }
         LOD 200
 
         CGPROGRAM
-        // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard fullforwardshadows
-
-        // Use shader model 3.0 target, to get nicer looking lighting
+        #pragma surface surf Standard fullforwardshadows vertex:vert addshadow
         #pragma target 3.0
+
+        #include "Helper.cginc"
 
         sampler2D _MainTex;
 
@@ -30,35 +36,53 @@
         half _Metallic;
         fixed4 _Color;
 
-        // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-        // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-        // #pragma instancing_options assumeuniformscaling
+        float _Offset;
+
+        float _BobSpd;
+        float _BobAmt;
+
+        float _SwayAmt;
+        
         UNITY_INSTANCING_BUFFER_START(Props)
-            // put more per-instance properties here
         UNITY_INSTANCING_BUFFER_END(Props)
+
+        void vert (inout appdata_full v)
+        {
+            float time = _Time[1] * _BobSpd;
+            float offset = _Offset * PI * 2;
+            
+            // Calculate bob axis
+            float3 bobAxis = normalize(mul(unity_WorldToObject, float3(0, 1, 0)));
+
+            // Calculate the sway axis
+            float3 swayAxis = normalize(ProjectOnPlane(float3(0, 0, 1), bobAxis));
+
+            // Apply bob and sway to vertex position in local space
+            v.vertex.xyz = mul(AngleAxis3x3(_SwayAmt * sin(time * 0.5 + offset), swayAxis), v.vertex.xyz);
+            v.vertex.xyz += bobAxis * (_BobAmt * sin(time + offset));
+        }
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
             o.Albedo = c.rgb;
-            // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;
         }
         ENDCG
         
+        
+        
         Tags { "RenderType"="Opaque" }
         LOD 200
         Cull Front
-        
-        CGPROGRAM
-        // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard fullforwardshadows
 
-        // Use shader model 3.0 target, to get nicer looking lighting
+        CGPROGRAM
+        #pragma surface surf Standard fullforwardshadows vertex:vert addshadow
         #pragma target 3.0
+
+        #include "Helper.cginc"
 
         sampler2D _MainTex;
 
@@ -71,19 +95,38 @@
         half _Metallic;
         fixed4 _Color;
 
-        // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-        // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-        // #pragma instancing_options assumeuniformscaling
+        float _Offset;
+
+        float _BobSpd;
+        float _BobAmt;
+
+        float _SwayAmt;
+        
         UNITY_INSTANCING_BUFFER_START(Props)
-            // put more per-instance properties here
         UNITY_INSTANCING_BUFFER_END(Props)
+
+        void vert (inout appdata_full v)
+        {
+            float time = _Time[1] * _BobSpd;
+            float offset = _Offset * PI * 2;
+            
+            // Calculate bob axis
+            float3 bobAxis = normalize(mul(unity_WorldToObject, float3(0, 1, 0)));
+
+            // Calculate the sway axis
+            float3 swayAxis = normalize(ProjectOnPlane(float3(0, 0, 1), bobAxis));
+
+            // Apply bob and sway to vertex position in local space
+            v.vertex.xyz = mul(AngleAxis3x3(_SwayAmt * sin(time * 0.5 + offset), swayAxis), v.vertex.xyz);
+            v.vertex.xyz += bobAxis * (_BobAmt * sin(time + offset));
+
+            v.normal = -v.normal;
+        }
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
             o.Albedo = c.rgb;
-            // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;
