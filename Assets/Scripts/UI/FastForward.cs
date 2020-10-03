@@ -13,6 +13,13 @@ public class FastForward : MonoBehaviour
     private float _defaultSpeed;
     [SerializeField] private bool isFF;
     
+    private MainUIController _mainUiController;
+    
+    private void Awake()
+    {
+        _mainUiController = GetComponentInParent<MainUIController>();
+    }
+    
     private void Start()
     {
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
@@ -36,6 +43,7 @@ public class FastForward : MonoBehaviour
         {
             MakeFF();
         }
+        _mainUiController.PlayMenuButtonAudio();
     }
     
 

@@ -8,28 +8,43 @@ public class Goal : MonoBehaviour
     private GameLoopManager _gameLoopManager;
     private ScoreManager _scoreManager;
 
-    public int playerPoints = 10;
-    public int npcPoints = 1;
+    private int playerPoints = 10;
+    private int npcPoints = 1;
     private int _pointsToAdd = 0;
     
-    public Collider _collider;
+    private Collider _collider;
     public ParticleSystem openPs;
-    public AudioSource openAs;
+    private AudioSource goalAudioSource;
 
     public TMP_Text goalText;
 
+    public float audioVolume = 0.5f;
+    public AudioClip goalEnteredClip;
+    public AudioClip goalOpenClip;
+    public AudioClip playerEnterGoalCip;
+    
     private int _objectiveCount = 0;
     private int _objectiveActivated = 0;
 
-    private bool _isPlayerEntered;
-    
+    private void Awake()
+    {
+        
+        goalAudioSource = GetComponent<AudioSource>();
+        if (goalAudioSource)
+        {
+            goalAudioSource.volume = audioVolume;
+        }
+        _collider = GetComponent<Collider>();
+        
+    }
+
     private void Start()
     {
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _scoreManager = ServiceLocator.Current.Get<ScoreManager>();
         _gameLoopManager.OnPreparation += Reset;
 
-        _collider = GetComponent<Collider>();
+        
         Reset();
     }
     
@@ -58,6 +73,8 @@ public class Goal : MonoBehaviour
         {
             PlayParticles();
             _collider.enabled = true;
+            goalAudioSource.clip = goalOpenClip;
+            PlayAudio();
         }
         else
         {
@@ -85,7 +102,6 @@ public class Goal : MonoBehaviour
 
     private void Reset()
     {
-        _isPlayerEntered = false;
         CloseGoal();
         ResetActiveObjectives();
 
@@ -93,31 +109,32 @@ public class Goal : MonoBehaviour
 
     private void StopAudio()
     {
-        if (!openAs) return;
-        if(openAs.isPlaying) openAs.Stop();
+        if (!goalAudioSource) return;
+        if(goalAudioSource.isPlaying) goalAudioSource.Stop();
     }
 
     
     private void Entered()
     {
         AddScore();
+        if (goalAudioSource.clip != goalEnteredClip) goalAudioSource.clip = goalEnteredClip;
         PlayAudio();
-        if (_isPlayerEntered)
-        {
-            LevelComplete();
-        }
     }
 
     private void LevelComplete()
     {
-        _gameLoopManager.Complete();
         CloseGoal();
+        goalAudioSource.clip = playerEnterGoalCip;
+        PlayAudio();
+        _gameLoopManager.Complete();
     }
 
     private void PlayAudio()
     {
-        if (!openAs) return;
-        if(!openAs.isPlaying) openAs.Play();
+        if (!goalAudioSource) return;
+        if (!goalAudioSource.clip) return;
+        if(goalAudioSource.isPlaying) StopAudio();
+        goalAudioSource.Play();
     }
 
     private void PlayParticles()
@@ -147,9 +164,14 @@ public class Goal : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("NPC"))
         {
-            _isPlayerEntered = other.CompareTag("Player");
             _pointsToAdd = DeterminePoints(other.tag);
             Entered();
+            
+            if (other.CompareTag("Player"))
+            {
+                LevelComplete();
+            }
+            
         }
     }
 
