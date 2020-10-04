@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,6 +14,12 @@ public class ButtonState : MonoBehaviour
     private Material _stopMat;
     public Material disabledMat;
     [SerializeField] private bool isPreparationState;
+    private MainUIController _mainUiController;
+    
+    private void Awake()
+    {
+        _mainUiController = GetComponentInParent<MainUIController>();
+    }
 
     private void Start()
     {
@@ -38,6 +45,7 @@ public class ButtonState : MonoBehaviour
         {
             _gameLoopManager.SoftResetLevel();
         }
+        _mainUiController.PlayMenuButtonAudio();
     }
     
 

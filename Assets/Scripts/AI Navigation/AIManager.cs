@@ -91,6 +91,14 @@ public class AIManager : ScriptableObject
         }
     }
 
+    public void UpdateAllAgentsDestination()
+    {
+        foreach (var agent in _agents)
+        {
+            agent.UpdateDestination();
+        }
+    }
+
     public AIAgent[] GetAgents(AIAgent agent)
     {
         return _grid.GetAgents(agent.transform.position, reach);
