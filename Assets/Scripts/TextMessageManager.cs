@@ -8,6 +8,8 @@ public class TextMessageManager : IGameService
 {
     public List<TextMessage> AllSentMessages = new List<TextMessage>();
     public Action<TextMessage> OnNewTextMessage;
+    public Action OnLightFlash;
+    public Action<bool> OnPhoneShow;
     public bool NewMessage { private set; get; } = false;
 
     public TextMessageManager()

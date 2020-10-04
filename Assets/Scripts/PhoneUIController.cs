@@ -16,6 +16,7 @@ public class PhoneUIController : MonoBehaviour, IPointerClickHandler
     private Dictionary<MessageSender, GameObject> msgMap;
     private bool isShowing = false;
     private TextMessageManager messageManager;
+    private bool isLightFlashing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,8 +54,20 @@ public class PhoneUIController : MonoBehaviour, IPointerClickHandler
 
         if (messageManager.NewMessage)
         {
-            notificationLight.color = Color.Lerp(new Color(0,0,0,0), new Color(1,0,0,1), Mathf.Abs(Mathf.Sin(Time.time * 5)));
+            notificationLight.color = Color.Lerp(new Color(0,0,0,0), new Color(1,0,0,1), Mathf.Abs(Mathf.Sin(Time.time * 2.5f)));
+
+            if (notificationLight.color.r >= 0.5f && !isLightFlashing)
+            {
+                isLightFlashing = true;
+                messageManager.OnLightFlash?.Invoke();
+            }
+
+            if (notificationLight.color.r <= 0.1f && isLightFlashing)
+            {
+                isLightFlashing = false;
+            }
         }
+        
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -69,5 +82,7 @@ public class PhoneUIController : MonoBehaviour, IPointerClickHandler
             messageManager.PhoneOpened();
             notificationLight.color = new Color(0, 0, 0, 0);
         }
+        
+        messageManager.OnPhoneShow?.Invoke(isShowing);
     }
 }
