@@ -7,6 +7,7 @@ public class ResetButtonState : MonoBehaviour
 {
     private GameLoopManager _gameLoopManager;
     private Button _myButton;
+    
 
     private void Start()
     {

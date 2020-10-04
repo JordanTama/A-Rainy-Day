@@ -28,8 +28,9 @@ public class GameLoopManager:IGameService
 
     public void RestartLevel()
     {
-        SoftResetLevel();
         OnRestart?.Invoke();
+        SoftResetLevel();
+        
     }
 
     public void SoftResetLevel()
@@ -46,6 +47,7 @@ public class GameLoopManager:IGameService
 
     public void Complete()
     {
+        Debug.Log("level complete");
         ChangeState(GameState.Complete);
         OnComplete?.Invoke();
     }

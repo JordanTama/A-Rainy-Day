@@ -17,6 +17,7 @@ public class ServiceLocator
         Register(new GameLoopManager());
         Register(new TextMessageManager());   
         Register(new ScoreManager(Get<GameLoopManager>()));
+        Register(new AudioManager(Get<GameLoopManager>()));
         Register(new CameraManager(Get<InputManager>()));
         Register(new TileManager(Get<CameraManager>(), Get<InputManager>(),Get<GameLoopManager>()));
         Register(new InteractableManager(Get<CameraManager>(), Get<InputManager>(),Get<GameLoopManager>()));

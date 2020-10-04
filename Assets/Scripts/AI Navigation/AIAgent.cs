@@ -230,14 +230,23 @@ public class AIAgent : MonoBehaviour
         
         _target = to;
         _spawner = from;
-        
-        navMeshAgent.SetDestination(_target.ClosestPoint(transform.position));
+
+        UpdateDestination();
 
         _moveMultiplier = 1.0f;
         _steerMultiplier = 1.0f;
         
         if (pedestrianRenderer) pedestrianRenderer.material.SetFloat("_Offset", UnityEngine.Random.value);
         if (umbrellaRenderer) umbrellaRenderer.material.SetFloat("_Offset", UnityEngine.Random.value);
+    }
+
+    public void UpdateDestination()
+    {
+        if (_target)
+        {
+            navMeshAgent.SetDestination(_target.ClosestPoint(transform.position));
+        }
+        
     }
 
     private AIAgent[] GetVisible()
