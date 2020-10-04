@@ -92,7 +92,11 @@ public class TileBaseController : MonoBehaviour
                     if (CheckAdjacent(dir))
                     {
                         transform.DOMove((transform.position + (dir * _tileSize)).RoundToNearest(_tileSize), TILE_MOVE_SPEED)
-                            .OnStart(() => tweening = true)
+                            .OnStart(() =>
+                            {
+                                tweening = true;
+                                tileManager.TileMoving();
+                            })
                             .OnComplete(() =>
                             {
                                 startMousePos = cameraManager.worldSpaceMousePos;

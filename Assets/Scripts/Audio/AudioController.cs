@@ -7,8 +7,8 @@ using UnityEngine.Audio;
 public class AudioController : MonoBehaviour
 {
     protected AudioManager _audioManager;
-    protected AudioSource _audioSource;
-    protected AudioClip _currentAudioClip;
+    [SerializeField] protected AudioSource _audioSource;
+    [SerializeField] protected AudioClip _currentAudioClip;
     protected GameLoopManager _gameLoopManager;
     [SerializeField] protected AudioMixer _audioMixer;
 

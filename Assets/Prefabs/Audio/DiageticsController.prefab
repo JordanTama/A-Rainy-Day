@@ -46,11 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5017974574814cb58a97704e27c632f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 0}
+  _currentAudioClip: {fileID: 0}
   _audioMixer: {fileID: 24100000, guid: 7f3aeec8ec69abd418a1995efeea8e52, type: 2}
   diageticAudioClips:
   - {fileID: 8300000, guid: 4e2c40e4215015649b253e2b8f01f49e, type: 3}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 06165deb0078184488d4ab1733085e07, type: 3}
   diageticAudioSources:
   - {fileID: 5363986446541059518}
   - {fileID: 5363986446541059519}
@@ -73,7 +75,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -170,7 +172,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -267,7 +269,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

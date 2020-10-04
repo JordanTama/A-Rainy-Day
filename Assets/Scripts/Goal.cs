@@ -14,11 +14,11 @@ public class Goal : MonoBehaviour
     
     private Collider _collider;
     public ParticleSystem openPs;
-    private AudioSource goalAudioSource;
+    [SerializeField] private AudioSource goalOpenAudioSource;
+    [SerializeField] private AudioSource goalEnteredAudioSource;
 
     public TMP_Text goalText;
-
-    public float audioVolume = 0.5f;
+    
     public AudioClip goalEnteredClip;
     public AudioClip goalOpenClip;
     public AudioClip playerEnterGoalCip;
@@ -28,14 +28,11 @@ public class Goal : MonoBehaviour
 
     private void Awake()
     {
-        
-        goalAudioSource = GetComponent<AudioSource>();
-        if (goalAudioSource)
-        {
-            goalAudioSource.volume = audioVolume;
-        }
         _collider = GetComponent<Collider>();
-        
+
+        if (goalOpenAudioSource && goalOpenClip) goalOpenAudioSource.clip = goalOpenClip;
+        if (goalEnteredAudioSource && goalEnteredClip) goalEnteredAudioSource.clip = goalEnteredClip;
+
     }
 
     private void Start()
@@ -73,8 +70,11 @@ public class Goal : MonoBehaviour
         {
             PlayParticles();
             _collider.enabled = true;
-            goalAudioSource.clip = goalOpenClip;
-            PlayAudio();
+            if (_objectiveCount > 0)
+            {
+                PlayOpenAudio();
+            }
+            
         }
         else
         {
@@ -102,6 +102,7 @@ public class Goal : MonoBehaviour
 
     private void Reset()
     {
+        if(goalEnteredAudioSource) goalEnteredAudioSource.clip = goalEnteredClip;
         CloseGoal();
         ResetActiveObjectives();
 
@@ -109,32 +110,51 @@ public class Goal : MonoBehaviour
 
     private void StopAudio()
     {
-        if (!goalAudioSource) return;
-        if(goalAudioSource.isPlaying) goalAudioSource.Stop();
+        if (goalEnteredAudioSource)
+        {
+            if(goalEnteredAudioSource.isPlaying) goalEnteredAudioSource.Stop();
+        }
+        
+        if (goalOpenAudioSource)
+        {
+            if(goalOpenAudioSource.isPlaying) goalOpenAudioSource.Stop();
+        }
     }
 
     
     private void Entered()
     {
         AddScore();
-        if (goalAudioSource.clip != goalEnteredClip) goalAudioSource.clip = goalEnteredClip;
-        PlayAudio();
+        PlayEnteredAudio();
     }
 
     private void LevelComplete()
     {
         CloseGoal();
-        goalAudioSource.clip = playerEnterGoalCip;
-        PlayAudio();
+        PlayLevelCompleteAudio();
         _gameLoopManager.Complete();
     }
 
-    private void PlayAudio()
+    private void PlayEnteredAudio()
     {
-        if (!goalAudioSource) return;
-        if (!goalAudioSource.clip) return;
-        if(goalAudioSource.isPlaying) StopAudio();
-        goalAudioSource.Play();
+        if (!goalEnteredAudioSource) return;
+        if (!goalEnteredAudioSource.clip) return;
+        if(goalEnteredAudioSource.isPlaying) goalEnteredAudioSource.Stop();
+        goalEnteredAudioSource.Play();
+    }
+
+    private void PlayLevelCompleteAudio()
+    {
+        if (!goalEnteredAudioSource) return;
+        goalEnteredAudioSource.clip = playerEnterGoalCip;
+        PlayEnteredAudio();
+    }
+
+    private void PlayOpenAudio()
+    {
+        if (!goalOpenAudioSource) return;
+        if(goalOpenAudioSource.isPlaying) goalOpenAudioSource.Stop();
+        goalOpenAudioSource.Play();
     }
 
     private void PlayParticles()
