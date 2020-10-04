@@ -13,6 +13,8 @@ public class AIAgent : MonoBehaviour
     [Header("Component References")]
     [SerializeField] private AIManager manager;
     [SerializeField] private NavMeshAgent navMeshAgent;
+    [SerializeField] private MeshRenderer pedestrianRenderer;
+    [SerializeField] private MeshRenderer umbrellaRenderer;
 
     [Header("Behaviour Type")]
     [SerializeField] private BehaviourType behaviourType;
@@ -90,6 +92,8 @@ public class AIAgent : MonoBehaviour
 
     private void UpdateAnticipatory(float timeStep)
     {
+        if (!manager) return;
+        
         others = GetVisible();
         goalVelocity = Target() * maxMoveSpeed;
         
@@ -114,18 +118,20 @@ public class AIAgent : MonoBehaviour
 
     private void UpdateBoids()
     {
-         others = GetVisible();
+        if (!manager) return;
         
-         Arbitration(others);
-        
-         Vector3 separation = Separation(others) * separationProportion;
-         Vector3 alignment = Alignment(others) * alignmentProportion;
-         Vector3 cohesion = Cohesion(others) * cohesionProportion;
-         Vector3 target = Target() * targetProportion;
-         Vector3 environment = Environment() * environmentProportion;
+        others = GetVisible();
 
-         Vector3 totalForce = separation + alignment + target + cohesion + environment; 
-         totalForce.Normalize();
+        Arbitration(others);
+
+        Vector3 separation = Separation(others) * separationProportion;
+        Vector3 alignment = Alignment(others) * alignmentProportion;
+        Vector3 cohesion = Cohesion(others) * cohesionProportion;
+        Vector3 target = Target() * targetProportion;
+        Vector3 environment = Environment() * environmentProportion;
+
+        Vector3 totalForce = separation + alignment + target + cohesion + environment; 
+        totalForce.Normalize();
 
  #if UNITY_EDITOR
          if (debugType == ForceType.Separation)
@@ -229,6 +235,9 @@ public class AIAgent : MonoBehaviour
 
         _moveMultiplier = 1.0f;
         _steerMultiplier = 1.0f;
+        
+        if (pedestrianRenderer) pedestrianRenderer.material.SetFloat("_Offset", UnityEngine.Random.value);
+        if (umbrellaRenderer) umbrellaRenderer.material.SetFloat("_Offset", UnityEngine.Random.value);
     }
 
     public void UpdateDestination()
