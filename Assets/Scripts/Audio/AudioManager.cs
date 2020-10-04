@@ -16,8 +16,8 @@ public class AudioManager : IGameService
     public AudioManager(GameLoopManager gameLoopManager)
     {
         _gameLoopManager = gameLoopManager;
-        if (Resources.Load<AudioMixer>("MasterMixer"))
-            Mixer = Resources.Load<AudioMixer>("MasterMixer");
+
+        Mixer = Resources.Load<AudioMixer>("MasterMixer");
     }
 
     public void PlayAllAudio()

@@ -12,11 +12,14 @@ public class SettingsManager : IGameService
 
     public int[] BuildIndexExceptions = new int[] { 0 };
 
+    private AudioManager _audioManager;
+
     public SettingsManager()
     {
         Data = LoadSettings();
-        Debug.Log(Data.UpToLevel);
         SceneManager.activeSceneChanged += OnLevelComplete;
+
+        new GameObject("Audio Setter", typeof(AudioSetterController));
     }
 
     private void OnLevelComplete(Scene arg0, Scene arg1)

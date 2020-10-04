@@ -76,6 +76,18 @@ public class MainMenuUIController : MonoBehaviour
     {
         _mainMenu.DOAnchorPos3DX(0, _tweenSpeed);
         _optionsMenu.DOAnchorPosX(-1920, _tweenSpeed);
+
+        AudioMixer m = ServiceLocator.Current.Get<AudioManager>().Mixer;
+        SaveData data = ServiceLocator.Current.Get<SettingsManager>().Data;
+        m.SetFloat("MasterVolume", 20.0f * Mathf.Log10(data.MasterVolume));
+        m.SetFloat("AmbientVolume", 20.0f * Mathf.Log10(data.AmbientVolume));
+        m.SetFloat("SFXVolume", 20.0f * Mathf.Log10(data.SoundEffectsVolume));
+        m.SetFloat("MusicVolume", 20.0f * Mathf.Log10(data.MusicVolume));
+
+        _masterVolume.value = data.MasterVolume;
+        _ambientVolume.value = data.AmbientVolume;
+        _sfxVolume.value = data.SoundEffectsVolume;
+        _musicVolume.value = data.MusicVolume;
     }
 
     public void ContinuePlay()
@@ -85,27 +97,33 @@ public class MainMenuUIController : MonoBehaviour
 
     public void ApplyOptions()
     {
+        SaveData data = ServiceLocator.Current.Get<SettingsManager>().Data;
+        data.MasterVolume = _masterVolume.value;
+        data.AmbientVolume = _ambientVolume.value;
+        data.SoundEffectsVolume = _sfxVolume.value;
+        data.MusicVolume = _musicVolume.value;
+
         ServiceLocator.Current.Get<SettingsManager>().SaveSettings();
     }
 
     public void SetMasterVolume(float v)
     {
-        ServiceLocator.Current.Get<SettingsManager>().Data.MasterVolume = v;
+        ServiceLocator.Current.Get<AudioManager>().Mixer.SetFloat("MasterVolume", 20.0f * Mathf.Log10(v));
     }
 
     public void SetAmbientVolume(float v)
     {
-        ServiceLocator.Current.Get<SettingsManager>().Data.AmbientVolume = v;
+        ServiceLocator.Current.Get<AudioManager>().Mixer.SetFloat("AmbientVolume", 20.0f * Mathf.Log10(v));
     }
 
     public void SetSFXVolume(float v)
     {
-        ServiceLocator.Current.Get<SettingsManager>().Data.SoundEffectsVolume = v;
+        ServiceLocator.Current.Get<AudioManager>().Mixer.SetFloat("SFXVolume", 20.0f * Mathf.Log10(v));
     }
 
     public void SetMusicVolume(float v)
     {
-        ServiceLocator.Current.Get<SettingsManager>().Data.MusicVolume = v;
+        ServiceLocator.Current.Get<AudioManager>().Mixer.SetFloat("MusicVolume", 20.0f * Mathf.Log10(v));
     }
 
     public void QuitGame()
