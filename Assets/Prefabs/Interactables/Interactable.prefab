@@ -110,8 +110,8 @@ MonoBehaviour:
   numStates: 2
   currentState: 0
   defaultState: 0
-  myAudioClip: {fileID: 8300000, guid: bbf3f53ea801dca4782a0516686a7611, type: 3}
-  audioVolume: 0.5
+  myAudioClip: {fileID: 0}
+  audioVolume: 1
 --- !u!82 &7701988242183977759
 AudioSource:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ AudioSource:
   m_GameObject: {fileID: 3639625888225954297}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 45114632524766542, guid: 0f98ca6312dc1ee4088eb3bbb4d494a0,
+  OutputAudioMixerGroup: {fileID: 877628835795415178, guid: 0f98ca6312dc1ee4088eb3bbb4d494a0,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
