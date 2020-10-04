@@ -47,7 +47,7 @@ MonoBehaviour:
   _audioSource: {fileID: 321761906446531114}
   _currentAudioClip: {fileID: 8300000, guid: 38d4654cd72f97b45adbbc06349f6a32, type: 3}
   _audioMixer: {fileID: 0}
-  tileMovementAudioVolume: 0.5
+  tileMovementAudioVolume: 1
   pitchShiftPercentage: 5
 --- !u!82 &321761906446531114
 AudioSource:
