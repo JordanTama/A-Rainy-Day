@@ -7,13 +7,23 @@ public class Objective : MonoBehaviour
         private GameLoopManager _gameLoopManager;
         private ScoreManager _scoreManager;
         private Collider _collider;
-        public int points = 5;
+        private int _points = 5;
         public ParticleSystem activatedPs;
-        public AudioSource audioSource;
+        private AudioSource audioSource;
+        [SerializeField] private AudioClip activatedAudioClip;
+        [SerializeField] private float audioVolume = 0.5f;
 
         [SerializeField] private Goal _goal;
 
-        public bool testActivate = false;
+        private void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+            if(audioSource && activatedAudioClip)
+            {
+                audioSource.clip = activatedAudioClip;
+                audioSource.volume = audioVolume;
+            }
+        }
 
         private void Start()
         {
@@ -27,16 +37,6 @@ public class Objective : MonoBehaviour
             if(_goal) _goal.IncreaseObjectivesCount();
         }
 
-        private void Update()
-        {
-            if (testActivate)
-            {
-                Activate();
-                testActivate = false;
-            }
-
-        }
-        
         private void Reset()
         {
             HideTextMessage();
@@ -48,12 +48,13 @@ public class Objective : MonoBehaviour
 
         private void Activate()
         {
+            DisableCollider();
             ShowTextMessage();
             AddScore();
             NotifyGoal();
             PlayParticles();
             PlayAudio();
-            DisableCollider();
+            
         }
 
         private void NotifyGoal()
@@ -66,12 +67,14 @@ public class Objective : MonoBehaviour
         {
             // Play activation audio (wind chimes)
             if (!audioSource) return;
-            if(!audioSource.isPlaying) audioSource.Play();
+            if (!audioSource.clip) return;
+            if(audioSource.isPlaying) StopAudio();
+            audioSource.Play();
         }
         
         private void StopAudio()
         {
-            // Play activation audio (wind chimes)
+            // stop activation audio (wind chimes)
             if (!audioSource) return;
             if(audioSource.isPlaying) audioSource.Stop();
         }
@@ -104,7 +107,7 @@ public class Objective : MonoBehaviour
 
         private void AddScore()
         {
-            _scoreManager.AddScore(points);
+            _scoreManager.AddScore(_points);
         }
 
         private void ShowTextMessage()

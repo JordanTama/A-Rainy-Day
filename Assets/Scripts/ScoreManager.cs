@@ -18,7 +18,6 @@ public class ScoreManager:IGameService
     public void AddScore(int points)
     {
         _currentScore += points;
-        Debug.Log(_currentScore);
     }
 
     public void SubtractScore(int points)
