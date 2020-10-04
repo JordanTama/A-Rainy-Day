@@ -31,4 +31,9 @@ public class MainMenuUIController : MonoBehaviour
         _chapterSelect.DOAnchorPosX(1920f, _tweenSpeed);
         _mainMenu.DOAnchorPosX(0f, _tweenSpeed);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

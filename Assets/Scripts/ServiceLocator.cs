@@ -13,6 +13,7 @@ public class ServiceLocator
         // Put any manager scripts you might need in here
         // Register them with
         // Register(PlayerManager);
+        Register(new SettingsManager());
         Register(new InputManager());
         Register(new GameLoopManager());
         Register(new TextMessageManager());   
