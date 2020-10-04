@@ -73,8 +73,12 @@ public class Goal : MonoBehaviour
         {
             PlayParticles();
             _collider.enabled = true;
-            goalAudioSource.clip = goalOpenClip;
-            PlayAudio();
+            if (_objectiveCount > 0)
+            {
+                goalAudioSource.clip = goalOpenClip;
+                PlayAudio();
+            }
+            
         }
         else
         {
