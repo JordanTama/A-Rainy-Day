@@ -26,6 +26,9 @@ public class Goal : MonoBehaviour
     private int _objectiveCount = 0;
     private int _objectiveActivated = 0;
 
+    public Gate gate;
+    private GateController _gateController;
+
     private void Awake()
     {
         _collider = GetComponent<Collider>();
@@ -33,6 +36,7 @@ public class Goal : MonoBehaviour
         if (goalOpenAudioSource && goalOpenClip) goalOpenAudioSource.clip = goalOpenClip;
         if (goalEnteredAudioSource && goalEnteredClip) goalEnteredAudioSource.clip = goalEnteredClip;
 
+        if (!_gateController) _gateController = FindObjectOfType<GateController>();
     }
 
     private void Start()
@@ -106,6 +110,7 @@ public class Goal : MonoBehaviour
         CloseGoal();
         ResetActiveObjectives();
 
+        if (_gateController) _gateController.Reset();
     }
 
     private void StopAudio()

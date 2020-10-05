@@ -14,7 +14,7 @@
         _Edge ("Edge Sharpness", Range(0, 1)) = 0.1
         _Bot ("Lowest Height", Float) = 0
         _Top ("Heighest Height", Float) = 1
-        _Interp ("Interpolation", Range(0, 1)) = 1
+        _Ratio ("Fill Ratio", Range(0, 1)) = 1
         _DispAmt ("Displacement Amount", Float) = 1
         _DispScale ("Displacement Scale", Float) = 1
         
@@ -43,7 +43,7 @@
         half _Bot;
         half _Top;
 
-        half _Interp;
+        half _Ratio;
 
         half _DispAmt;
         half _DispScale;
@@ -81,7 +81,7 @@
             float t = inverse_lerp(_Bot, _Top, IN.vertex.y + displacement);
             t = saturate(t);
 
-            t = smoothstep(_Interp - _Sharpness * 0.5, _Interp + _Sharpness * 0.5, t);
+            t = smoothstep(_Ratio - _Sharpness * 0.5, _Ratio + _Sharpness * 0.5, t);
 
             float high = 1 - (abs(0.5 - t) * 2);
             high = smoothstep(0, _Edge, high);
