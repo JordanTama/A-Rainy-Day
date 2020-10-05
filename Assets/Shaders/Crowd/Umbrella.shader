@@ -148,7 +148,7 @@
         // Obstruction Pass
         Pass
         {            
-            Tags { "Queue"="Transparent" }
+            Tags { "Queue"="Overlay" }
             Stencil
             {
                 Ref 100

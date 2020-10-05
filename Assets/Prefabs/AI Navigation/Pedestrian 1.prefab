@@ -98,6 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 11400000, guid: 0dbc6708021360a468bf9eb1248d6969, type: 2}
   navMeshAgent: {fileID: 2169345395443031908}
+  pedestrianRenderer: {fileID: 0}
+  umbrellaRenderer: {fileID: 0}
   behaviourType: 0
   maxMoveSpeed: 0.67
   maxSteerSpeed: 2.4

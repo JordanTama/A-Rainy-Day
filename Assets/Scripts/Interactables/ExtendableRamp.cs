@@ -8,12 +8,13 @@ using UnityEngine.AI;
 
 public class ExtendableRamp : InteractableReceiver
 {
-    private Vector3 _retractPosition;
-    private Vector3 _extendPosition;
+    [SerializeField]private Vector3 _retractPosition;
+    [SerializeField]private Vector3 _extendPosition;
     private Transform _visualsTransform;
     private bool isExtended;
     private bool isTweening;
     public bool bStartExtended;
+    public bool bInitialiseAsExtended = true;
     private Tween _extendTween;
     private TileManager _tileManager;
 
@@ -53,11 +54,11 @@ public class ExtendableRamp : InteractableReceiver
     private void InitializePositions()
     {
         _visualsTransform = transform;
-        if (bStartExtended)
+        if (bInitialiseAsExtended)
         {
             
-            _extendPosition = _visualsTransform.localPosition;
-            _retractPosition = _visualsTransform.localPosition - _visualsTransform.localScale.z * Vector3.forward;
+            _extendPosition =  _visualsTransform.localPosition;
+            _retractPosition = _extendPosition - _visualsTransform.localScale.z * Vector3.forward;
         }
         else
         {
@@ -77,14 +78,28 @@ public class ExtendableRamp : InteractableReceiver
     private void ExtendRamp(float t)
     {
         isExtended = true;
-        _extendTween = _visualsTransform.DOLocalMove(_extendPosition,t).SetEase(easeType).OnComplete(MeshUpdate);
+        _extendTween = _visualsTransform.DOLocalMove(_extendPosition,t).SetEase(easeType).OnComplete(()=>
+        {
+            if (t > 0f)
+            {
+                FadeOutAudio(0.1f); 
+            }
+            MeshUpdate();
+        });
         if(t>0f && extendAudioClip) PlayAudioWithClip(extendAudioClip);
     }
 
     private void RetractRamp(float t)
     {
         isExtended = false;
-        _extendTween = _visualsTransform.DOLocalMove(_retractPosition,t).SetEase(easeType).OnComplete(MeshUpdate);
+        _extendTween = _visualsTransform.DOLocalMove(_retractPosition,t).SetEase(easeType).OnComplete(()=>
+        {
+            if (t > 0f)
+            {
+                FadeOutAudio(0.1f); 
+            }
+            MeshUpdate();
+        });
         if(t>0f && retractAudioClip) PlayAudioWithClip(retractAudioClip);
     }
     

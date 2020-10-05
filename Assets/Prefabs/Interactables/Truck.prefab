@@ -191,7 +191,7 @@ MonoBehaviour:
   interactableController: {fileID: 0}
   lerpTime: 2
   easeType: 10
-  audioVolume: 0.5
+  audioVolume: 1
   fadePercentage: 0.5
   test: 0
   transformToMove: {fileID: 2864861992680904155}
