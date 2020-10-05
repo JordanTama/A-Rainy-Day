@@ -688,7 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a3a5b38f2e6214eb24268ae6ff862b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuUIButtonVolume: 0.5
+  menuUIButtonVolume: 1
   audioClip: {fileID: 8300000, guid: 8f25ee2c934a26f4facbd1a8c2eac0bf, type: 3}
 --- !u!82 &2105752823640876062
 AudioSource:
