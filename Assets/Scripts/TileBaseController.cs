@@ -18,6 +18,7 @@ public class TileBaseController : MonoBehaviour
     private float _tileSize = 5;
     private bool tweening;
     private Renderer[] childRenderers;
+    private Shader hightlightShader;
 
     static float ShaderLocalTime = 0;
 
@@ -32,6 +33,8 @@ public class TileBaseController : MonoBehaviour
         tileManager.OnTileSelect += TileSelect;
         tileManager.OnTileDeselect += TileDeselect;
         childRenderers = GetComponentsInChildren<Renderer>();
+
+        hightlightShader = Shader.Find("StandardWithHighlight");
     }
 
     void TileDeselect()
@@ -46,9 +49,12 @@ public class TileBaseController : MonoBehaviour
 
         foreach (Renderer r in childRenderers)
         {
-            MaterialPropertyBlock block = new MaterialPropertyBlock();
-            block.SetColor("_HighlightColor", Color.black);
-            r.SetPropertyBlock(block);
+            if (r.material.shader == hightlightShader)
+            {
+                MaterialPropertyBlock block = new MaterialPropertyBlock();
+                block.SetColor("_HighlightColor", Color.black);
+                r.SetPropertyBlock(block);
+            }
         }
     }
 
@@ -66,9 +72,12 @@ public class TileBaseController : MonoBehaviour
 
             foreach (Renderer r in childRenderers)
             {
-                MaterialPropertyBlock block = new MaterialPropertyBlock();
-                block.SetColor("_HighlightColor", Color.yellow);
-                r.SetPropertyBlock(block);
+                if (r.material.shader == hightlightShader)
+                {
+                    MaterialPropertyBlock block = new MaterialPropertyBlock();
+                    block.SetColor("_HighlightColor", Color.yellow);
+                    r.SetPropertyBlock(block);
+                }
             }
         }
     }
