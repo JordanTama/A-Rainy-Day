@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7339168873120890536}
   - component: {fileID: 7339168873120890537}
   - component: {fileID: 7339168873120890542}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Blocker (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7339168873120890540}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 7339168873136707445}
   - component: {fileID: 7339168873136707450}
   - component: {fileID: 7339168873136707451}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Blocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7339168873136707449}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 7339168873163372386}
   - component: {fileID: 7339168873163372387}
   - component: {fileID: 7339168873163372384}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Blocker (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7339168873163372390}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 7339168873509907933}
   - component: {fileID: 7339168873509907938}
   - component: {fileID: 7339168873509907939}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Blocker (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7339168873509907937}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -382,7 +382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7339168874427743891}
   - component: {fileID: 7339168874427743890}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Blockers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
