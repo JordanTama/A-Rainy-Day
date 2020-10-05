@@ -51,6 +51,7 @@ MonoBehaviour:
   lerpTime: 1
   easeType: 10
   audioVolume: 0.5
+  fadePercentage: 0.75
   bStartExtended: 1
   extendAudioClip: {fileID: 0}
   retractAudioClip: {fileID: 0}
@@ -123,7 +124,7 @@ AudioSource:
   m_GameObject: {fileID: 5702950883195641738}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 45114632524766542, guid: 0f98ca6312dc1ee4088eb3bbb4d494a0,
+  OutputAudioMixerGroup: {fileID: -4707130279863871355, guid: 0f98ca6312dc1ee4088eb3bbb4d494a0,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0

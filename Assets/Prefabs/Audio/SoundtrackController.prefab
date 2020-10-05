@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6913c06c2e1c143a42e2b4b4ff6ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 0}
+  _currentAudioClip: {fileID: 0}
   _audioMixer: {fileID: 24100000, guid: 5217e1efe1c1f624da852819d946d88a, type: 2}
   _chapterAudioClips:
   - {fileID: 8300000, guid: 231275695d0e8f641992a16230b4db4d, type: 3}
@@ -64,7 +66,7 @@ MonoBehaviour:
   - {fileID: 6246733801208640270}
   _levelNum: 0
   defaultLevelNum: 0
-  musicVolume: 0.25
+  musicVolume: 1
 --- !u!82 &6246733801208640264
 AudioSource:
   m_ObjectHideFlags: 0

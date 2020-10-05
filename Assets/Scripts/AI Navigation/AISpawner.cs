@@ -17,6 +17,7 @@ public class AISpawner : MonoBehaviour
     [SerializeField] private int maxSpawned;
     [SerializeField] private float spawnTick;
     [SerializeField] private float initialSpawnFactor;
+    [SerializeField] private AISpawner targetSpawner;
 
     [Header("Debug Settings")]
     [SerializeField] private bool liveUpdate;
@@ -54,7 +55,7 @@ public class AISpawner : MonoBehaviour
     private void Spawn()
     {
         AIAgent agent = Instantiate(spawnPrefab, Lerp(Random.value), transform.rotation).GetComponent<AIAgent>();
-        agent.Travel(this, manager.RandomSpawner(this));
+        agent.Travel(this, targetSpawner ? targetSpawner : manager.RandomSpawner(this));
         
         _lastSpawnTime = Time.timeSinceLevelLoad;
         _spawned++;

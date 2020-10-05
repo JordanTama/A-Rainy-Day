@@ -21,8 +21,7 @@ public class DiageticsController : AudioController
         base.Awake();
         AssignClips();
         PlayRain();
-        _gameLoopManager.OnExecution += PlayCrowdSounds;
-        _gameLoopManager.OnPreparation += StopCrowdSounds;
+        
 
     }
 
@@ -73,11 +72,11 @@ public class DiageticsController : AudioController
 
     private void PlayCrowdSounds()
     {
-        PlayFoosteps();
+        PlayFootsteps();
         PlayCrowdTalking();
     }
 
-    private void PlayFoosteps()
+    private void PlayFootsteps()
     {
         if (footstepsAS)
         {
@@ -155,11 +154,17 @@ public class DiageticsController : AudioController
     protected override void Register()
     {
         base.Register();
+        _gameLoopManager.OnExecution += PlayCrowdSounds;
+        _gameLoopManager.OnPreparation += StopCrowdSounds;
+        _gameLoopManager.OnComplete += StopCrowdSounds;
     }
 
     protected override void Deregister()
     {
         base.Deregister();
+        _gameLoopManager.OnExecution -= PlayCrowdSounds;
+        _gameLoopManager.OnPreparation -= StopCrowdSounds;
+        _gameLoopManager.OnComplete -= StopCrowdSounds;
     }
     
     
