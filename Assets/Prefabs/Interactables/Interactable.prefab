@@ -110,7 +110,7 @@ MonoBehaviour:
   numStates: 2
   currentState: 0
   defaultState: 0
-  myAudioClip: {fileID: 0}
+  myAudioClip: {fileID: 8300000, guid: 79ca2c96185847945a04a57c4862e84a, type: 3}
   audioVolume: 1
 --- !u!82 &7701988242183977759
 AudioSource:
