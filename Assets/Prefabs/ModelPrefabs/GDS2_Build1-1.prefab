@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8787080905033417794}
   - component: {fileID: 5247891655125737686}
   m_Layer: 0
-  m_Name: default
+  m_Name: GDS2_Build1-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8469494145858465668, guid: d76355e464d1b99459814d26f0c9ee4f, type: 3}
+  - {fileID: 2100000, guid: e4572446d628cf24bb6af30ee3d4049e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

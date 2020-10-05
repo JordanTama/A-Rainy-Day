@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 436727677537300677}
   - component: {fileID: 3975037601623184465}
   m_Layer: 0
-  m_Name: default
+  m_Name: GDS2_Food-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8469494145858465668, guid: 7174d237697bda34aa43d5701f0d1285, type: 3}
+  - {fileID: 2100000, guid: 0854ea6f8ea4de048accf3ae9ce3643e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

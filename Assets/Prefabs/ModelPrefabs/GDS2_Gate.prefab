@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1673709040701284716}
   - component: {fileID: 2747072215798187512}
   m_Layer: 0
-  m_Name: default
+  m_Name: GDS2_Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8469494145858465668, guid: a94a5f8f647ad0a4686e5f58691667e6, type: 3}
+  - {fileID: 2100000, guid: 424e5cb7605bc014cb9faf0f75d0f87e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
