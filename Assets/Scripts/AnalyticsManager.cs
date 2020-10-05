@@ -17,15 +17,15 @@ public class AnalyticsManager : IGameService
 
     private void SendSceneAnalytics(Scene arg0, Scene arg1)
     {
-        SendFeedback(arg1.buildIndex);
+        SendFeedback(arg1.name);
     }
 
-    async void SendFeedback(int levelIndex)
+    async void SendFeedback(string levelName)
     {
         WWWForm form = new WWWForm();
         var values = new Dictionary<string, string>
         {
-            { "entry.798078253", levelIndex.ToString() }
+            { "entry.798078253", levelName }
         };
 
         var content = new FormUrlEncodedContent(values);

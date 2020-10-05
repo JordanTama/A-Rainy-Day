@@ -89,8 +89,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Alt: {r: 0.1, g: 0.1, b: 0.1, a: 1}
-    - _Color: {r: 0, g: 0, b: 0.764151, a: 1}
+    - _Alt: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.8, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _High: {r: 3.0899315, g: 3.0899315, b: 29.508846, a: 1}
+    - _High: {r: 126.50718, g: 15.896191, b: 15.896191, a: 1}
     - _PanSpd: {r: 2, g: 0, b: 0, a: 0}

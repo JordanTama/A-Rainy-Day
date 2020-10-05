@@ -159,46 +159,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1143806160991634865, guid: 783e4d2d93ce6df4ea57972945154405,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 2000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1143806160991634865, guid: 783e4d2d93ce6df4ea57972945154405,
-        type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 30000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1143806160991634865, guid: 783e4d2d93ce6df4ea57972945154405,
-        type: 3}
-      propertyPath: TrailModule.widthOverTrail.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1143806160991634865, guid: 783e4d2d93ce6df4ea57972945154405,
-        type: 3}
-      propertyPath: ShapeModule.m_Scale.x
-      value: 7.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1143806160991634865, guid: 783e4d2d93ce6df4ea57972945154405,
-        type: 3}
-      propertyPath: ShapeModule.m_Scale.y
-      value: 7.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1143806160991634865, guid: 783e4d2d93ce6df4ea57972945154405,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1143806160991634865, guid: 783e4d2d93ce6df4ea57972945154405,
-        type: 3}
-      propertyPath: TrailModule.lifetime.scalar
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 1143806160991634865, guid: 783e4d2d93ce6df4ea57972945154405,
-        type: 3}
-      propertyPath: InitialModule.gravityModifier.scalar
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 1143806160991634867, guid: 783e4d2d93ce6df4ea57972945154405,
         type: 3}
       propertyPath: m_Name
@@ -1209,7 +1169,7 @@ GameObject:
   - component: {fileID: 818072218}
   - component: {fileID: 818072217}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Fog Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
