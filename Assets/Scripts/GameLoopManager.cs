@@ -19,6 +19,13 @@ public class GameLoopManager:IGameService
     public GameLoopManager()
     {
         gameState = GameState.Preparation;
+
+        SceneManager.activeSceneChanged += RestartLevel;
+    }
+
+    private void RestartLevel(Scene arg0, Scene arg1)
+    {
+        RestartLevel();
     }
 
     private void ChangeState(GameState newState)
