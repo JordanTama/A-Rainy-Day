@@ -23,8 +23,9 @@
 # Visual Studio cache directory
 .vs/
 
-# Rider
+# Rider cache directory
 .idea/
+Assets/Plugins/JetBrains*
 
 # Gradle cache directory
 .gradle/

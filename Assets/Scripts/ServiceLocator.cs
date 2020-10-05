@@ -15,7 +15,9 @@ public class ServiceLocator
         // Register(PlayerManager);
         Register(new InputManager());
         Register(new GameLoopManager());
-        Register(new TextMessageManager());   
+        Register(new SettingsManager());
+        Register(new TextMessageManager());
+        Register(new AnalyticsManager());
         Register(new ScoreManager(Get<GameLoopManager>()));
         Register(new AudioManager(Get<GameLoopManager>()));
         Register(new CameraManager(Get<InputManager>()));
