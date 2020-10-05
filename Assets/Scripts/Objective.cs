@@ -15,6 +15,9 @@ public class Objective : MonoBehaviour
 
         [SerializeField] private Goal _goal;
 
+        public Gate gate;
+        private GateController _gateController;
+        
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
@@ -23,6 +26,8 @@ public class Objective : MonoBehaviour
                 audioSource.clip = activatedAudioClip;
                 audioSource.volume = audioVolume;
             }
+            
+            if (!_gateController) _gateController = FindObjectOfType<GateController>();
         }
 
         private void Start()
@@ -43,7 +48,6 @@ public class Objective : MonoBehaviour
             StopParticles();
             StopAudio();
             EnableCollider();
-
         }
 
         private void Activate()
@@ -55,6 +59,7 @@ public class Objective : MonoBehaviour
             PlayParticles();
             PlayAudio();
             
+            if (_gateController && gate) _gateController.Trigger(gate);
         }
 
         private void NotifyGoal()
