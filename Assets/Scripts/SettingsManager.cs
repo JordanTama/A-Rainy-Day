@@ -44,7 +44,10 @@ public class SettingsManager : IGameService
 
     public SaveData LoadSettings()
     {
-        return JsonUtility.FromJson<SaveData>(LoadJsonFromFile());
+        if(File.Exists($"{Application.dataPath}/settings.json"))
+            return JsonUtility.FromJson<SaveData>(LoadJsonFromFile());
+
+        return new SaveData();
     }
 
     public void SaveSettings()
