@@ -31,8 +31,6 @@ public class Gate : MonoBehaviour
 
     public void SetFill(float ratio, bool burst = true)
     {
-        Debug.Log(ratio);
-
         DOTween.To(
             () => mr.material.GetFloat(Ratio),
             (val) => { mr.material.SetFloat(Ratio, val); },
