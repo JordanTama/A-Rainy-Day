@@ -2961,19 +2961,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 343919250, guid: fcfca91eb4f18804abb90c6551482846, type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: 99c10428725c67447b2d4dc003c689c5,
-        type: 2}
-    - target: {fileID: 343919250, guid: fcfca91eb4f18804abb90c6551482846, type: 3}
-      propertyPath: m_UseGeometry
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 343919250, guid: fcfca91eb4f18804abb90c6551482846, type: 3}
-      propertyPath: m_LayerMask.m_Bits
-      value: 311
-      objectReference: {fileID: 0}
     - target: {fileID: 2164845402126820624, guid: fcfca91eb4f18804abb90c6551482846,
         type: 3}
       propertyPath: m_RootOrder
