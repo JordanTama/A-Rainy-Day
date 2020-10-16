@@ -90,9 +90,9 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                
                 float depth = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(i.screenPos)));
                 float diff = saturate(_Threshold * (depth - i.screenPos.w));
+                diff = abs(diff - 0.5) * 2;
                 float edge = pow(diff, _Exponent);
                 
                 float2 disp = tex2D(_Disp, i.uv).rg;
