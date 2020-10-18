@@ -89,6 +89,7 @@ public class ExtendableRamp : InteractableReceiver
             {
                 FadeOutAudio(0.1f); 
             }
+            
             MeshUpdate();
         });
         if(t>0f && extendAudioClip) PlayAudioWithClip(extendAudioClip);
