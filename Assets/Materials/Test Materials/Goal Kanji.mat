@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Goal Gate
-  m_Shader: {fileID: 4800000, guid: 1f4b9d0fa9022444884036278c142f2b, type: 3}
+  m_Name: Goal Kanji
+  m_Shader: {fileID: 4800000, guid: 971e3e0e33f481240b799b69323d2b6e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -35,22 +35,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Displacement:
-        m_Texture: {fileID: 2800000, guid: e25f13629b05f684ca7df3b77b612253, type: 3}
+    - _Disp:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Dissolve:
+    - _DispTex:
         m_Texture: {fileID: 2800000, guid: a47279a1829c7ac4ba371daef3427536, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 0.5, y: 0.5}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Texture: {fileID: 2800000, guid: 3a3a4787d5639e7459a6aeeeb0455b7f, type: 3}
+        m_Scale: {x: 0.7, y: 0.7}
+        m_Offset: {x: 0.15, y: 0.15}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -64,33 +64,27 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Bot: -0.7
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DispAmt: 0.1
-    - _DispScale: 1
+    - _DispAmt: 0.03
+    - _DispSpd: 0.1
     - _DstBlend: 0
-    - _Edge: 0.027
+    - _Fade: 1
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Interp: 0
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Ratio: 0
-    - _Sharpness: 0.06
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Top: 0.5
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Alt: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.85, g: 0, b: 0, a: 1}
+    - _Col: {r: 12.996038, g: 0.7969272, b: 0.7969272, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DispDir: {r: 0, g: 1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _High: {r: 126.50718, g: 15.896191, b: 15.896191, a: 1}
-    - _PanSpd: {r: 0.3, g: 0, b: 0, a: 0}

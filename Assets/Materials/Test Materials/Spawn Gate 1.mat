@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Goal Gate
+  m_Name: Spawn Gate 1
   m_Shader: {fileID: 4800000, guid: 1f4b9d0fa9022444884036278c142f2b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -80,7 +80,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Ratio: 0
+    - _Ratio: 1
     - _Sharpness: 0.06
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -89,8 +89,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Alt: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.85, g: 0, b: 0, a: 1}
+    - _Alt: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _High: {r: 126.50718, g: 15.896191, b: 15.896191, a: 1}
+    - _High: {r: 45.254833, g: 45.254833, b: 45.254833, a: 1}
     - _PanSpd: {r: 0.3, g: 0, b: 0, a: 0}
