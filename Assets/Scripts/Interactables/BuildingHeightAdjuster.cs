@@ -88,7 +88,7 @@ public class BuildingHeightAdjuster : InteractableReceiver
     private bool CheckForAgent()
     {
         // agentsToMove = Physics.OverlapBox(transformToMove.position + 1.01f*transformToMove.lossyScale.y * transformToMove.up,
-        //     0.95f*transformToMove.lossyScale/2f,transformToMove.rotation,layerMask);
+        //      0.95f*transformToMove.lossyScale/2f,transformToMove.rotation,layerMask);
 
         return Physics.CheckBox(transformToMove.position + 1.05f*transformToMove.lossyScale.y * transformToMove.up,
             0.95f*transformToMove.lossyScale/2f,transformToMove.rotation,layerMask);

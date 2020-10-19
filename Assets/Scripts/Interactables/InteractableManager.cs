@@ -18,6 +18,7 @@ public class InteractableManager : IGameService
     private GameLoopManager _gameLoopManager;
 
     private bool _canInteract;
+    private int _originalLayer;
 
 
     public InteractableManager(CameraManager camMan, InputManager input, GameLoopManager gameLoopMan)
@@ -48,7 +49,7 @@ public class InteractableManager : IGameService
         if (CurrentInteractable == null)
             return;
 
-        CurrentInteractable.layer = 0;
+        CurrentInteractable.layer = _originalLayer;
         CurrentInteractable = null;
         OnInteractableDeselect?.Invoke();
     }
@@ -63,6 +64,7 @@ public class InteractableManager : IGameService
             if (hit.collider.CompareTag("Interactable") && CurrentInteractable == null)
             {
                 CurrentInteractable = hit.collider.gameObject;
+                _originalLayer = CurrentInteractable.layer;
                 CurrentInteractable.layer = 2;
                 OnInteractableSelect?.Invoke(CurrentInteractable);
                 break;

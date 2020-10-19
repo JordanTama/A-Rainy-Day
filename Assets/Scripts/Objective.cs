@@ -132,4 +132,9 @@ public class Objective : MonoBehaviour
                 Activate();
             }
         }
+
+        private void OnDestroy()
+        {
+            _gameLoopManager.OnPreparation -= Reset;
+        }
     }

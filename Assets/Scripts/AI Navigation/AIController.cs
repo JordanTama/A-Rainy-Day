@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class AIController : MonoBehaviour
 {
@@ -30,12 +31,12 @@ public class AIController : MonoBehaviour
         _gameLoopManager.OnExecution += StartSpawning;
         _gameLoopManager.OnComplete += StopSpawning;
         
-        _gameLoopManager.OnExecution += BakeNavMesh;
-
-        // _tileManager.OnNewTilePosition += BakeNavMesh;
+        _gameLoopManager.OnExecution += UpdateNavMesh;
+        
         _tileManager.OnRebakeMesh += BakeNavMesh;
-        _tileManager.OnUpdateMesh += BakeNavMesh;
-        // _interactableManager.OnInteractableStateChange += BakeNavMesh;
+        _tileManager.OnUpdateMesh += UpdateNavMesh;
+        
+        BakeNavMesh();
     }
 
     private void OnDrawGizmosSelected()
@@ -82,8 +83,8 @@ public class AIController : MonoBehaviour
         _gameLoopManager.OnPreparation -= StopSpawning;
         _gameLoopManager.OnExecution -= StartSpawning;
         _gameLoopManager.OnComplete -= StopSpawning;
-        // _tileManager.OnNewTilePosition -= BakeNavMesh;
         _tileManager.OnRebakeMesh -= BakeNavMesh;
-        _gameLoopManager.OnExecution -= BakeNavMesh;
+        _gameLoopManager.OnExecution -= UpdateNavMesh;
+        _tileManager.OnUpdateMesh -= UpdateNavMesh;
     }
 }

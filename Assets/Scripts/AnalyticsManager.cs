@@ -17,7 +17,9 @@ public class AnalyticsManager : IGameService
 
     private void SendSceneAnalytics(Scene arg0, Scene arg1)
     {
+#if !UNITY_EDITOR
         SendFeedback(arg1.name);
+#endif
     }
 
     async void SendFeedback(string levelName)
