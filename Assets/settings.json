@@ -1,9 +1,12 @@
 {
     "UpToLevel": 19,
-    "Resolution": {
-        "x": 0.0,
-        "y": 0.0
-    },
+    "ResolutionX": 1920,
+    "ResolutionY": 1080,
+    "RefreshRate": 60,
+    "FullScreen": true,
+    "AmbientOcclusion": true,
+    "VolumetricFog": true,
+    "AntiAliasing": true,
     "MasterVolume": 0.4976924657821655,
     "AmbientVolume": 1.0,
     "SoundEffectsVolume": 1.0,

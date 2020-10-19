@@ -25,12 +25,12 @@ public class UIAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        rect.DOScale(Vector2.one * 1.1f, 0.25f);
+        rect.DOScale(Vector3.one * 1.1f, 0.25f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        rect.DOScale(Vector2.one, 0.25f);
+        rect.DOScale(Vector3.one, 0.25f);
     }
 
     public void OnPointerUp(PointerEventData eventData)
