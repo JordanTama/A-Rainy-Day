@@ -31,7 +31,7 @@ public class AIController : MonoBehaviour
         _gameLoopManager.OnExecution += StartSpawning;
         _gameLoopManager.OnComplete += StopSpawning;
         
-        _gameLoopManager.OnExecution += UpdateNavMesh;
+        _gameLoopManager.OnExecution += BakeNavMesh;
         
         _tileManager.OnRebakeMesh += BakeNavMesh;
         _tileManager.OnUpdateMesh += UpdateNavMesh;
