@@ -52,15 +52,20 @@ public class ButtonState : MonoBehaviour
     private void PreparationState()
     {
         isPreparationState = true;
-        playImage.enabled = isPreparationState;
-        stopImage.enabled = !isPreparationState;
+        SetButtonVisuals();
     }
     
     private void ExecutionState()
     {
         isPreparationState = false;
+        SetButtonVisuals();
+    }
+
+    private void SetButtonVisuals()
+    {
         playImage.enabled = isPreparationState;
         stopImage.enabled = !isPreparationState;
+        // _myButton.targetGraphic = isPreparationState ? playImage : stopImage;
     }
     
     private void EnableInteraction()

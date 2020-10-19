@@ -39,6 +39,7 @@ public class LevelTextController : MonoBehaviour
 
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _gameLoopManager.OnRestart += AnimateText;
+
     }
 
     void Start()
@@ -49,10 +50,25 @@ public class LevelTextController : MonoBehaviour
 
     private void ShowText()
     {
-        if(_chapterColorTween.IsPlaying())_chapterColorTween.Complete();
-        if(_chapterMoveTween.IsPlaying())_chapterMoveTween.Complete();
-        if(_levelMoveTween.IsPlaying())_levelMoveTween.Complete();
-        if(_levelColorTween.IsPlaying())_levelColorTween.Complete();
+        if (_chapterColorTween.IsActive())
+        {
+            if(_chapterColorTween.IsPlaying())_chapterColorTween.Complete();
+        }
+
+        if (_chapterMoveTween.IsActive())
+        {
+            if(_chapterMoveTween.IsPlaying())_chapterMoveTween.Complete();
+        }
+
+        if (_levelMoveTween.IsActive())
+        {
+            if(_levelMoveTween.IsPlaying())_levelMoveTween.Complete();
+        }
+        
+        if (_levelColorTween.IsActive())
+        {
+            if(_levelColorTween.IsPlaying())_levelColorTween.Complete(); 
+        }
         
         _chapterColorTween = chapterText.DOFade(1f, 0f);
         _levelColorTween = levelText.DOFade(1f, 0f);
@@ -60,6 +76,7 @@ public class LevelTextController : MonoBehaviour
 
     private void AnimateText()
     {
+        ShowText();
         _chapterMoveTween = _chapterTextTransform.DOLocalMoveX(chapterXPos, moveLerpTime).From().SetEase(Ease.OutCubic);
         _levelMoveTween = _levelTextTransform.DOLocalMoveX(levelXPos,1.25f*moveLerpTime).From().SetEase(Ease.OutCubic).SetDelay(moveLerpTime*0.75f).OnComplete(() =>
         { 
