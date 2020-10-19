@@ -4,6 +4,10 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using TMPro;
+using System.Linq;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class MainMenuUIController : MonoBehaviour
 {
@@ -17,28 +21,40 @@ public class MainMenuUIController : MonoBehaviour
     [SerializeField] private AudioMixer _mixer;
 
     [Header("Options Menu")] 
+    [Header("Audio Settings")]
     [SerializeField] private RectTransform _optionsMenu;
     [SerializeField] private Slider _masterVolume;
     [SerializeField] private Slider _ambientVolume;
     [SerializeField] private Slider _musicVolume;
     [SerializeField] private Slider _sfxVolume;
 
+    [Header("Video Settings")]
+    [SerializeField] private TMP_Dropdown _resolutionDropdown;
+    [SerializeField] private Toggle _fullscreenToggle;
+    [SerializeField] private Toggle _ssaoToggle;
+    [SerializeField] private Toggle _volumetricFogToggle;
+    [SerializeField] private Toggle _antiAliasingToggle;
+    [SerializeField] private PostProcessProfile _postProcessProfile;
+
     private void Start()
     {
-        _chapterSelect.anchoredPosition = new Vector2(1920, 0);
-        _optionsMenu.anchoredPosition = new Vector2(-1920, 0);
         SettingsManager sm = ServiceLocator.Current.Get<SettingsManager>();
+
+        if(_chapterSelect)
+            _chapterSelect.anchoredPosition = new Vector2(1920, 0);
+
+        _optionsMenu.anchoredPosition = new Vector2(-1920, 0);
         if (sm.Data.UpToLevel == 0)
         {
             _continueButton.SetActive(false);
         }
 
-        if (!sm.Data.Chapter2Unlocked)
+        if (!sm.Data.Chapter2Unlocked && _chapter2Button)
         {
             _chapter2Button.interactable = false;
         }
 
-        if (!sm.Data.Chapter3Unlocked)
+        if (!sm.Data.Chapter3Unlocked && _chapter3Button)
         {
             _chapter3Button.interactable = false;
         }
@@ -47,6 +63,21 @@ public class MainMenuUIController : MonoBehaviour
         _ambientVolume.value = sm.Data.AmbientVolume;
         _sfxVolume.value = sm.Data.SoundEffectsVolume;
         _musicVolume.value = sm.Data.MusicVolume;
+
+        _resolutionDropdown.ClearOptions();
+        var optionData = new List<TMP_Dropdown.OptionData>();
+        foreach(Resolution r in Screen.resolutions)
+        {
+            var data = new TMP_Dropdown.OptionData($"{r.width}x{r.height} @{r.refreshRate}hz");
+            optionData.Add(data);
+        }
+        _resolutionDropdown.AddOptions(optionData);
+        _resolutionDropdown.value = GetIndexOfResolution(Screen.currentResolution, Screen.resolutions);
+
+        _fullscreenToggle.isOn = sm.Data.FullScreen;
+        _ssaoToggle.isOn = sm.Data.AmbientOcclusion;
+        _volumetricFogToggle.isOn = sm.Data.VolumetricFog;
+        _antiAliasingToggle.isOn = sm.Data.AntiAliasing;
     }
 
     public void LoadLevel(string LevelName)
@@ -77,6 +108,16 @@ public class MainMenuUIController : MonoBehaviour
         _mainMenu.DOAnchorPos3DX(0, _tweenSpeed);
         _optionsMenu.DOAnchorPosX(-1920, _tweenSpeed);
 
+        RevertOptions();
+    }
+
+    public void ContinuePlay()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(ServiceLocator.Current.Get<SettingsManager>().Data.UpToLevel);
+    }
+
+    public void RevertOptions()
+    {
         AudioMixer m = ServiceLocator.Current.Get<AudioManager>().Mixer;
         SaveData data = ServiceLocator.Current.Get<SettingsManager>().Data;
         m.SetFloat("MasterVolume", 20.0f * Mathf.Log10(data.MasterVolume));
@@ -90,11 +131,6 @@ public class MainMenuUIController : MonoBehaviour
         _musicVolume.value = data.MusicVolume;
     }
 
-    public void ContinuePlay()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(ServiceLocator.Current.Get<SettingsManager>().Data.UpToLevel);
-    }
-
     public void ApplyOptions()
     {
         SaveData data = ServiceLocator.Current.Get<SettingsManager>().Data;
@@ -102,6 +138,13 @@ public class MainMenuUIController : MonoBehaviour
         data.AmbientVolume = _ambientVolume.value;
         data.SoundEffectsVolume = _sfxVolume.value;
         data.MusicVolume = _musicVolume.value;
+
+        data.ResolutionX = Screen.resolutions[_resolutionDropdown.value].width;
+        data.ResolutionY = Screen.resolutions[_resolutionDropdown.value].height;
+        data.AntiAliasing = _antiAliasingToggle.isOn;
+        data.VolumetricFog = _volumetricFogToggle.isOn;
+        data.FullScreen = _fullscreenToggle.isOn;
+        data.AmbientOcclusion = _ssaoToggle.isOn;
 
         ServiceLocator.Current.Get<SettingsManager>().SaveSettings();
     }
@@ -129,5 +172,18 @@ public class MainMenuUIController : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public static int GetIndexOfResolution(Resolution currentResolution, Resolution[] resolutions)
+    {
+        if (resolutions.Length == 0)
+            return 0;
+
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            if (resolutions[i].Equals(currentResolution))
+                return i;
+        }
+        return 0;
     }
 }

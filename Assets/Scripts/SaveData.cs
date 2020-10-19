@@ -6,8 +6,17 @@ using UnityEngine;
 public class SaveData
 {
     public int UpToLevel = 0;
-    public Vector2 Resolution;
 
+    // Video Settings
+    public int ResolutionX = 0;
+    public int ResolutionY = 0;
+    public int RefreshRate = 60;
+    public bool FullScreen = true;
+    public bool AmbientOcclusion = true;
+    public bool VolumetricFog = true;
+    public bool AntiAliasing = true;
+
+    // Audio Settings
     public float MasterVolume = 1;
     public float AmbientVolume = 1;
     public float SoundEffectsVolume = 1;
