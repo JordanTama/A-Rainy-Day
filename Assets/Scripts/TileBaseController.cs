@@ -7,6 +7,7 @@ using DG.Tweening;
 public class TileBaseController : MonoBehaviour
 {
     const float TILE_MOVE_SPEED = 0.5f;
+    const float TILE_DIST_CHECK = 0.1f;
 
     [SerializeField] private float _dotCheck = 0.9f;
     [SerializeField] private bool _isFixed = false;
@@ -92,9 +93,9 @@ public class TileBaseController : MonoBehaviour
         {
             ShaderLocalTime += Time.deltaTime * 3;
             Shader.SetGlobalFloat("LocalTime", ShaderLocalTime);
-            if (Vector3.Distance(startMousePos, cameraManager.worldSpaceMousePos) > (_tileSize * 0.5f) && !tweening)
+            if (Vector3.Distance(startMousePos, cameraManager.worldSpaceMousePos) > (_tileSize * TILE_DIST_CHECK) && !tweening)
             {
-                var dir = (cameraManager.worldSpaceMousePos.RoundToNearest(_tileSize) - startMousePos).normalized;
+                var dir = (cameraManager.worldSpaceMousePos - startMousePos).normalized;
                 //newPos += (dir.normalized);
                 if (CheckDot(dir))
                 {
