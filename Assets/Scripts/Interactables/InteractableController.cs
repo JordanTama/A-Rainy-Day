@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class InteractableController : MonoBehaviour
 {
@@ -19,6 +20,13 @@ public class InteractableController : MonoBehaviour
     [SerializeField] protected int currentState;
     protected int nextState;
     [SerializeField] protected int defaultState;
+    [SerializeField] protected Texture[] textures;
+    private MeshRenderer _renderer;
+    [SerializeField] private Color defaultColor;
+    [SerializeField] private Color selectedColor;
+    private float defaultExponent;
+    [SerializeField] private float selectedExponent;
+    private MaterialPropertyBlock propertyBlock;
     private bool isChangeState;
 
     protected AudioSource _myAudioSource;
@@ -33,6 +41,12 @@ public class InteractableController : MonoBehaviour
             _myAudioSource.volume = audioVolume;
             _myAudioSource.clip = myAudioClip;
         }
+
+        _renderer = GetComponent<MeshRenderer>();
+        propertyBlock = new MaterialPropertyBlock();
+        defaultColor = _renderer.material.GetColor("_Color");
+        defaultExponent = _renderer.material.GetFloat("_Exponent");
+
     }
 
     protected void Start()
@@ -57,14 +71,39 @@ public class InteractableController : MonoBehaviour
     {
         OnInteractableReset?.Invoke();
         StopAudio();
+        ResetState();
+    }
+
+    private void ResetState()
+    {
+        ChangeState(defaultState);
+        InteractableDeselect();
     }
 
     protected void ChangeState(int newState)
     {
         currentState = newState;
+        SetMaterial();
         SetNextState();
         OnInteractableStateChange?.Invoke();
         interactableManager.OnInteractableStateChange?.Invoke();
+    }
+
+    private void SetMaterial()
+    {
+        Texture texture = null;
+        if (currentState < textures.Length)
+        {
+             texture = textures[currentState];
+        }
+
+        if (_renderer)
+        {
+            if(texture) propertyBlock.SetTexture("_MainTex",texture);
+            propertyBlock.SetColor("_Color",selectedColor);
+            propertyBlock.SetFloat("_Exponent",selectedExponent);
+            _renderer.SetPropertyBlock(propertyBlock);
+        }
     }
 
     protected void SetNextState()
@@ -108,6 +147,12 @@ public class InteractableController : MonoBehaviour
     protected void InteractableDeselect()
     {
         // Cancel highlighting
+        if (_renderer)
+        {
+            propertyBlock.SetColor("_Color",defaultColor);
+            propertyBlock.SetFloat("_Exponent",defaultExponent);
+            _renderer.SetPropertyBlock(propertyBlock);
+        } 
     }
 
     protected void OnDestroy()
