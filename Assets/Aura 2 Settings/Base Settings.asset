@@ -19,7 +19,7 @@ MonoBehaviour:
   useAmbientLighting: 1
   ambientLightingStrength: 1
   useColor: 0
-  color: {r: 0, g: 0.5, b: 0.5, a: 0.5}
+  color: {r: 0.0000005066395, g: 0.5, b: 0.5, a: 1}
   colorStrength: 1
   useTint: 0
   tint: {r: 0.9453721, g: 0.999999, b: 0.9241994, a: 1}

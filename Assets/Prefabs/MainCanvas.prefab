@@ -3396,7 +3396,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 230, y: -100}
-  m_SizeDelta: {x: 104.4, y: 50}
+  m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &821491259973895390
 CanvasRenderer:
@@ -3425,7 +3425,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Part 1
+  m_text: 'Part 1
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b71cc92af2093b4abd02c7523cafa32, type: 2}
   m_sharedMaterial: {fileID: 7352295580903416524, guid: 7b71cc92af2093b4abd02c7523cafa32,
@@ -3469,7 +3471,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

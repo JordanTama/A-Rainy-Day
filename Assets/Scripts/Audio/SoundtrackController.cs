@@ -103,8 +103,7 @@ public class SoundtrackController : AudioController
 
     private void GetLevelNum()
     {
-        string levelName = SceneManager.GetActiveScene().name;
-        _levelNum =  Convert.ToInt32(levelName.Split('-').Last());
+        _levelNum =  Convert.ToInt32(gameObject.scene.name.Split('-').Last());
         defaultLevelNum = _levelNum;
     }
     

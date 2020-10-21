@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -34,11 +35,14 @@ public class LevelTextController : MonoBehaviour
         chapterXPos = -1f * (_chapterTextTransform.anchoredPosition.x + _chapterTextTransform.rect.width);
         levelXPos = -1f * (_levelTextTransform.anchoredPosition.x + _levelTextTransform.rect.width);
 
-        chapterText.text = "Chapter " + SceneManager.GetActiveScene().name.Split('-')[0].Split('l')[1];
-        levelText.text = "Part " + SceneManager.GetActiveScene().name.Split('-')[1];
+        chapterText.text = "Chapter " + gameObject.scene.name.Split('-')[0].Last();
+        levelText.text = "Part " + gameObject.scene.name.Split('-')[1];
+        
 
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _gameLoopManager.OnRestart += AnimateText;
+        
+        HideText();
 
     }
 
@@ -72,6 +76,32 @@ public class LevelTextController : MonoBehaviour
         
         _chapterColorTween = chapterText.DOFade(1f, 0f);
         _levelColorTween = levelText.DOFade(1f, 0f);
+    }
+    
+    private void HideText()
+    {
+        if (_chapterColorTween.IsActive())
+        {
+            if(_chapterColorTween.IsPlaying())_chapterColorTween.Complete();
+        }
+
+        if (_chapterMoveTween.IsActive())
+        {
+            if(_chapterMoveTween.IsPlaying())_chapterMoveTween.Complete();
+        }
+
+        if (_levelMoveTween.IsActive())
+        {
+            if(_levelMoveTween.IsPlaying())_levelMoveTween.Complete();
+        }
+        
+        if (_levelColorTween.IsActive())
+        {
+            if(_levelColorTween.IsPlaying())_levelColorTween.Complete(); 
+        }
+        
+        _chapterColorTween = chapterText.DOFade(0f, 0f);
+        _levelColorTween = levelText.DOFade(0f, 0f);
     }
 
     private void AnimateText()
