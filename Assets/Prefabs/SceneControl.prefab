@@ -203,9 +203,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc383f775a0fa14885ddcfbbb5e5aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oldScene:
+    m_Handle: 0
+  transitionScene:
+    m_Handle: 0
+  nextScene:
+    m_Handle: 0
+  nextSceneIndex: 0
   uiHideFogTransform: {fileID: 6480179425439140173}
-  hideAudioClip: {fileID: 8300000, guid: 5bf8c17b91690ef439eebd4b97cc732e, type: 3}
-  showAudioClip: {fileID: 0}
+  hideAudioClip: {fileID: 8300000, guid: 7654003fe8aaaed46a36a5c36206c5ef, type: 3}
+  showAudioClip: {fileID: 8300000, guid: 216e6ce2ada3a69479e2637380bfb580, type: 3}
+  tilesTransform: {fileID: 0}
+  isLowerIntoFog: 1
   isNextSceneCinematic: 0
 --- !u!82 &1288872721
 AudioSource:

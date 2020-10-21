@@ -19,6 +19,12 @@ public class SceneTransitionController : MonoBehaviour
     public AudioClip hideAudioClip;
     public AudioClip showAudioClip;
     private AudioSource _audioSource;
+
+    public Transform tilesTransform;
+
+    public bool isLowerIntoFog = true;
+    
+    
     
     public bool isNextSceneCinematic = false;
 
@@ -33,14 +39,22 @@ public class SceneTransitionController : MonoBehaviour
         _gameLoopManager.OnComplete += LoadTransitionScene;
         
         transitionScene = SceneManager.GetSceneByName("TransitionScene");
-        
 
+        if(isLowerIntoFog)
+        {
+            if(!tilesTransform) tilesTransform = GameObject.FindGameObjectWithTag("Pillar").transform.parent;
+            tilesTransform.position= new Vector3(0f,-20f,0f);
+        }
+        
+        
     }
 
     void Start()
     {
         SceneManager.sceneLoaded += TransitionToNewScene;
         SceneManager.sceneUnloaded += LoadNewScene;
+        
+        if(isLowerIntoFog) RaiseOutOfFog();
     }
 
     private void LoadTransitionScene()
@@ -78,15 +92,20 @@ public class SceneTransitionController : MonoBehaviour
             transitionScene = loadedScene;
             SceneManager.MoveGameObjectToScene(gameObject,transitionScene);
             SceneManager.MoveGameObjectToScene(mainCamera.gameObject,transitionScene);
-            HideWithFog();
-            // UnloadOldScene();
+            if(!isLowerIntoFog) HideWithFog();
+            else LowerIntoFog();
         }
         else
         {
             nextScene = loadedScene;
             mainCamera.enabled = false;
             mainCamera.GetComponent<AudioListener>().enabled = false;
-            RevealWithFog();
+            if(!isLowerIntoFog) RevealWithFog();
+            else
+            {
+                SceneManager.SetActiveScene(nextScene);
+                UnloadTransition();
+            }
         }
         
         print("scene transition happened");
@@ -103,6 +122,16 @@ public class SceneTransitionController : MonoBehaviour
         }).SetEase(Ease.InOutCubic);
     }
 
+    private void LowerIntoFog()
+    {
+        PlayAudio(hideAudioClip);
+
+        tilesTransform.DOMoveY(-20f, 3f).OnStart(() =>
+        {
+            _audioSource.DOFade(0f, 5f).SetEase(Ease.InCubic);
+        }).OnComplete(UnloadOldScene).SetEase(Ease.InCubic);
+    }
+
     private void RevealWithFog()
     {
         PlayAudio(showAudioClip);
@@ -116,8 +145,14 @@ public class SceneTransitionController : MonoBehaviour
                 UnloadTransition();
             }).SetEase(Ease.InOutCubic);
         }).SetEase(Ease.InOutCubic);
+    }
 
-
+    private void RaiseOutOfFog()
+    {
+        PlayAudio(showAudioClip);
+        tilesTransform.DOMoveY(0f, 3f).OnComplete(() =>
+        {
+        }).SetEase(Ease.OutCubic);
     }
 
     private void UnloadTransition()
@@ -129,6 +164,7 @@ public class SceneTransitionController : MonoBehaviour
     {
         if (clip)
         {
+            if(_audioSource.isPlaying) _audioSource.Stop();
             _audioSource.PlayOneShot(clip);
         }
     }

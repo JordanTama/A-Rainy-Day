@@ -8,6 +8,8 @@ TagManager:
   - NPC
   - Interactable
   - Hit Detection
+  - Pillar
+  - MainCanvas
   layers:
   - Default
   - TransparentFX
