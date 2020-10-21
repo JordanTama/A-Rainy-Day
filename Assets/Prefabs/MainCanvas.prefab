@@ -245,6 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7163248954928368409}
   - component: {fileID: 9025261510904190225}
+  - component: {fileID: 6489795704178676065}
   m_Layer: 5
   m_Name: ControlsBar
   m_TagString: Untagged
@@ -285,6 +286,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 460235406239382785}
   m_CullTransparentMesh: 0
+--- !u!114 &6489795704178676065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460235406239382785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99d3a3772c7b8a145af44fbaedd270ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultYPos: 0
+  hideYPos: 0
+  lerpTime: 2
 --- !u!1 &1105960398145143120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,6 +1619,7 @@ GameObject:
   - component: {fileID: 2749680857870091125}
   - component: {fileID: 1516689201478771211}
   - component: {fileID: 459202507788275637}
+  - component: {fileID: 5354227389642834385}
   m_Layer: 5
   m_Name: Phone
   m_TagString: Untagged
@@ -1997,6 +2014,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5354227389642834385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3042087515942518104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99d3a3772c7b8a145af44fbaedd270ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultYPos: 0
+  hideYPos: 0
+  lerpTime: 2
 --- !u!1 &3178132815473047222
 GameObject:
   m_ObjectHideFlags: 0
@@ -2008,6 +2040,7 @@ GameObject:
   - component: {fileID: 774919478321248054}
   - component: {fileID: 1281504778181798023}
   - component: {fileID: 6572997957837738310}
+  - component: {fileID: 372752518466477793}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -2098,6 +2131,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &372752518466477793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3178132815473047222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311bbfcf0cea65f42a17627ebd7ed429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultXPos: 0
+  hideXPos: 0
+  lerpTime: 2
 --- !u!1 &3341107485587040484
 GameObject:
   m_ObjectHideFlags: 0

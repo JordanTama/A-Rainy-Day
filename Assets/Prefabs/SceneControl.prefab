@@ -214,6 +214,7 @@ MonoBehaviour:
   hideAudioClip: {fileID: 8300000, guid: 7654003fe8aaaed46a36a5c36206c5ef, type: 3}
   showAudioClip: {fileID: 8300000, guid: 216e6ce2ada3a69479e2637380bfb580, type: 3}
   tilesTransform: {fileID: 0}
+  fogPlane: {fileID: 3361439074809549221}
   isLowerIntoFog: 1
   isNextSceneCinematic: 0
 --- !u!82 &1288872721
@@ -407,6 +408,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cec0f82a5554204eb057c2ed72c9982, type: 3}
+--- !u!1 &3361439074809549221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3361439073178372273, guid: 3cec0f82a5554204eb057c2ed72c9982,
+    type: 3}
+  m_PrefabInstance: {fileID: 1724799252}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3361439074809549225 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3361439073178372285, guid: 3cec0f82a5554204eb057c2ed72c9982,

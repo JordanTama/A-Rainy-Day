@@ -21,6 +21,7 @@ public class SceneTransitionController : MonoBehaviour
     private AudioSource _audioSource;
 
     public Transform tilesTransform;
+    public GameObject fogPlane;
 
     public bool isLowerIntoFog = true;
     
@@ -104,7 +105,9 @@ public class SceneTransitionController : MonoBehaviour
             else
             {
                 SceneManager.SetActiveScene(nextScene);
-                UnloadTransition();
+                
+                fogPlane.SetActive(false);
+                Invoke("UnloadTransition",0.5f);
             }
         }
         

@@ -6,7 +6,7 @@
     "FullScreen": true,
     "AmbientOcclusion": true,
     "VolumetricFog": true,
-    "AntiAliasing": false,
+    "AntiAliasing": true,
     "MasterVolume": 0.4976924657821655,
     "AmbientVolume": 1.0,
     "SoundEffectsVolume": 1.0,
