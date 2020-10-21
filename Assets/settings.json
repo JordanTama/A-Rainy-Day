@@ -1,10 +1,13 @@
 {
-    "UpToLevel": 15,
-    "Resolution": {
-        "x": 0.0,
-        "y": 0.0
-    },
-    "MasterVolume": 0.07284174859523773,
+    "UpToLevel": 19,
+    "ResolutionX": 1920,
+    "ResolutionY": 1080,
+    "RefreshRate": 60,
+    "FullScreen": true,
+    "AmbientOcclusion": true,
+    "VolumetricFog": true,
+    "AntiAliasing": true,
+    "MasterVolume": 0.4976924657821655,
     "AmbientVolume": 1.0,
     "SoundEffectsVolume": 1.0,
     "MusicVolume": 0.17939889430999757,

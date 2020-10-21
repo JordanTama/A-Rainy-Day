@@ -8,6 +8,7 @@ public class Gate : MonoBehaviour
     [SerializeField] private MeshRenderer mr;
     [SerializeField] private ParticleSystem ps;
     [SerializeField] private Animator a;
+    [SerializeField] private LanternSpawner s;
     
     private static readonly int Active = Animator.StringToHash("Active");
     private static readonly int Ratio = Shader.PropertyToID("_Ratio");
@@ -24,9 +25,9 @@ public class Gate : MonoBehaviour
     [ContextMenu("Reset Gate")]
     public void Reset()
     {
-        if (!a) return;
+        // if (s) s.Pause();
         
-        a.SetBool(Active, false);
+        if (a) a.SetBool(Active, false);
     }
 
     public void SetFill(float ratio, bool burst = true)
@@ -38,7 +39,11 @@ public class Gate : MonoBehaviour
             .5f
             ).OnComplete(() =>
         {
-            ps.gameObject.SetActive(ratio >= 1.0f && burst);
+            if (ratio >= 1)
+            {
+                if (burst) ps.gameObject.SetActive(true);
+                // if (s) s.Play();
+            }
         });
     }
 }

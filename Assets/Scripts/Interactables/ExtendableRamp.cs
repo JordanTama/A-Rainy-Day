@@ -10,6 +10,7 @@ public class ExtendableRamp : InteractableReceiver
 {
     [SerializeField]private Vector3 _retractPosition;
     [SerializeField]private Vector3 _extendPosition;
+    [SerializeField] private LayerMask layerMask;
     private Transform _visualsTransform;
     private bool isExtended;
     private bool isTweening;
@@ -17,6 +18,8 @@ public class ExtendableRamp : InteractableReceiver
     public bool bInitialiseAsExtended = true;
     private Tween _extendTween;
     private TileManager _tileManager;
+
+    private NavMeshObstacle obstacle;
 
     public AudioClip extendAudioClip;
     public AudioClip retractAudioClip;
@@ -34,6 +37,7 @@ public class ExtendableRamp : InteractableReceiver
     protected new void Start()
     {
         base.Start();
+        obstacle = GetComponentInChildren<NavMeshObstacle>();
         _tileManager = ServiceLocator.Current.Get<TileManager>();
         ResetState();
 
@@ -42,6 +46,7 @@ public class ExtendableRamp : InteractableReceiver
     protected override void ChangeState()
     {
         base.ChangeState();
+        
         if (!isTweening)
         {
             isTweening = true;
@@ -78,26 +83,50 @@ public class ExtendableRamp : InteractableReceiver
     private void ExtendRamp(float t)
     {
         isExtended = true;
-        _extendTween = _visualsTransform.DOLocalMove(_extendPosition,t).SetEase(easeType).OnComplete(()=>
+        _extendTween = _visualsTransform.DOLocalMove(_extendPosition,t).OnStart(()=>isTweening=true).SetEase(easeType).OnComplete(()=>
         {
             if (t > 0f)
             {
                 FadeOutAudio(0.1f); 
             }
+            
             MeshUpdate();
         });
         if(t>0f && extendAudioClip) PlayAudioWithClip(extendAudioClip);
     }
 
+    private bool CheckForAgent()
+    {
+        return Physics.CheckBox(transform.position + 1.05f*transform.lossyScale.y * transform.up,
+            0.95f*transform.lossyScale/2f,transform.rotation,layerMask);
+    }
+
     private void RetractRamp(float t)
     {
+        if (CheckForAgent()) return;
+
+        if (obstacle)
+        {
+            obstacle.enabled = true;
+            obstacle.carving = true;
+        }
+        
+        
         isExtended = false;
-        _extendTween = _visualsTransform.DOLocalMove(_retractPosition,t).SetEase(easeType).OnComplete(()=>
+        _extendTween = _visualsTransform.DOLocalMove(_retractPosition,t).OnStart(()=>isTweening=true).SetEase(easeType).OnComplete(()=>
         {
             if (t > 0f)
             {
                 FadeOutAudio(0.1f); 
+                
             }
+            
+            if (obstacle)
+            {
+                obstacle.enabled = false;
+                obstacle.carving = false;
+            }
+            
             MeshUpdate();
         });
         if(t>0f && retractAudioClip) PlayAudioWithClip(retractAudioClip);
@@ -107,5 +136,11 @@ public class ExtendableRamp : InteractableReceiver
     {
         _tileManager.OnUpdateMesh?.Invoke();
         isTweening = false;
+    }
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position + 1.05f*transform.up*transform.lossyScale.y,
+            0.95f*transform.lossyScale);
     }
 }

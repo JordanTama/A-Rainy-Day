@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class SoundtrackController : AudioController
 {
     [SerializeField] private AudioClip[] _chapterAudioClips = new AudioClip[6];
-    [SerializeField] private AudioSource[] _chapterAudioSources = new AudioSource[6];
+    public AudioSource[] _chapterAudioSources = new AudioSource[6];
     [SerializeField] private int _levelNum=0;
     [SerializeField] private int defaultLevelNum;
     [SerializeField] private float musicVolume = 1f;

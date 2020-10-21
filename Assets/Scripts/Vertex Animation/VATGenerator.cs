@@ -7,6 +7,7 @@ using UnityEngine.Experimental.Rendering;
 
 public class VATGenerator : MonoBehaviour
 {
+    #if UNITY_EDITOR
     [SerializeField] private GameObject target;
     [SerializeField] private AnimationClip clip;
     [SerializeField] private int samples;
@@ -90,4 +91,5 @@ public class VATGenerator : MonoBehaviour
             Debug.Log(rowString);
         }
     }
+    #endif
 }

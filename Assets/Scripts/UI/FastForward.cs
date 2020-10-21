@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,11 @@ public class FastForward : MonoBehaviour
     public AIManager AiManager;
     public float FFMultiplier;
     private float _defaultSpeed;
-    [SerializeField] private bool isFF;
+    private bool isFF;
+
+    public FastForward otherFF;
+    public FastForward otherOtherFF;
+    public Action OnFF;
     
     private MainUIController _mainUiController;
     
@@ -29,6 +34,8 @@ public class FastForward : MonoBehaviour
         _gameLoopManager.OnComplete += DisableInteraction;
         _gameLoopManager.OnComplete += MakeNormal;
         if (AiManager) _defaultSpeed = AiManager.defaultSimulationSpeed;
+        if (otherFF) otherFF.OnFF += MakeNormal;
+        if (otherOtherFF) otherOtherFF.OnFF += MakeNormal;
         EnableInteraction();
         MakeNormal();
     }
@@ -60,6 +67,7 @@ public class FastForward : MonoBehaviour
     
     private void MakeFF()
     {
+        OnFF?.Invoke();
         AiManager.simulationSpeed =  FFMultiplier*_defaultSpeed;
         if (AiManager.Speed > 0f)
         {
@@ -67,6 +75,7 @@ public class FastForward : MonoBehaviour
         }
         isFF = true;
         FFImage.material = FFMat;
+        
     }
     
     private void EnableInteraction()
@@ -84,5 +93,7 @@ public class FastForward : MonoBehaviour
         _gameLoopManager.OnRestart -= EnableInteraction;
         _gameLoopManager.OnComplete -= DisableInteraction;
         _gameLoopManager.OnComplete -= MakeNormal;
+        if (otherFF) otherFF.OnFF -= MakeNormal;
+        if (otherOtherFF) otherOtherFF.OnFF -= MakeNormal;
     }
 }
