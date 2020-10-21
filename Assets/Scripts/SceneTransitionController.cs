@@ -7,10 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitionController : MonoBehaviour
 {
-    private Scene oldScene;
-    private Scene transitionScene;
-    private Scene nextScene;
-    private int nextSceneIndex;
+    [SerializeField] private Scene oldScene;
+    [SerializeField] private Scene transitionScene;
+    [SerializeField] private Scene nextScene;
+    [SerializeField] private int nextSceneIndex;
 
     private GameLoopManager _gameLoopManager;
     private Camera mainCamera;
@@ -27,15 +27,13 @@ public class SceneTransitionController : MonoBehaviour
 
     private void Awake()
     {
-        mainCamera = Camera.main;
         _audioSource = GetComponent<AudioSource>();
         
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _gameLoopManager.OnComplete += LoadTransitionScene;
         
-        oldScene = SceneManager.GetActiveScene();
         transitionScene = SceneManager.GetSceneByName("TransitionScene");
-        nextSceneIndex = oldScene.buildIndex + 1;
+        
 
     }
 
@@ -47,6 +45,8 @@ public class SceneTransitionController : MonoBehaviour
 
     private void LoadTransitionScene()
     {
+        oldScene = SceneManager.GetActiveScene();
+        nextSceneIndex = oldScene.buildIndex + 1;
         SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
     }
 
@@ -74,6 +74,7 @@ public class SceneTransitionController : MonoBehaviour
     {
         if (loadedScene.name.Equals("TransitionScene"))
         {
+            mainCamera = Camera.main;
             transitionScene = loadedScene;
             SceneManager.MoveGameObjectToScene(gameObject,transitionScene);
             SceneManager.MoveGameObjectToScene(mainCamera.gameObject,transitionScene);
@@ -87,6 +88,8 @@ public class SceneTransitionController : MonoBehaviour
             mainCamera.GetComponent<AudioListener>().enabled = false;
             RevealWithFog();
         }
+        
+        print("scene transition happened");
     }
 
     private void HideWithFog()

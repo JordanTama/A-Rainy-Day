@@ -60,6 +60,10 @@ public class AIController : MonoBehaviour
 
     private void BakeNavMesh()
     {
+        if (!navMeshSurface)
+        {
+            navMeshSurface = GetComponent<NavMeshSurface>();
+        }
         navMeshSurface.BuildNavMesh();
     }
     private void UpdateNavMesh()
@@ -84,7 +88,7 @@ public class AIController : MonoBehaviour
         _gameLoopManager.OnExecution -= StartSpawning;
         _gameLoopManager.OnComplete -= StopSpawning;
         _tileManager.OnRebakeMesh -= BakeNavMesh;
-        _gameLoopManager.OnExecution -= UpdateNavMesh;
+        _gameLoopManager.OnExecution -= BakeNavMesh;
         _tileManager.OnUpdateMesh -= UpdateNavMesh;
     }
 }
