@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Audio;
 
 public class TileBaseController : MonoBehaviour
 {
     const float TILE_MOVE_SPEED = 0.5f;
     const float TILE_DIST_CHECK = 0.1f;
+
+    public static Action<bool> OnTileClick;
 
     [SerializeField] private float _dotCheck = 0.9f;
     [SerializeField] private bool _isFixed = false;
@@ -20,6 +23,7 @@ public class TileBaseController : MonoBehaviour
     private bool tweening;
     private Renderer[] childRenderers;
     private Shader hightlightShader;
+    private AudioSource audioSource;
 
     static float ShaderLocalTime = 0;
 
@@ -47,7 +51,6 @@ public class TileBaseController : MonoBehaviour
             t.gameObject.layer = 0;
 
         }
-
         foreach (Renderer r in childRenderers)
         {
             if (r.material.shader == hightlightShader)
@@ -61,7 +64,7 @@ public class TileBaseController : MonoBehaviour
 
     void TileSelect(GameObject g)
     {
-        if (g == gameObject && !_isFixed)
+        if (g == gameObject)
         {
             foreach (TileController t in _allTiles)
             {
@@ -69,14 +72,14 @@ public class TileBaseController : MonoBehaviour
             }
             
             startMousePos = cameraManager.worldSpaceMousePos;
-
+            OnTileClick?.Invoke(_isFixed);
 
             foreach (Renderer r in childRenderers)
             {
                 if (r.material.shader == hightlightShader)
                 {
                     MaterialPropertyBlock block = new MaterialPropertyBlock();
-                    block.SetColor("_HighlightColor", Color.yellow);
+                    block.SetColor("_HighlightColor", _isFixed ? Color.red * 0.25f : Color.white);
                     r.SetPropertyBlock(block);
                 }
             }
@@ -85,14 +88,15 @@ public class TileBaseController : MonoBehaviour
 
     private void Update()
     {
-        if (_isFixed)
-            return;
-
         // This can all be moved into some MouseMoved function later on
         if (tileManager.CurrentTile == gameObject)
         {
             ShaderLocalTime += Time.deltaTime * 3;
             Shader.SetGlobalFloat("LocalTime", ShaderLocalTime);
+
+            if (_isFixed)
+                return;
+
             if (Vector3.Distance(startMousePos, cameraManager.worldSpaceMousePos) > (_tileSize * TILE_DIST_CHECK) && !tweening)
             {
                 var dir = (cameraManager.worldSpaceMousePos - startMousePos).normalized;
