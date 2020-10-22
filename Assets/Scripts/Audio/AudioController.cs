@@ -10,12 +10,15 @@ public class AudioController : MonoBehaviour
     [SerializeField] protected AudioSource _audioSource;
     [SerializeField] protected AudioClip _currentAudioClip;
     protected GameLoopManager _gameLoopManager;
+    
     [SerializeField] protected AudioMixer _audioMixer;
 
     protected virtual void Awake()
     {
         _audioManager = ServiceLocator.Current.Get<AudioManager>();
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
+
+        
     }
     protected virtual void Start()
     {
@@ -41,12 +44,14 @@ public class AudioController : MonoBehaviour
     {
         _audioManager.OnAudioStop += Stop;
         _audioManager.OnAudioPause += Pause;
+        _gameLoopManager.OnComplete += Stop;
     }
 
     protected virtual void Deregister()
     {
         _audioManager.OnAudioStop -= Stop;
         _audioManager.OnAudioPause -= Pause;
+        _gameLoopManager.OnComplete -= Stop;
     }
 
     protected void OnDestroy()

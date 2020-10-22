@@ -28,6 +28,7 @@ public class GameLoopManager:IGameService
 
     private void RestartLevel(Scene arg0, Scene arg1)
     {
+        if (arg1.name.Equals("TransitionScene")) return;
         RestartLevel();
     }
 

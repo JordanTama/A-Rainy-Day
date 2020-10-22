@@ -16,6 +16,11 @@ public class CameraController : MonoBehaviour
     private CameraManager cameraManager;
     private InputManager input;
     private Camera cam;
+    
+    private GameLoopManager _gameLoopManager;
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +35,10 @@ public class CameraController : MonoBehaviour
         cameraManager = ServiceLocator.Current.Get<CameraManager>();
 
         cam = GetComponent<Camera>();
+        
+        _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
+        _gameLoopManager.OnComplete += ResetToInitialPosition;
+        SetInitialValues();
     }
 
 
@@ -75,6 +84,18 @@ public class CameraController : MonoBehaviour
             transform.RotateAround(levelCenter, Vector3.up, MouseDelta.x * rotateSpeed * Time.smoothDeltaTime);
     }
 
+    private void SetInitialValues()
+    {
+        initialPosition = cam.transform.position;
+        initialRotation = cam.transform.rotation;
+    }
+
+    private void ResetToInitialPosition()
+    {
+        cam.transform.DOMove(initialPosition, 2f);
+        cam.transform.DORotateQuaternion(initialRotation, 2f);
+    }
+
     private void OnDestroy()
     {
         input.P_LeftClick.performed -= OnLeftClickDown;
@@ -82,5 +103,7 @@ public class CameraController : MonoBehaviour
         input.P_MouseDelta.canceled -= OnMouseMoved;
         input.P_RightClick.performed -= OnRightClickDown;
         input.P_RightClick.canceled -= OnRightClickDown;
+        
+        _gameLoopManager.OnComplete -= ResetToInitialPosition;
     }
 }

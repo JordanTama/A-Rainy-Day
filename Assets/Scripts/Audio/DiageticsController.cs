@@ -140,6 +140,18 @@ public class DiageticsController : AudioController
             
         }
     }
+    
+    private void StopRain()
+    {
+        if (rainAS)
+        {
+            if (rainAS.isPlaying)
+            {
+                rainAS.DOFade(0f,1f);
+            }
+            
+        }
+    }
 
     public override void Pause()
     {
@@ -149,6 +161,10 @@ public class DiageticsController : AudioController
     public override void Stop()
     {
         base.Stop();
+        StopCrowdSounds();
+        StopRain();
+        
+
     }
 
     protected override void Register()

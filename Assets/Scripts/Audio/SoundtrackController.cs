@@ -52,7 +52,7 @@ public class SoundtrackController : AudioController
 
             if (i >= _levelNum)
             {
-                audioSource.DOFade(0f, 1f);
+                audioSource.DOFade(0f, 4f).SetEase(Ease.InOutCubic);
             }
             else
             {
@@ -85,7 +85,7 @@ public class SoundtrackController : AudioController
             if (!v) return;
             if (v.isPlaying)
             {
-                v.Stop();
+                v.DOFade(0f, 4f).SetEase(Ease.InOutCubic);
             }
         }
     }
