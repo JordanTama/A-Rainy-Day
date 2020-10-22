@@ -12,6 +12,7 @@ public class ToggleSettingsButton : MonoBehaviour
     private RectTransform _rect;
     [SerializeField] private float defaultXPos;
     [SerializeField] private float hideXPos;
+    public float moveAmount = 0f;
 
     public float lerpTime = 2f;
 
@@ -22,7 +23,8 @@ public class ToggleSettingsButton : MonoBehaviour
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _gameLoopManager.OnComplete += HideControlBar;
         defaultXPos = _rect.anchoredPosition.x;
-        hideXPos = defaultXPos + 100f;
+        if (moveAmount.Equals(0f)) hideXPos = defaultXPos + 100f;
+        else hideXPos = defaultXPos + moveAmount;
         _rect.anchoredPosition += new Vector2(hideXPos,0f);
         
         print(_rect.anchoredPosition);

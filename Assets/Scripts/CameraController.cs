@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
     private Vector3 initialPosition;
     private Quaternion initialRotation;
     
+    
 
     // Start is called before the first frame update
     void Start()
@@ -94,6 +95,8 @@ public class CameraController : MonoBehaviour
     {
         cam.transform.DOMove(initialPosition, 2f);
         cam.transform.DORotateQuaternion(initialRotation, 2f);
+        
+        
     }
 
     private void OnDestroy()

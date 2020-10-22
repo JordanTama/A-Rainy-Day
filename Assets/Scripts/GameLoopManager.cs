@@ -16,11 +16,12 @@ public class GameLoopManager:IGameService
     public Action OnRestart;
     public Action OnComplete;
     public Action OnLevelReady;
-    
-    
+
+
     public GameLoopManager()
     {
         gameState = GameState.Preparation;
+        
 
         SceneManager.activeSceneChanged += RestartLevel;
         // OnLevelReady += RestartLevel;
@@ -29,6 +30,7 @@ public class GameLoopManager:IGameService
     private void RestartLevel(Scene arg0, Scene arg1)
     {
         if (arg1.name.Equals("TransitionScene")) return;
+        
         RestartLevel();
     }
 

@@ -27,9 +27,16 @@ public class LanternSpawner : MonoBehaviour
     private static readonly int Offset = Shader.PropertyToID("_Offset");
     private bool _paused;
 
+    private GameLoopManager _gameLoopManager;
+
 
     void Awake()
     {
+        _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
+        _gameLoopManager.OnLevelReady += Play;
+        _gameLoopManager.OnComplete += Pause;
+        
+        
         _paused = false;
         _period = Random.Range(minPeriod, maxPeriod);
         _lastTime = spawnOnAwake ? -_period : 0;
@@ -77,7 +84,7 @@ public class LanternSpawner : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
 
         sequence.Append(newLantern.transform.DOScale(targetScale, scaleSpeed));
-        
+
         sequence.Insert(
             lifetime - scaleSpeed, 
             newLantern.transform.DOScale(Vector3.zero, scaleSpeed).OnComplete(
