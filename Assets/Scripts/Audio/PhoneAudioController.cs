@@ -72,9 +72,9 @@ public class PhoneAudioController : AudioController
     protected override void Register()
     {
         base.Register();
-        _textMessageManager.OnNewTextMessage += PlayMessageAudio;
-        _textMessageManager.OnLightFlash += PlayLightAudio;
-        _textMessageManager.OnPhoneShow += PlayShowingAudio;
+        //_textMessageManager.OnNewTextMessage += PlayMessageAudio;
+        //_textMessageManager.OnLightFlash += PlayLightAudio;
+        //_textMessageManager.OnPhoneShow += PlayShowingAudio;
         _gameLoopManager.OnPreparation += Stop;
     }
 
@@ -82,9 +82,9 @@ public class PhoneAudioController : AudioController
     protected override void Deregister()
     {
         base.Deregister();
-        _textMessageManager.OnNewTextMessage -= PlayMessageAudio;
-        _textMessageManager.OnLightFlash -= PlayLightAudio;
-        _textMessageManager.OnPhoneShow -= PlayShowingAudio;
+        //_textMessageManager.OnNewTextMessage -= PlayMessageAudio;
+        //_textMessageManager.OnLightFlash -= PlayLightAudio;
+        //_textMessageManager.OnPhoneShow -= PlayShowingAudio;
         _gameLoopManager.OnPreparation -= Stop;
     }
 }

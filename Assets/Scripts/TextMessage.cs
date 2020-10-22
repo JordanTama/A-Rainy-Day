@@ -4,13 +4,23 @@ using UnityEngine;
 
 public enum MessageSender
 {
-    PLAYER,
+    ANNA,
+    JESSICA,
     DAD,
+    OTHER,
 }
 
 [CreateAssetMenu(fileName ="Text Message")]
 public class TextMessage : ScriptableObject
 {
+    public TextMessage(MessageSender sender, string text)
+    {
+        this.Sender = sender;
+        this.MessageText = text;
+    }
+
+    public TextMessage() { }
+
     public MessageSender Sender;
     public string MessageText;
 }

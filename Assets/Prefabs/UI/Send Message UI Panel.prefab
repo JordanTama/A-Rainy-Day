@@ -187,7 +187,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 150}
+  m_SizeDelta: {x: 400, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7908849795744368339
 CanvasRenderer:
@@ -239,6 +239,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageText: {fileID: 9220678073131424876}
+  rectTransform: {fileID: 3263378832300899541}
+  initHeight: 0
+  tweenSpeed: 1
 --- !u!1 &5222474514945253625
 GameObject:
   m_ObjectHideFlags: 0

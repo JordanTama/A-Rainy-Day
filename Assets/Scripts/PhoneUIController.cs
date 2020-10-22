@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PhoneUIController : MonoBehaviour, IPointerClickHandler
 {
@@ -11,6 +12,8 @@ public class PhoneUIController : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject sendMessageUI;
     [SerializeField] private GameObject messageParent;
     [SerializeField] private Image notificationLight;
+
+    public TextMessage[] MessageBuffer;
 
     private RectTransform myRect;
     private Dictionary<MessageSender, GameObject> msgMap;
@@ -23,16 +26,21 @@ public class PhoneUIController : MonoBehaviour, IPointerClickHandler
     {
         msgMap = new Dictionary<MessageSender, GameObject>
         {
-            {MessageSender.PLAYER, sendMessageUI },
-            {MessageSender.DAD, receiveMessageUI },
+            {MessageSender.ANNA, sendMessageUI },
+            {MessageSender.JESSICA, receiveMessageUI },
         };
         myRect = GetComponent<RectTransform>();
         messageManager = ServiceLocator.Current.Get<TextMessageManager>();
-        messageManager.OnNewTextMessage += ShowNewMessage;
+        //messageManager.OnNewTextMessage += ShowNewMessage;
 
-        foreach (var m in messageManager.AllSentMessages)
+        foreach (KeyValuePair<string, TextMessage[]> kvp in messageManager.LevelTextMessages)
         {
-            ShowNewMessage(m);
+            foreach (var msg in kvp.Value)
+            {
+                ShowNewMessage(msg);
+            }
+            if (kvp.Key == SceneManager.GetActiveScene().name)
+                break;
         }
     }
 
@@ -44,7 +52,7 @@ public class PhoneUIController : MonoBehaviour, IPointerClickHandler
 
     private void OnDestroy()
     {
-        ServiceLocator.Current.Get<TextMessageManager>().OnNewTextMessage -= ShowNewMessage;
+        //ServiceLocator.Current.Get<TextMessageManager>().OnNewTextMessage -= ShowNewMessage;
     }
 
     private void Update()
@@ -59,7 +67,7 @@ public class PhoneUIController : MonoBehaviour, IPointerClickHandler
             if (notificationLight.color.r >= 0.5f && !isLightFlashing)
             {
                 isLightFlashing = true;
-                messageManager.OnLightFlash?.Invoke();
+                //messageManager.OnLightFlash?.Invoke();
             }
 
             if (notificationLight.color.r <= 0.1f && isLightFlashing)
@@ -79,10 +87,9 @@ public class PhoneUIController : MonoBehaviour, IPointerClickHandler
         else
         {
             myRect.DOAnchorPosY(0, 0.5f).OnComplete(() => isShowing = true);
-            messageManager.PhoneOpened();
             notificationLight.color = new Color(0, 0, 0, 0);
         }
         
-        messageManager.OnPhoneShow?.Invoke(isShowing);
+        //messageManager.OnPhoneShow?.Invoke(isShowing);
     }
 }

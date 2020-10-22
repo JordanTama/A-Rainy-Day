@@ -3316,6 +3316,7 @@ MonoBehaviour:
   _volumetricFogToggle: {fileID: 1533976167}
   _antiAliasingToggle: {fileID: 7601527990892947310}
   _postProcessProfile: {fileID: 0}
+  aiManager: {fileID: 11400000, guid: 0dbc6708021360a468bf9eb1248d6969, type: 2}
 --- !u!82 &511568677981921822
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3800,7 +3801,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1382503030747127925}
-        m_MethodName: QuitGame
+        m_MethodName: QuitToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

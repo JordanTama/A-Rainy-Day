@@ -36,6 +36,22 @@ public class MainMenuUIController : MonoBehaviour
     [SerializeField] private Toggle _antiAliasingToggle;
     [SerializeField] private PostProcessProfile _postProcessProfile;
 
+    [Header("Jordan, why must you do this to me?")]
+    [SerializeField] private AIManager aiManager;
+
+    private void OnEnable()
+    {
+        ServiceLocator.Current.Get<InputManager>().ToggleInput(false);
+        aiManager?.Pause();
+    }
+
+    private void OnDisable()
+    {
+        ServiceLocator.Current.Get<InputManager>().ToggleInput(true);
+        if(aiManager?.Speed > 0 || ServiceLocator.Current.Get<GameLoopManager>().gameState == GameLoopManager.GameState.Execution)
+            aiManager?.Play();
+    }
+
     private void Start()
     {
         SettingsManager sm = ServiceLocator.Current.Get<SettingsManager>();
@@ -172,6 +188,11 @@ public class MainMenuUIController : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void QuitToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public static int GetIndexOfResolution(Resolution currentResolution, Resolution[] resolutions)

@@ -22,4 +22,12 @@ public class InputManager : IGameService
         P_MouseDelta = input.Player.MouseDelta;
         P_MousePosition = input.Player.MousePosition;
     }
+
+    public void ToggleInput(bool toggle)
+    {
+        if (toggle)
+            input.Enable();
+        else
+            input.Disable();
+    }
 }
