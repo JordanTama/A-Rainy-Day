@@ -22,14 +22,23 @@ public class LanternSpawner : MonoBehaviour
     [SerializeField] private float maxLifetime;
 
     private List<MeshRenderer> _lanterns = new List<MeshRenderer>();
+    private List<Sequence> _sequences = new List<Sequence>();
     private float _period;
     private float _lastTime;
     private static readonly int Offset = Shader.PropertyToID("_Offset");
     private bool _paused;
 
+    private GameLoopManager _gameLoopManager;
+
 
     void Awake()
     {
+        _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
+        _gameLoopManager.OnLevelReady += Play;
+        _gameLoopManager.OnComplete += Pause;
+        _gameLoopManager.OnComplete += Stop;
+        
+        
         _paused = false;
         _period = Random.Range(minPeriod, maxPeriod);
         _lastTime = spawnOnAwake ? -_period : 0;
@@ -75,15 +84,23 @@ public class LanternSpawner : MonoBehaviour
         float lifetime = Random.Range(minLifetime, maxLifetime);
 
         Sequence sequence = DOTween.Sequence();
+        _sequences.Add(sequence);
 
         sequence.Append(newLantern.transform.DOScale(targetScale, scaleSpeed));
-        
+
         sequence.Insert(
             lifetime - scaleSpeed, 
             newLantern.transform.DOScale(Vector3.zero, scaleSpeed).OnComplete(
                 () => { DestroyLantern(newRenderer); }
                 )
             );
+
+        sequence.OnComplete(
+            () =>
+            {
+                if (_sequences.Contains(sequence))
+                    _sequences.Remove(sequence);
+            });
         
         newRenderer.material.SetFloat(Offset, Random.value);
 
@@ -94,5 +111,13 @@ public class LanternSpawner : MonoBehaviour
     {
         _lanterns.Remove(lanternRenderer);
         Destroy(lanternRenderer.gameObject);
+    }
+
+    void Stop()
+    {
+        for (int i = _sequences.Count - 1; i >= 0; i--)
+        {
+            _sequences[i].timeScale = (_sequences[i].Duration() - _sequences[i].Elapsed()) / 2f;
+        }
     }
 }

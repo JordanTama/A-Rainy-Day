@@ -13,6 +13,7 @@ public class SceneTransitionController : MonoBehaviour
     [SerializeField] private int nextSceneIndex;
 
     private GameLoopManager _gameLoopManager;
+    private InputManager _inputManager;
     private Camera mainCamera;
 
     public Transform uiHideFogTransform;
@@ -39,6 +40,9 @@ public class SceneTransitionController : MonoBehaviour
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _gameLoopManager.OnComplete += LoadTransitionScene;
         
+        _inputManager = ServiceLocator.Current.Get<InputManager>();
+        
+        
         transitionScene = SceneManager.GetSceneByName("TransitionScene");
 
         if(isLowerIntoFog)
@@ -52,6 +56,8 @@ public class SceneTransitionController : MonoBehaviour
 
     void Start()
     {
+        
+        
         SceneManager.sceneLoaded += TransitionToNewScene;
         SceneManager.sceneUnloaded += LoadNewScene;
         
@@ -60,6 +66,7 @@ public class SceneTransitionController : MonoBehaviour
 
     private void LoadTransitionScene()
     {
+        _inputManager.ToggleInput(false);
         oldScene = SceneManager.GetActiveScene();
         nextSceneIndex = oldScene.buildIndex + 1;
         SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
@@ -152,9 +159,11 @@ public class SceneTransitionController : MonoBehaviour
 
     private void RaiseOutOfFog()
     {
+        _inputManager.ToggleInput(false);
         PlayAudio(showAudioClip);
         tilesTransform.DOMoveY(0f, 3f).OnComplete(() =>
         {
+            _inputManager.ToggleInput(true);
             _gameLoopManager.OnLevelReady?.Invoke();
         }).SetEase(Ease.OutCubic);
     }

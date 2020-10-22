@@ -31,13 +31,19 @@ public class TextMessageMainUIController : MonoBehaviour
 
         ServiceLocator.Current.Get<GameLoopManager>().OnLevelReady += OnLevelReady;
         msgMan = ServiceLocator.Current.Get<TextMessageManager>();
-        messageBuffer = msgMan.LevelTextMessages[SceneManager.GetActiveScene().name];
+
+        if (msgMan.LevelTextMessages.ContainsKey(SceneManager.GetActiveScene().name))
+            messageBuffer = msgMan.LevelTextMessages[SceneManager.GetActiveScene().name];
+        else
+            return;
+
         msgTime = messageBuffer[currentMsg].MessageText.Length * msgTimeMultiplier;
     }
 
     private void OnLevelReady()
     {
-        readyToMessage = true;
+        if(messageBuffer.Length > 0)
+            readyToMessage = true;
     }
 
     private void Update()
