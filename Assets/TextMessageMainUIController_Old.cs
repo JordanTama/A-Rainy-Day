@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TextMessageMainUIController : MonoBehaviour
+public class TextMessageMainUIController_Old : MonoBehaviour
 {
 
     [SerializeField] private GameObject receiveMessageUI;
@@ -60,7 +60,7 @@ public class TextMessageMainUIController : MonoBehaviour
     private void SpawnMessage(TextMessage textMessage)
     {
         var msg = Instantiate(msgMap[textMessage.Sender], messageParent.transform).GetComponent<TextMessageUIController>();
-        msg.Init(this, msgTime, textMessage.MessageText);
+        // msg.Init(this, msgTime, textMessage.MessageText);
     }
 
     public void SentMessage()
