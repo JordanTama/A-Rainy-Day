@@ -45,7 +45,7 @@ public class InteractableController : MonoBehaviour
         _renderer = GetComponent<MeshRenderer>();
         propertyBlock = new MaterialPropertyBlock();
         defaultColor = _renderer.material.GetColor("_Color");
-        defaultExponent = _renderer.material.GetFloat("_Exponent");
+        if(_renderer.material.HasProperty("_Exponent")) defaultExponent = _renderer.material.GetFloat("_Exponent");
 
     }
 
@@ -101,7 +101,7 @@ public class InteractableController : MonoBehaviour
         {
             if(texture) propertyBlock.SetTexture("_MainTex",texture);
             propertyBlock.SetColor("_Color",selectedColor);
-            propertyBlock.SetFloat("_Exponent",selectedExponent);
+            if(_renderer.material.HasProperty("_Exponent")) propertyBlock.SetFloat("_Exponent",selectedExponent);
             _renderer.SetPropertyBlock(propertyBlock);
         }
     }
