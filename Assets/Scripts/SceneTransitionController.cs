@@ -155,11 +155,13 @@ public class SceneTransitionController : MonoBehaviour
         PlayAudio(showAudioClip);
         tilesTransform.DOMoveY(0f, 3f).OnComplete(() =>
         {
+            _gameLoopManager.OnLevelReady?.Invoke();
         }).SetEase(Ease.OutCubic);
     }
 
     private void UnloadTransition()
     {
+        
         SceneManager.UnloadSceneAsync(transitionScene);
     }
 

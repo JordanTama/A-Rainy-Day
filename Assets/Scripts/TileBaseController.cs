@@ -18,6 +18,11 @@ public class TileBaseController : MonoBehaviour
     private TileController[] _allTiles;
     private TileManager tileManager;
     private CameraManager cameraManager;
+    
+    private GameLoopManager _gameLoopManager;
+    private Vector3 _startPosition;
+    private Quaternion _startRotation;
+    
     private Vector3 startMousePos;
     private float _tileSize = 5;
     private bool tweening;
@@ -34,6 +39,10 @@ public class TileBaseController : MonoBehaviour
 
         tileManager = ServiceLocator.Current.Get<TileManager>();
         cameraManager = ServiceLocator.Current.Get<CameraManager>();
+        
+        _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
+        _gameLoopManager.OnRestart += ResetPosition;
+        _gameLoopManager.OnLevelReady += SetStartPosition;
 
         tileManager.OnTileSelect += TileSelect;
         tileManager.OnTileDeselect += TileDeselect;
@@ -143,10 +152,23 @@ public class TileBaseController : MonoBehaviour
 
         return false;
     }
+    
+    public void SetStartPosition()
+    {
+        _startPosition = transform.position;
+        _startRotation = transform.rotation;
+    }
+    
+    public void ResetPosition()
+    {
+        transform.SetPositionAndRotation(_startPosition,_startRotation);
+    }
 
     private void OnDestroy()
     {
         tileManager.OnTileSelect -= TileSelect;
         tileManager.OnTileDeselect -= TileDeselect;
+        _gameLoopManager.OnRestart -= ResetPosition;
+        _gameLoopManager.OnLevelReady -= SetStartPosition;
     }
 }

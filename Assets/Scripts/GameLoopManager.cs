@@ -15,6 +15,7 @@ public class GameLoopManager:IGameService
     public Action OnExecution;
     public Action OnRestart;
     public Action OnComplete;
+    public Action OnLevelReady;
     
     
     public GameLoopManager()
@@ -22,6 +23,7 @@ public class GameLoopManager:IGameService
         gameState = GameState.Preparation;
 
         SceneManager.activeSceneChanged += RestartLevel;
+        // OnLevelReady += RestartLevel;
     }
 
     private void RestartLevel(Scene arg0, Scene arg1)

@@ -76,7 +76,10 @@ public class InteractableController : MonoBehaviour
 
     private void ResetState()
     {
-        ChangeState(defaultState);
+        // ChangeState(defaultState);
+        currentState = defaultState;
+        SetMaterial();
+        SetNextState();
         InteractableDeselect();
     }
 
@@ -86,7 +89,6 @@ public class InteractableController : MonoBehaviour
         SetMaterial();
         SetNextState();
         OnInteractableStateChange?.Invoke();
-        interactableManager.OnInteractableStateChange?.Invoke();
     }
 
     private void SetMaterial()

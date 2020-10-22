@@ -34,8 +34,9 @@ public class TileController : MonoBehaviour
         tileManager.OnTileDeselect += TileDeselect;
 
         _gameLoopManager.OnRestart += ResetPosition;
-        SetStartPosition();
-        ResetPosition();
+        _gameLoopManager.OnLevelReady += SetStartPosition;
+        // SetStartPosition();
+        // ResetPosition();
     }
 
     void TileSelect(GameObject g)
@@ -120,9 +121,9 @@ public class TileController : MonoBehaviour
 
     private void OnDestroy()
     {
-        _gameLoopManager.OnRestart -= ResetPosition;
         tileManager.OnTileSelect -= TileSelect;   
         tileManager.OnTileDeselect -= TileDeselect;
         _gameLoopManager.OnRestart -= ResetPosition;
+        _gameLoopManager.OnLevelReady -= SetStartPosition;
     }
 }
