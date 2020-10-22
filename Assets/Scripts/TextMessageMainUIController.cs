@@ -17,6 +17,8 @@ public class TextMessageMainUIController : MonoBehaviour
     private float msgTime;
     private float timer = 0;
     private Dictionary<MessageSender, GameObject> msgMap;
+    private bool waitingForMessage;
+    private bool readyToMessage = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,30 +29,56 @@ public class TextMessageMainUIController : MonoBehaviour
             {MessageSender.JESSICA, receiveMessageUI },
         };
 
+        ServiceLocator.Current.Get<GameLoopManager>().OnLevelReady += OnLevelReady;
         msgMan = ServiceLocator.Current.Get<TextMessageManager>();
-        messageBuffer = msgMan.LevelTextMessages[SceneManager.GetActiveScene().name];
-        msgTime = messageBuffer[0].MessageText.Length * msgTimeMultiplier;
+
+        if (msgMan.LevelTextMessages.ContainsKey(SceneManager.GetActiveScene().name))
+            messageBuffer = msgMan.LevelTextMessages[SceneManager.GetActiveScene().name];
+        else
+            return;
+
+        msgTime = messageBuffer[currentMsg].MessageText.Length * msgTimeMultiplier;
+    }
+
+    private void OnLevelReady()
+    {
+        if(messageBuffer.Length > 0)
+            readyToMessage = true;
     }
 
     private void Update()
     {
-        if (currentMsg > messageBuffer.Length)
+        if (!readyToMessage)
+            return;
+
+        if (currentMsg >= messageBuffer.Length-1)
             return;
 
         timer += Time.deltaTime;
 
-        if(timer >= msgTime)
+        if(timer >= msgTime && !waitingForMessage)
         {
             SpawnMessage(messageBuffer[currentMsg]);
-            currentMsg++;
-            timer = 0;
-            msgTime = messageBuffer[currentMsg].MessageText.Length * msgTimeMultiplier;
+            waitingForMessage = true;
         }
     }
 
     private void SpawnMessage(TextMessage textMessage)
     {
         var msg = Instantiate(msgMap[textMessage.Sender], messageParent.transform).GetComponent<TextMessageUIController>();
-        msg.SetText(textMessage.MessageText);
+        msg.Init(this, msgTime, textMessage.MessageText);
+    }
+
+    public void SentMessage()
+    {
+        waitingForMessage = false;
+        timer = 0;
+        msgTime = messageBuffer[currentMsg].MessageText.Length * msgTimeMultiplier;
+        currentMsg++;
+    }
+
+    private void OnDestroy()
+    {
+        ServiceLocator.Current.Get<GameLoopManager>().OnLevelReady -= OnLevelReady;
     }
 }
