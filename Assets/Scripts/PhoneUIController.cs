@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PhoneUIController : MonoBehaviour, IPointerClickHandler
+public class PhoneUIController : MonoBehaviour
 {
     [SerializeField] private GameObject receiveMessageUI;
     [SerializeField] private GameObject sendMessageUI;
@@ -47,7 +47,7 @@ public class PhoneUIController : MonoBehaviour, IPointerClickHandler
     public void ShowNewMessage(TextMessage textMessage)
     {
         var msg = Instantiate(msgMap[textMessage.Sender], messageParent.transform).GetComponent<TextMessageUIController>();
-        msg.SetText(textMessage.MessageText);
+        msg.Init(textMessage.MessageText);
     }
 
     private void OnDestroy()
@@ -78,18 +78,18 @@ public class PhoneUIController : MonoBehaviour, IPointerClickHandler
         
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (isShowing)
-        {
-            myRect.DOAnchorPosY(-500, 0.5f).OnComplete(() => isShowing = false);
-        }
-        else
-        {
-            myRect.DOAnchorPosY(0, 0.5f).OnComplete(() => isShowing = true);
-            notificationLight.color = new Color(0, 0, 0, 0);
-        }
+    //public void OnPointerClick(PointerEventData eventData)
+    //{
+    //    if (isShowing)
+    //    {
+    //        myRect.DOAnchorPosY(-500, 0.5f).OnComplete(() => isShowing = false);
+    //    }
+    //    else
+    //    {
+    //        myRect.DOAnchorPosY(0, 0.5f).OnComplete(() => isShowing = true);
+    //        notificationLight.color = new Color(0, 0, 0, 0);
+    //    }
         
-        //messageManager.OnPhoneShow?.Invoke(isShowing);
-    }
+    //    //messageManager.OnPhoneShow?.Invoke(isShowing);
+    //}
 }
