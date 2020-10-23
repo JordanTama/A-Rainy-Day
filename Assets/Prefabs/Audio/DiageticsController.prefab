@@ -50,7 +50,7 @@ MonoBehaviour:
   _currentAudioClip: {fileID: 0}
   _audioMixer: {fileID: 24100000, guid: 7f3aeec8ec69abd418a1995efeea8e52, type: 2}
   diageticAudioClips:
-  - {fileID: 8300000, guid: 4e2c40e4215015649b253e2b8f01f49e, type: 3}
+  - {fileID: 8300000, guid: 036324534ebe799489d05da6625d7aae, type: 3}
   - {fileID: 0}
   - {fileID: 8300000, guid: 06165deb0078184488d4ab1733085e07, type: 3}
   diageticAudioSources:
