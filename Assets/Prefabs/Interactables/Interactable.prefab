@@ -98,7 +98,7 @@ MonoBehaviour:
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   selectedExponent: 0
-  myAudioClip: {fileID: 8300000, guid: 79ca2c96185847945a04a57c4862e84a, type: 3}
+  myAudioClip: {fileID: 8300000, guid: 8146dcd26935ec34e8bc1295f46e5463, type: 3}
   audioVolume: 1
 --- !u!82 &2562838950952711511
 AudioSource:

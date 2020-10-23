@@ -19,7 +19,7 @@ public class SoundtrackController : AudioController
     public AudioSource[] _chapterAudioSources = new AudioSource[6];
     [SerializeField] private int _levelNum=0;
     [SerializeField] private int defaultLevelNum;
-    [SerializeField] private float musicVolume = 1f;
+    [SerializeField] private float[] musicVolume = new float[3];
     protected override void Awake()
     {
         base.Awake();
@@ -54,7 +54,7 @@ public class SoundtrackController : AudioController
                 audioSource.Play();
             }
 
-            audioSource.volume = musicVolume;
+            audioSource.volume = musicVolume[GetChapterNum()];
 
             if (i >= _levelNum)
             {
@@ -62,7 +62,7 @@ public class SoundtrackController : AudioController
             }
             else
             {
-                audioSource.DOFade(musicVolume, 1f);
+                audioSource.DOFade(musicVolume[GetChapterNum()], 1f);
             }
             
             audioSource.mute = i >= _levelNum;
