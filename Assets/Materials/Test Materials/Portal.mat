@@ -65,8 +65,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DispAmt: 0.05
     - _DstBlend: 0
-    - _Exponent: 2.33
-    - _Exposure: 1
+    - _Exponent: -0.21
+    - _Exposure: 0.593
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -79,12 +79,12 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Step: 0.42
-    - _Threshold: 6.14
+    - _Step: 0.533
+    - _Threshold: 3.28
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Col1: {r: 8.47419, g: 8.47419, b: 8.47419, a: 1}
+    - _Col1: {r: 0.38679248, g: 0.19886972, b: 0.19886972, a: 1}
     - _Col2: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

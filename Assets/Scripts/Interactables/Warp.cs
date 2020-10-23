@@ -104,13 +104,13 @@ public class Warp : InteractableReceiver
     private void SetParametersToState()
     {
         _offMeshLink.activated = isActive;
-        _meshRenderer.enabled = isActive;
+        // _meshRenderer.enabled = isActive;
         _collider.enabled = isActive;
         PlayWarpOnOff(isActive);
         PlayWarpActive();
         // _obstacle.enabled = !isActive;
         if(AiManager) AiManager.UpdateAllAgentsDestination();
-        if (_endMeshRenderer) _endMeshRenderer.enabled = isActive;
+        // if (_endMeshRenderer) _endMeshRenderer.enabled = isActive;
     }
 
     private void PlayWarpOnOff(bool isOn)
