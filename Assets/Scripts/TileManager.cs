@@ -60,6 +60,9 @@ public class TileManager : IGameService
 
         foreach (RaycastHit hit in hits)
         {
+            if (hit.collider.CompareTag("Interactable"))
+                break;
+
             if (hit.collider.CompareTag("Tile") && CurrentTile == null)
             {
                 CurrentTile = hit.collider.transform.parent.gameObject;
