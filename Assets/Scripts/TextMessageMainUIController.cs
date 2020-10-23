@@ -19,6 +19,7 @@ public class TextMessageMainUIController : MonoBehaviour
     private float msgTime;
     private float timer = 0;
     private Dictionary<MessageSender, GameObject> msgMap;
+    private Dictionary<MessageSender, string> initialMap;
     private bool waitingForMessage;
     private bool readyToMessage = false;
 
@@ -31,6 +32,14 @@ public class TextMessageMainUIController : MonoBehaviour
             {MessageSender.JESSICA, receiveMessageUI },
             {MessageSender.DAD, receiveMessageUI },
             {MessageSender.OTHER, receiveMessageUI },
+        };
+
+        initialMap = new Dictionary<MessageSender, string>
+        {
+            {MessageSender.ANNA, "A" },
+            {MessageSender.JESSICA, "J" },
+            {MessageSender.DAD, "D" },
+            {MessageSender.OTHER, "?" },
         };
 
         ServiceLocator.Current.Get<GameLoopManager>().OnLevelReady += OnLevelReady;
@@ -80,7 +89,7 @@ public class TextMessageMainUIController : MonoBehaviour
     private void SpawnMessage(TextMessage textMessage)
     {
         var msg = Instantiate(msgMap[textMessage.Sender], messageParent.transform).GetComponent<TextMessageUIController>();
-        msg.Init(this, msgTime, textMessage.MessageText);
+        msg.Init(this, msgTime, textMessage.MessageText, initialMap[textMessage.Sender]);
     }
 
     public void SentMessage()

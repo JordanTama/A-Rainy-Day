@@ -58,11 +58,15 @@ public class LanternSpawner : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
+
     private void OnDrawGizmos()
     {
         Handles.matrix = transform.localToWorldMatrix;
         Handles.DrawWireCube(Vector3.zero, Vector3.one);
     }
+
+#endif
 
     [ContextMenu("Play")]
     public void Play() => _paused = false;

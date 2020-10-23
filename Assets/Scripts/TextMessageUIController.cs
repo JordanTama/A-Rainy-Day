@@ -10,6 +10,7 @@ public class TextMessageUIController : MonoBehaviour
 {
     [SerializeField] private RectTransform mainBody;
     [SerializeField] private TextMeshProUGUI messageText;
+    [SerializeField] private TextMeshProUGUI initialText;
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private CanvasGroup cGroup;
     [SerializeField] private float initHeight = 50.0f;
@@ -31,9 +32,10 @@ public class TextMessageUIController : MonoBehaviour
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, transformHeight);
     }
 
-    public void Init(TextMessageMainUIController uIController, float timeToWait, string text)
+    public void Init(TextMessageMainUIController uIController, float timeToWait, string text, string initial)
     {
         messageText.text = text;
+        initialText.text = initial;
         controller = uIController;
         timeToExpand = Mathf.Max(minumumTimeToShow, timeToWait);
         textBuffer = text;
