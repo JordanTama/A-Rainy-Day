@@ -114,6 +114,7 @@ public class SoundtrackController : AudioController
     }
     
     private void AssignClips()
+
     {
         for (int i = 0; i < _chapterAudioClips[GetChapterNum()].audioClips.Length;i++)
         {
