@@ -12,6 +12,7 @@ public class TileManager : IGameService
     public Action OnTileMoving;
     public Action OnRebakeMesh;
     public Action OnUpdateMesh;
+    public Action OnCantMoveTile;
 
     private CameraManager cameraManager;
     private InputManager inputManager;
@@ -65,6 +66,11 @@ public class TileManager : IGameService
                 OnTileSelect?.Invoke(CurrentTile);
             }
         }
+    }
+
+    public void CantMoveTile()
+    {
+        OnCantMoveTile?.Invoke();
     }
 
     public void TileMoving()

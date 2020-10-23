@@ -8,10 +8,11 @@ using TMPro;
 using System.Linq;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem.UI;
 
 public class MainMenuUIController : MonoBehaviour
 {
-
+    [SerializeField] private CanvasGroup cGroup;
     [SerializeField] private float _tweenSpeed;
     [SerializeField] private RectTransform _mainMenu;
     [SerializeField] private RectTransform _chapterSelect;
@@ -38,18 +39,35 @@ public class MainMenuUIController : MonoBehaviour
 
     [Header("Jordan, why must you do this to me?")]
     [SerializeField] private AIManager aiManager;
+    [SerializeField] private AudioClip dingClip;
 
     private void OnEnable()
     {
-        ServiceLocator.Current.Get<InputManager>().ToggleInput(false);
-        aiManager?.Pause();
+
     }
 
     private void OnDisable()
     {
+
+    }
+    
+    public void HidePauseMenu()
+    {
+        cGroup.interactable = false;
+        cGroup.alpha = 0;
+        cGroup.blocksRaycasts = false;
         ServiceLocator.Current.Get<InputManager>().ToggleInput(true);
-        if(aiManager?.Speed > 0 || ServiceLocator.Current.Get<GameLoopManager>().gameState == GameLoopManager.GameState.Execution)
+        if (aiManager?.Speed > 0 || ServiceLocator.Current.Get<GameLoopManager>().gameState == GameLoopManager.GameState.Execution)
             aiManager?.Play();
+    }
+
+    public void ShowPauseMenu()
+    {
+        cGroup.interactable = true;
+        cGroup.alpha = 1;
+        cGroup.blocksRaycasts = true;
+        ServiceLocator.Current.Get<InputManager>().ToggleInput(false);
+        aiManager?.Pause();
     }
 
     private void Start()
@@ -60,20 +78,21 @@ public class MainMenuUIController : MonoBehaviour
             _chapterSelect.anchoredPosition = new Vector2(1920, 0);
 
         _optionsMenu.anchoredPosition = new Vector2(-1920, 0);
+
         if (sm.Data.UpToLevel == 0)
         {
             _continueButton.SetActive(false);
         }
 
-        if (!sm.Data.Chapter2Unlocked && _chapter2Button)
-        {
-            _chapter2Button.interactable = false;
-        }
+        //if (!sm.Data.Chapter2Unlocked && _chapter2Button)
+        //{
+        //    _chapter2Button.interactable = false;
+        //}
 
-        if (!sm.Data.Chapter3Unlocked && _chapter3Button)
-        {
-            _chapter3Button.interactable = false;
-        }
+        //if (!sm.Data.Chapter3Unlocked && _chapter3Button)
+        //{
+        //    _chapter3Button.interactable = false;
+        //}
 
         _masterVolume.value = sm.Data.MasterVolume;
         _ambientVolume.value = sm.Data.AmbientVolume;
@@ -98,7 +117,10 @@ public class MainMenuUIController : MonoBehaviour
 
     public void LoadLevel(string LevelName)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(LevelName);
+        FindObjectOfType<InputSystemUIInputModule>().enabled = false;
+        cGroup.DOFade(0, dingClip.length).OnComplete(() =>
+            UnityEngine.SceneManagement.SceneManager.LoadScene(LevelName)
+        );
     }
 
     public void FromMainToChapterSelect()
@@ -129,7 +151,12 @@ public class MainMenuUIController : MonoBehaviour
 
     public void ContinuePlay()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(ServiceLocator.Current.Get<SettingsManager>().Data.UpToLevel);
+        FindObjectOfType<InputSystemUIInputModule>().enabled = false;
+        cGroup.DOFade(0, dingClip.length).OnComplete(() =>
+        UnityEngine.SceneManagement.SceneManager.LoadScene(ServiceLocator.Current.Get<SettingsManager>().Data.UpToLevel)
+        );  
+
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(ServiceLocator.Current.Get<SettingsManager>().Data.UpToLevel);
     }
 
     public void RevertOptions()

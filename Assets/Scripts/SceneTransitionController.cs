@@ -160,11 +160,11 @@ public class SceneTransitionController : MonoBehaviour
     private void RaiseOutOfFog()
     {
         _inputManager.ToggleInput(false);
-        PlayAudio(showAudioClip);
         tilesTransform.DOMoveY(0f, 3f).OnComplete(() =>
         {
             _inputManager.ToggleInput(true);
             _gameLoopManager.OnLevelReady?.Invoke();
+            PlayAudio(showAudioClip);
         }).SetEase(Ease.OutCubic);
     }
 

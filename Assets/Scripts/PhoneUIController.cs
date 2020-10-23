@@ -28,7 +28,10 @@ public class PhoneUIController : MonoBehaviour
         {
             {MessageSender.ANNA, sendMessageUI },
             {MessageSender.JESSICA, receiveMessageUI },
+            {MessageSender.DAD, receiveMessageUI },
+            {MessageSender.OTHER, receiveMessageUI },
         };
+
         myRect = GetComponent<RectTransform>();
         messageManager = ServiceLocator.Current.Get<TextMessageManager>();
         //messageManager.OnNewTextMessage += ShowNewMessage;

@@ -5,21 +5,55 @@ using UnityEngine;
 
 public class TileMovementAudioController : AudioController
 {
+    [SerializeField] private AudioClip[] cantMoveTileClips;
+    [SerializeField] private float timeBetweenSounds = 1f;
+
+    private bool canPlaySound = true;
     private TileManager _tileManager;
     public float tileMovementAudioVolume = 0.5f;
     public float pitchShiftPercentage;
     private Tween _volumeTween;
+
     
     protected override void Awake()
     {
         base.Awake();
         _tileManager = ServiceLocator.Current.Get<TileManager>();
-        
+
+        _tileManager.OnCantMoveTile += OnCantMoveTile;
         _audioSource = GetComponent<AudioSource>();
         if (_audioSource && _currentAudioClip)
         {
             _audioSource.volume = tileMovementAudioVolume;
             _audioSource.clip = _currentAudioClip;
+        }
+    }
+
+    private void Update()
+    {
+        timeBetweenSounds -= Time.deltaTime;
+        if (timeBetweenSounds <= 0)
+        {
+            timeBetweenSounds = 0;
+            if (!canPlaySound)
+            {
+                timeBetweenSounds = 1f;
+                canPlaySound = true;
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        _tileManager.OnCantMoveTile -= OnCantMoveTile;
+    }
+
+    private void OnCantMoveTile()
+    {
+        if (canPlaySound)
+        {
+            _audioSource.PlayOneShot(cantMoveTileClips[Random.Range(0, cantMoveTileClips.Length)]);
+            canPlaySound = false;
         }
     }
 

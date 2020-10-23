@@ -103,11 +103,14 @@ public class TileBaseController : MonoBehaviour
             ShaderLocalTime += Time.deltaTime * 3;
             Shader.SetGlobalFloat("LocalTime", ShaderLocalTime);
 
-            if (_isFixed)
-                return;
 
             if (Vector3.Distance(startMousePos, cameraManager.worldSpaceMousePos) > (_tileSize * TILE_DIST_CHECK) && !tweening)
             {
+                if (_isFixed)
+                {
+                    tileManager.CantMoveTile();
+                    return;
+                }
                 var dir = (cameraManager.worldSpaceMousePos - startMousePos).normalized;
                 //newPos += (dir.normalized);
                 if (CheckDot(dir))
@@ -137,7 +140,10 @@ public class TileBaseController : MonoBehaviour
         foreach (TileController t in _allTiles)
         {
             if (!t.CheckAdjacent(dir))
+            {
+                tileManager.CantMoveTile();
                 return false;
+            }
         }
         return true;
     }

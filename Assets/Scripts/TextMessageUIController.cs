@@ -11,6 +11,7 @@ public class TextMessageUIController : MonoBehaviour
     [SerializeField] private RectTransform mainBody;
     [SerializeField] private TextMeshProUGUI messageText;
     [SerializeField] private RectTransform rectTransform;
+    [SerializeField] private CanvasGroup cGroup;
     [SerializeField] private float initHeight = 50.0f;
     [SerializeField] private float tweenSpeed = 1.0f;
     [SerializeField] private float minumumTimeToShow = 1.0f;

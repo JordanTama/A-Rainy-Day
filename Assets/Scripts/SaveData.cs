@@ -22,6 +22,6 @@ public class SaveData
     public float SoundEffectsVolume = 1;
     public float MusicVolume = 1;
 
-    public bool Chapter2Unlocked = false;
-    public bool Chapter3Unlocked = false;
+    public bool Chapter2Unlocked = true;
+    public bool Chapter3Unlocked = true;
 }
