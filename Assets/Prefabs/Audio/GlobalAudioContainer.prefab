@@ -79,8 +79,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 5439482410192328250}
-  notFixedClip: {fileID: 8300000, guid: 5bf8c17b91690ef439eebd4b97cc732e, type: 3}
-  fixedClip: {fileID: 8300000, guid: 216e6ce2ada3a69479e2637380bfb580, type: 3}
+  notFixedClip:
+  - {fileID: 8300000, guid: f9f114d548b0bd94f94452e1f9bc527a, type: 3}
+  - {fileID: 8300000, guid: 5ed883d59213bce42b849629e4cdc63d, type: 3}
+  - {fileID: 8300000, guid: d4ae1d94b23adc44382e0cd93b186fe6, type: 3}
+  - {fileID: 8300000, guid: 9bd709e787b6d5642b703e48bbd7bab3, type: 3}
+  fixedClip:
+  - {fileID: 8300000, guid: b4677d25e6f70e44993884951d97db2b, type: 3}
+  - {fileID: 8300000, guid: 189ff4a9564bbf941ad9a50acec9e086, type: 3}
 --- !u!82 &5439482410192328250
 AudioSource:
   m_ObjectHideFlags: 0
