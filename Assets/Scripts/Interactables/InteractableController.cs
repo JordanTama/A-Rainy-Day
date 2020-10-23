@@ -21,7 +21,7 @@ public class InteractableController : MonoBehaviour
     protected int nextState;
     [SerializeField] protected int defaultState;
     [SerializeField] protected Texture[] textures;
-    private MeshRenderer _renderer;
+    [SerializeField] private MeshRenderer _renderer;
     [SerializeField] private Color defaultColor;
     [SerializeField] private Color selectedColor;
     private float defaultExponent;
@@ -41,11 +41,10 @@ public class InteractableController : MonoBehaviour
             _myAudioSource.volume = audioVolume;
             _myAudioSource.clip = myAudioClip;
         }
-
-        _renderer = GetComponent<MeshRenderer>();
+        
         propertyBlock = new MaterialPropertyBlock();
-        defaultColor = _renderer.material.GetColor("_Color");
-        if(_renderer.material.HasProperty("_Exponent")) defaultExponent = _renderer.material.GetFloat("_Exponent");
+        // defaultColor = _renderer.material.GetColor("_Color");
+        // if(_renderer.material.HasProperty("_Exponent")) defaultExponent = _renderer.material.GetFloat("_Exponent");
 
     }
 
@@ -78,7 +77,7 @@ public class InteractableController : MonoBehaviour
     {
         // ChangeState(defaultState);
         currentState = defaultState;
-        SetMaterial();
+        ResetMaterial();
         SetNextState();
         InteractableDeselect();
     }
@@ -86,25 +85,24 @@ public class InteractableController : MonoBehaviour
     protected void ChangeState(int newState)
     {
         currentState = newState;
-        SetMaterial();
+        ToggleMaterial();
         SetNextState();
         OnInteractableStateChange?.Invoke();
     }
 
-    private void SetMaterial()
+    private void ToggleMaterial()
     {
-        Texture texture = null;
-        if (currentState < textures.Length)
-        {
-             texture = textures[currentState];
-        }
-
         if (_renderer)
         {
-            if(texture) propertyBlock.SetTexture("_MainTex",texture);
-            propertyBlock.SetColor("_Color",selectedColor);
-            if(_renderer.material.HasProperty("_Exponent")) propertyBlock.SetFloat("_Exponent",selectedExponent);
-            _renderer.SetPropertyBlock(propertyBlock);
+            _renderer.material.SetFloat("_LineLerp", 1.0f - _renderer.material.GetFloat("_LineLerp"));
+        }
+    }
+
+    private void ResetMaterial()
+    {
+        if (_renderer)
+        {
+            _renderer.material.SetFloat("_LineLerp", 0.0f);
         }
     }
 
