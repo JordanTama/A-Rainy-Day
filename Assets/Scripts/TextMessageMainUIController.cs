@@ -27,6 +27,8 @@ public class TextMessageMainUIController : MonoBehaviour
         {
             {MessageSender.ANNA, sendMessageUI },
             {MessageSender.JESSICA, receiveMessageUI },
+            {MessageSender.DAD, receiveMessageUI },
+            {MessageSender.OTHER, receiveMessageUI },
         };
 
         ServiceLocator.Current.Get<GameLoopManager>().OnLevelReady += OnLevelReady;
