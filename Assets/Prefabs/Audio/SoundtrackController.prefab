@@ -53,17 +53,34 @@ MonoBehaviour:
   _currentAudioClip: {fileID: 0}
   _audioMixer: {fileID: 24100000, guid: 5217e1efe1c1f624da852819d946d88a, type: 2}
   _chapterAudioClips:
-  - {fileID: 8300000, guid: 231275695d0e8f641992a16230b4db4d, type: 3}
-  - {fileID: 8300000, guid: 72219de85b70fea4f9b694394041f954, type: 3}
-  - {fileID: 8300000, guid: db7eca6bece18c64ca33d0d27154d550, type: 3}
-  - {fileID: 8300000, guid: 79b1926ced73c18429af899163e692f4, type: 3}
-  - {fileID: 8300000, guid: 7a8d76e27622b5344861eb02f25a9830, type: 3}
+  - audioClips:
+    - {fileID: 8300000, guid: 36a39f6c7b94b2346aa17ba29bcc138d, type: 3}
+    - {fileID: 8300000, guid: a9c09beb9979db74a970f108f1a3c2a6, type: 3}
+    - {fileID: 8300000, guid: ea5aee13c6abe11409f725adfb369001, type: 3}
+    - {fileID: 8300000, guid: 818f66627aed85b44ba43e2d51bd8b01, type: 3}
+    - {fileID: 8300000, guid: 6773c633d3a75bb4ca87e5941ea419bc, type: 3}
+    - {fileID: 8300000, guid: efd1b3f1ca977d5428ed1e504f430945, type: 3}
+  - audioClips:
+    - {fileID: 8300000, guid: 2ac2ec647e843c84fb8358bfe09e79ed, type: 3}
+    - {fileID: 8300000, guid: f94645f448a0ba9418da96ed88b2bd33, type: 3}
+    - {fileID: 8300000, guid: 0c7067e7fb3fee64495a3e1d09f3538e, type: 3}
+    - {fileID: 8300000, guid: 946f7f80c7ee4bd429da08d1f34bb457, type: 3}
+    - {fileID: 8300000, guid: 92f7f6995e9bd104a975b480acf8f267, type: 3}
+    - {fileID: 8300000, guid: 99c76ad12842287429f83052068cec6b, type: 3}
+  - audioClips:
+    - {fileID: 8300000, guid: 43c6ffc0741fda34485f0f892abf853a, type: 3}
+    - {fileID: 8300000, guid: ff4d2642a0caa154e9cf5e733e41ad67, type: 3}
+    - {fileID: 8300000, guid: 74832adc9d3bea544bb200cb90f4c042, type: 3}
+    - {fileID: 8300000, guid: fadbf500e2448de49a711db31a0a1d36, type: 3}
+    - {fileID: 8300000, guid: 5ef2879982d9fb84a96c5afa6f311803, type: 3}
+    - {fileID: 8300000, guid: afd3d01f2ba092e4eadf7a0ee8761863, type: 3}
   _chapterAudioSources:
   - {fileID: 6246733801208640264}
   - {fileID: 6246733801208640269}
   - {fileID: 6246733801208640268}
   - {fileID: 6246733801208640271}
   - {fileID: 6246733801208640270}
+  - {fileID: 6246733801208640267}
   _levelNum: 0
   defaultLevelNum: 0
   musicVolume: 1
