@@ -15,7 +15,7 @@ public class ServiceLocator
         // Register(PlayerManager);
         Register(new InputManager());
         Register(new GameLoopManager());
-        Register(new SettingsManager());
+        Register(new SettingsManager(Get<GameLoopManager>()));
         Register(new TextMessageManager());
         Register(new AnalyticsManager());
         Register(new ScoreManager(Get<GameLoopManager>()));

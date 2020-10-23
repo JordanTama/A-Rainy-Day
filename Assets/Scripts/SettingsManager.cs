@@ -16,10 +16,10 @@ public class SettingsManager : IGameService
 
     private AudioManager _audioManager;
 
-    public SettingsManager()
+    public SettingsManager(GameLoopManager loopManager)
     {
         Data = LoadSettings();
-        SceneManager.activeSceneChanged += OnLevelComplete;
+        loopManager.OnLevelReady += OnLevelComplete;
 
         new GameObject("Audio Setter", typeof(AudioSetterController));
 
@@ -35,22 +35,12 @@ public class SettingsManager : IGameService
             Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, Data.FullScreen, Screen.currentResolution.refreshRate);
     }
 
-    private void OnLevelComplete(Scene arg0, Scene arg1)
+    private void OnLevelComplete()
     {
-        if (arg1.buildIndex > Data.UpToLevel && !BuildIndexExceptions.Contains(arg1.buildIndex))
+        int sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        if (sceneBuildIndex > Data.UpToLevel && !BuildIndexExceptions.Contains(SceneManager.GetActiveScene().buildIndex))
         {
-            Data.UpToLevel = arg1.buildIndex;
-
-            if (arg1.name.EndsWith("2-1"))
-            {
-                Data.Chapter2Unlocked = true;
-            }
-
-            if (arg1.name.EndsWith("3-1"))
-            {
-                Data.Chapter3Unlocked = true;
-            }
-
+            Data.UpToLevel = sceneBuildIndex;
             SaveSettings();
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ public class TextMessageMainUIController : MonoBehaviour
     [SerializeField] private GameObject receiveMessageUI;
     [SerializeField] private GameObject sendMessageUI;
     [SerializeField] private GameObject messageParent;
+    [SerializeField] private CanvasGroup cGroup;
     [SerializeField] private float msgTimeMultiplier = 0.1f;
 
     private TextMessageManager msgMan;
@@ -53,8 +55,13 @@ public class TextMessageMainUIController : MonoBehaviour
         if (!readyToMessage)
             return;
 
-        if (currentMsg >= messageBuffer.Length-1)
+        if (currentMsg >= messageBuffer.Length)
+        {
+            float x = 0;
+            DOTween.To(() => x, y => x = y, 0, 3).OnComplete(() => HideMessages());
+            readyToMessage = false;
             return;
+        }
 
         timer += Time.deltaTime;
 
@@ -63,6 +70,11 @@ public class TextMessageMainUIController : MonoBehaviour
             SpawnMessage(messageBuffer[currentMsg]);
             waitingForMessage = true;
         }
+    }
+
+    private void HideMessages()
+    {
+        cGroup.DOFade(0, 3f);
     }
 
     private void SpawnMessage(TextMessage textMessage)

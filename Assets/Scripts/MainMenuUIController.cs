@@ -60,20 +60,21 @@ public class MainMenuUIController : MonoBehaviour
             _chapterSelect.anchoredPosition = new Vector2(1920, 0);
 
         _optionsMenu.anchoredPosition = new Vector2(-1920, 0);
+
         if (sm.Data.UpToLevel == 0)
         {
             _continueButton.SetActive(false);
         }
 
-        if (!sm.Data.Chapter2Unlocked && _chapter2Button)
-        {
-            _chapter2Button.interactable = false;
-        }
+        //if (!sm.Data.Chapter2Unlocked && _chapter2Button)
+        //{
+        //    _chapter2Button.interactable = false;
+        //}
 
-        if (!sm.Data.Chapter3Unlocked && _chapter3Button)
-        {
-            _chapter3Button.interactable = false;
-        }
+        //if (!sm.Data.Chapter3Unlocked && _chapter3Button)
+        //{
+        //    _chapter3Button.interactable = false;
+        //}
 
         _masterVolume.value = sm.Data.MasterVolume;
         _ambientVolume.value = sm.Data.AmbientVolume;
