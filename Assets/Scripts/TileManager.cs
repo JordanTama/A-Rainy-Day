@@ -12,6 +12,7 @@ public class TileManager : IGameService
     public Action OnTileMoving;
     public Action OnRebakeMesh;
     public Action OnUpdateMesh;
+    public Action OnCantMoveTile;
 
     private CameraManager cameraManager;
     private InputManager inputManager;
@@ -59,12 +60,20 @@ public class TileManager : IGameService
 
         foreach (RaycastHit hit in hits)
         {
+            if (hit.collider.CompareTag("Interactable"))
+                break;
+
             if (hit.collider.CompareTag("Tile") && CurrentTile == null)
             {
                 CurrentTile = hit.collider.transform.parent.gameObject;
                 OnTileSelect?.Invoke(CurrentTile);
             }
         }
+    }
+
+    public void CantMoveTile()
+    {
+        OnCantMoveTile?.Invoke();
     }
 
     public void TileMoving()

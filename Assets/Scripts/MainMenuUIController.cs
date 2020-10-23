@@ -8,10 +8,11 @@ using TMPro;
 using System.Linq;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem.UI;
 
 public class MainMenuUIController : MonoBehaviour
 {
-
+    [SerializeField] private CanvasGroup cGroup;
     [SerializeField] private float _tweenSpeed;
     [SerializeField] private RectTransform _mainMenu;
     [SerializeField] private RectTransform _chapterSelect;
@@ -38,18 +39,35 @@ public class MainMenuUIController : MonoBehaviour
 
     [Header("Jordan, why must you do this to me?")]
     [SerializeField] private AIManager aiManager;
+    [SerializeField] private AudioClip dingClip;
 
     private void OnEnable()
     {
-        ServiceLocator.Current.Get<InputManager>().ToggleInput(false);
-        aiManager?.Pause();
+
     }
 
     private void OnDisable()
     {
+
+    }
+    
+    public void HidePauseMenu()
+    {
+        cGroup.interactable = false;
+        cGroup.alpha = 0;
+        cGroup.blocksRaycasts = false;
         ServiceLocator.Current.Get<InputManager>().ToggleInput(true);
-        if(aiManager?.Speed > 0 || ServiceLocator.Current.Get<GameLoopManager>().gameState == GameLoopManager.GameState.Execution)
+        if (aiManager?.Speed > 0 || ServiceLocator.Current.Get<GameLoopManager>().gameState == GameLoopManager.GameState.Execution)
             aiManager?.Play();
+    }
+
+    public void ShowPauseMenu()
+    {
+        cGroup.interactable = true;
+        cGroup.alpha = 1;
+        cGroup.blocksRaycasts = true;
+        ServiceLocator.Current.Get<InputManager>().ToggleInput(false);
+        aiManager?.Pause();
     }
 
     private void Start()
@@ -99,7 +117,10 @@ public class MainMenuUIController : MonoBehaviour
 
     public void LoadLevel(string LevelName)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(LevelName);
+        FindObjectOfType<InputSystemUIInputModule>().enabled = false;
+        cGroup.DOFade(0, dingClip.length).OnComplete(() =>
+            UnityEngine.SceneManagement.SceneManager.LoadScene(LevelName)
+        );
     }
 
     public void FromMainToChapterSelect()
@@ -130,7 +151,12 @@ public class MainMenuUIController : MonoBehaviour
 
     public void ContinuePlay()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(ServiceLocator.Current.Get<SettingsManager>().Data.UpToLevel);
+        FindObjectOfType<InputSystemUIInputModule>().enabled = false;
+        cGroup.DOFade(0, dingClip.length).OnComplete(() =>
+        UnityEngine.SceneManagement.SceneManager.LoadScene(ServiceLocator.Current.Get<SettingsManager>().Data.UpToLevel)
+        );  
+
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(ServiceLocator.Current.Get<SettingsManager>().Data.UpToLevel);
     }
 
     public void RevertOptions()
