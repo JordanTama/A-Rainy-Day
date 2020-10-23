@@ -496,9 +496,9 @@ MonoBehaviour:
   goalOpenAudioSource: {fileID: 9201829469418647919}
   goalEnteredAudioSource: {fileID: 863792961374478234}
   goalText: {fileID: 0}
-  goalEnteredClip: {fileID: 8300000, guid: a6b52e0509fb6c949b827d81311bfa89, type: 3}
-  goalOpenClip: {fileID: 8300000, guid: 6f4ad587be8caf24cb7a8f885d166537, type: 3}
-  playerEnterGoalCip: {fileID: 8300000, guid: 6f4ad587be8caf24cb7a8f885d166537, type: 3}
+  goalEnteredClip: {fileID: 0}
+  goalOpenClip: {fileID: 8300000, guid: 6eb6599e4244ce84c8493ca935f0c029, type: 3}
+  playerEnterGoalCip: {fileID: 0}
   gate: {fileID: 8775116005846879307}
 --- !u!82 &9201829469418647919
 AudioSource:

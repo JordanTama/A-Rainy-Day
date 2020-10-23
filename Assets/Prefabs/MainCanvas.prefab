@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuUIButtonVolume: 1
-  audioClip: {fileID: 8300000, guid: 8f25ee2c934a26f4facbd1a8c2eac0bf, type: 3}
+  audioClip: {fileID: 8300000, guid: f9f114d548b0bd94f94452e1f9bc527a, type: 3}
 --- !u!82 &2105752823640876062
 AudioSource:
   m_ObjectHideFlags: 0

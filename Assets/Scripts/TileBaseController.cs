@@ -9,10 +9,11 @@ public class TileBaseController : MonoBehaviour
 {
     const float TILE_MOVE_SPEED = 0.5f;
     const float TILE_DIST_CHECK = 0.1f;
+    const float TILE_DOT_CHECK = 0.8f;
 
     public static Action<bool> OnTileClick;
 
-    [SerializeField] private float _dotCheck = 0.9f;
+    [SerializeField] float  _dotCheck;
     [SerializeField] private bool _isFixed = false;
 
     private TileController[] _allTiles;
@@ -35,6 +36,8 @@ public class TileBaseController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _dotCheck = TILE_DOT_CHECK;
+        
         _allTiles = GetComponentsInChildren<TileController>();
 
         tileManager = ServiceLocator.Current.Get<TileManager>();
