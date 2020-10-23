@@ -11,8 +11,12 @@
         _HighlightMul ("Highlight Multiplier", Range(0, 1)) = 1
         _HighlightColor ("Highlight Color", Color) = (0, 0, 0, 0)
         
-        [HDR] _LineCol ("Outline Color", Color) = (1, 1, 1, 1)
-        _Weight ("Outline Weight", Float) = .1
+        [HDR] _LineCol1 ("Outline Color 1", Color) = (1, 1, 1, 1)
+        [HDR] _LineCol2 ("Outline Color 2", Color) = (1, 1, 1, 1)
+        _LineLerp ("Line Color Interpolation", Range(0, 1)) = 1
+        _Weight ("Outline Weight", Float) = 1.2
+        _Speed ("Pulse Speed", Float) = 1
+        _Pulse ("Pulse Variance", Float) = .1
     }
     SubShader
     {
@@ -94,18 +98,22 @@
 
             #include "UnityCG.cginc"
 
-            float4 _LineCol;
+            float4 _LineCol1;
+            float4 _LineCol2;
             float _Weight;
+            float _Pulse;
+            float _Speed;
+            float _LineLerp;
             
             float4 vert(appdata_full v) : SV_POSITION
             {
-                v.vertex.xyz *= _Weight;// += (v.color * 2 - 1) * _Weight;
+                v.vertex.xyz *= _Weight + (sin(_Time[1] * _Speed) + 1) * 0.5 * _Pulse; // += (v.color * 2 - 1) * _Weight;
                 return UnityObjectToClipPos(v.vertex);
             }
 
             float4 frag() : SV_Target
             {
-                return _LineCol;
+                return lerp(_LineCol1, _LineCol2, _LineLerp);
             }
             
             ENDCG

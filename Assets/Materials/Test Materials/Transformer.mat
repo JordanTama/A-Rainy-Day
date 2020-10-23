@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 06c18c69026952443b1d819abb6c5470, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -63,21 +63,26 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HighlightMul: 1
+    - _HighlightMul: 0.5
+    - _LineLerp: 0
     - _Metallic: 0
     - _Mode: 0
     - _Mute: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Pulse: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Speed: 3
     - _SrcBlend: 1
-    - _Tint: 0.723
+    - _Tint: 0.2
     - _UVSec: 0
     - _Weight: 1.1
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.6037736, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HighlightColor: {r: 0, g: 0, b: 0, a: 0}
-    - _LineCol: {r: 0, g: 1.9554415, b: 4.594794, a: 1}
+    - _HighlightColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LineCol: {r: 0, g: 1.8007404, b: 5.278032, a: 1}
+    - _LineCol1: {r: 0, g: 0.92697936, b: 9.849155, a: 1}
+    - _LineCol2: {r: 17.148375, g: 2.0222137, b: 2.0222137, a: 1}
