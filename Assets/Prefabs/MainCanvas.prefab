@@ -1380,8 +1380,9 @@ GameObject:
   - component: {fileID: 101132403860074670}
   - component: {fileID: 8139171231158876018}
   - component: {fileID: 3804065738816167573}
-  - component: {fileID: 909154246421848041}
   - component: {fileID: 1181501459367039993}
+  - component: {fileID: 3681429872114806071}
+  - component: {fileID: 8917912358647683255}
   m_Layer: 5
   m_Name: TextMessageCanvas
   m_TagString: Untagged
@@ -1469,24 +1470,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &909154246421848041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3173300445311651550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c71278439fe201409c57c59a9435756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  receiveMessageUI: {fileID: 5860616417502393229, guid: 595a6ef5d79af10429fcd35624d60452,
-    type: 3}
-  sendMessageUI: {fileID: 3186429310609556738, guid: f7a1ca40cc948a8488546fb9b4321af2,
-    type: 3}
-  messageParent: {fileID: 9157535653634292158}
-  msgTimeMultiplier: 0.015
 --- !u!114 &1181501459367039993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1503,6 +1486,37 @@ MonoBehaviour:
   hideXPos: 0
   moveAmount: 500
   lerpTime: 2
+--- !u!114 &3681429872114806071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3173300445311651550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8424350c4c0416947962c30957f42832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  receiveMessageUI: {fileID: 5860616417502393229, guid: 595a6ef5d79af10429fcd35624d60452,
+    type: 3}
+  sendMessageUI: {fileID: 3186429310609556738, guid: f7a1ca40cc948a8488546fb9b4321af2,
+    type: 3}
+  messageParent: {fileID: 9157535653634292158}
+  cGroup: {fileID: 8917912358647683255}
+  msgTimeMultiplier: 0.015
+--- !u!225 &8917912358647683255
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3173300445311651550}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &3178132815473047222
 GameObject:
   m_ObjectHideFlags: 0

@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 7908849795744368339}
   - component: {fileID: 7108889064128291877}
   - component: {fileID: 857624432287187903}
+  - component: {fileID: 8919607268848665257}
   m_Layer: 5
   m_Name: Send Message UI Panel
   m_TagString: Untagged
@@ -317,8 +318,22 @@ MonoBehaviour:
   mainBody: {fileID: 4614686804847474866}
   messageText: {fileID: 9220678073131424876}
   rectTransform: {fileID: 3263378832300899541}
+  cGroup: {fileID: 0}
   initHeight: 50
   tweenSpeed: 0.25
+  minumumTimeToShow: 1
+--- !u!225 &8919607268848665257
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3186429310609556738}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &5222474514945253625
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,8 +400,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0175f7b5f751150479266e24a48b7dc6, type: 2}
+  m_sharedMaterial: {fileID: -2802267288075088046, guid: 0175f7b5f751150479266e24a48b7dc6,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
