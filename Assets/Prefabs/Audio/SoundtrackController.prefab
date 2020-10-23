@@ -83,7 +83,10 @@ MonoBehaviour:
   - {fileID: 6246733801208640267}
   _levelNum: 0
   defaultLevelNum: 0
-  musicVolume: 1
+  musicVolume:
+  - 1
+  - 1
+  - 1
 --- !u!82 &6246733801208640264
 AudioSource:
   m_ObjectHideFlags: 0
