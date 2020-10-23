@@ -33,8 +33,8 @@ public class TileController : MonoBehaviour
         tileManager.OnTileSelect += TileSelect;
         tileManager.OnTileDeselect += TileDeselect;
 
-        _gameLoopManager.OnRestart += ResetPosition;
-        _gameLoopManager.OnLevelReady += SetStartPosition;
+        // _gameLoopManager.OnRestart += ResetPosition;
+        // _gameLoopManager.OnLevelReady += SetStartPosition;
         // SetStartPosition();
         // ResetPosition();
     }
@@ -123,7 +123,7 @@ public class TileController : MonoBehaviour
     {
         tileManager.OnTileSelect -= TileSelect;   
         tileManager.OnTileDeselect -= TileDeselect;
-        _gameLoopManager.OnRestart -= ResetPosition;
-        _gameLoopManager.OnLevelReady -= SetStartPosition;
+        // _gameLoopManager.OnRestart -= ResetPosition;
+        // _gameLoopManager.OnLevelReady -= SetStartPosition;
     }
 }
