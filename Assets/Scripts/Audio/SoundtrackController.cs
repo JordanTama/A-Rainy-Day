@@ -6,10 +6,16 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public class ChapterAudioContainer
+{
+    public AudioClip[] audioClips;
+}
 
 public class SoundtrackController : AudioController
 {
-    [SerializeField] private AudioClip[] _chapterAudioClips = new AudioClip[6];
+
+    [SerializeField] private ChapterAudioContainer[] _chapterAudioClips = new ChapterAudioContainer[3];
     public AudioSource[] _chapterAudioSources = new AudioSource[6];
     [SerializeField] private int _levelNum=0;
     [SerializeField] private int defaultLevelNum;
@@ -103,21 +109,26 @@ public class SoundtrackController : AudioController
 
     private void GetLevelNum()
     {
-        _levelNum =  Convert.ToInt32(gameObject.scene.name.Split('-').Last());
+        _levelNum =  int.Parse(gameObject.scene.name.Split('-').Last());
         defaultLevelNum = _levelNum;
     }
     
     private void AssignClips()
     {
-        for (int i = 0; i < _chapterAudioClips.Length;i++)
+        for (int i = 0; i < _chapterAudioClips[GetChapterNum()].audioClips.Length;i++)
         {
-            AudioClip AC = _chapterAudioClips[i];
+            AudioClip AC = _chapterAudioClips[GetChapterNum()].audioClips[i];
             AudioSource AS = _chapterAudioSources[i];
             if (AC && AS)
             {
                 AS.clip = AC;
             }
         }
+    }
+
+    int GetChapterNum()
+    {
+        return int.Parse(gameObject.scene.name.Split('-').First().Last().ToString()) - 1;
     }
 
     protected override void Register()
