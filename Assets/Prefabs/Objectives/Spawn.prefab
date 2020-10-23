@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 11400000, guid: 0dbc6708021360a468bf9eb1248d6969, type: 2}
   isDestination: 0
-  spawnPrefab: {fileID: 2169345395443031905, guid: 39f9429946445e542ba59053716420ff,
+  spawnPrefab: {fileID: 2169345395443031905, guid: 4a4fb28b589d3ae45bfac13f6274d205,
     type: 3}
   maxSpawned: 100
   spawnTick: 0.5
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 11400000, guid: 0dbc6708021360a468bf9eb1248d6969, type: 2}
   isDestination: 0
-  spawnPrefab: {fileID: 2169345395443031905, guid: 433da30195162664a8f308567ee17276,
+  spawnPrefab: {fileID: 2169345395443031905, guid: 87783a5e9515d4a42a901030b24346a0,
     type: 3}
   maxSpawned: 1
   spawnTick: 5

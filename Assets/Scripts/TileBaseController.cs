@@ -48,7 +48,7 @@ public class TileBaseController : MonoBehaviour
         tileManager.OnTileDeselect += TileDeselect;
         childRenderers = GetComponentsInChildren<Renderer>();
 
-        hightlightShader = Shader.Find("StandardWithHighlight");
+        hightlightShader = Shader.Find("Environment/Mutable");
     }
 
     void TileDeselect()

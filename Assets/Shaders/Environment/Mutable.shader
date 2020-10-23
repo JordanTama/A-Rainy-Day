@@ -8,6 +8,8 @@
         _Metallic ("Metallic", Range(0,1)) = 0.0
         _Mute ("Mute Value", Range(0, 1)) = 1
         _Tint ("Tint Value", Range(0, 1)) = 1
+        _HighlightMul ("Highlight Multiplier", Range(0, 1)) = 1
+        _HighlightColor ("Highlight Color", Color) = (0, 0, 0, 0)
     }
     
     SubShader
@@ -31,9 +33,18 @@
         fixed4 _Color;
         half _Mute;
         half _Tint;
+        float4 _HighlightColor;
+        float _HighlightMul;
+
+        uniform float LocalTime;
 
         UNITY_INSTANCING_BUFFER_START(Props)
         UNITY_INSTANCING_BUFFER_END(Props)
+
+        float OlehsCustomExpression(float x)
+        {
+            return -(cos(UNITY_PI * x) - 1) / 2;
+        }
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
@@ -45,6 +56,11 @@
 
             o.Albedo = c.rgb;
             o.Alpha = c.a;
+
+            float x33 = ( 1.0 - abs( sin( LocalTime ) ) );
+            float localMyCustomExpression = OlehsCustomExpression(x33);
+            
+            o.Emission = _HighlightColor.rgb * saturate( localMyCustomExpression ) * _HighlightMul;
             
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;

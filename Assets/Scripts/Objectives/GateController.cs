@@ -42,15 +42,6 @@ public class GateController : MonoBehaviour
         goals = foundGoals.ToArray();
         objectives = foundObjectives.ToArray();
     }
-
-    [ContextMenu("Trigger Gate")]
-    public void Trigger()
-    {
-        if (_completed < objectives.Length)
-        {
-            Trigger(objectives[_completed]);
-        }
-    }
     
     public void Trigger(Gate gate)
     {
