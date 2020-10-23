@@ -27,7 +27,7 @@ public class Warp : InteractableReceiver
     [SerializeField] private AudioClip warpTurnedOffClip;
     [SerializeField] private AudioClip warpUsedClip;
     [SerializeField] private AudioClip warpActiveClip;
-    
+    [SerializeField] private LineRenderer lineRenderer;
     
     protected new void Awake()
     {
@@ -59,8 +59,18 @@ public class Warp : InteractableReceiver
                 _gameLoopManager.OnPreparation += ResetState;
             }
         }
-        
+
         ResetState();
+    }
+
+    private void Update()
+    {
+        if (lineRenderer)
+        {
+            lineRenderer.SetPositions(new Vector3[] { transform.position, endTransform.position });
+            lineRenderer.material.SetVector("_StartPos", transform.position);
+            lineRenderer.material.SetVector("_EndPos", endTransform.position);
+        }
     }
 
     protected override void ChangeState()
