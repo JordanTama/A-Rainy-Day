@@ -48,7 +48,7 @@ public class SettingsManager : IGameService
 
             if (arg1.name.EndsWith("3-1"))
             {
-                Data.Chapter2Unlocked = true;
+                Data.Chapter3Unlocked = true;
             }
 
             SaveSettings();
