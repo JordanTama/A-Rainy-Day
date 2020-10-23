@@ -36,7 +36,7 @@ public class Objective : MonoBehaviour
             _scoreManager = ServiceLocator.Current.Get<ScoreManager>();
             _gameLoopManager.OnPreparation += Reset;
 
-            _collider = GetComponent<Collider>();
+            _collider = GetComponentInChildren<Collider>();
 
             _goal = GameObject.FindObjectOfType<Goal>();
             if(_goal) _goal.IncreaseObjectivesCount();
@@ -58,8 +58,13 @@ public class Objective : MonoBehaviour
             NotifyGoal();
             PlayParticles();
             PlayAudio();
+
+            Debug.Log((_gateController != null) + " : " + (gate != null));
             
-            if (_gateController && gate) _gateController.Trigger(gate);
+            if (_gateController && gate)
+            {
+                _gateController.Trigger(gate);
+            }
         }
 
         private void NotifyGoal()
