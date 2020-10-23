@@ -38,11 +38,8 @@ public class SettingsManager : IGameService
     private void OnLevelComplete()
     {
         int sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        if (sceneBuildIndex > Data.UpToLevel && !BuildIndexExceptions.Contains(SceneManager.GetActiveScene().buildIndex))
-        {
-            Data.UpToLevel = sceneBuildIndex;
-            SaveSettings();
-        }
+        Data.UpToLevel = sceneBuildIndex;
+        SaveSettings();
     }
 
     public SaveData LoadSettings()
