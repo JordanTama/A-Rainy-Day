@@ -1926,6 +1926,11 @@ PrefabInstance:
       propertyPath: interactableController
       value: 
       objectReference: {fileID: 429001120}
+    - target: {fileID: 1855934539509821928, guid: e42832774e985694083dfe60ad2a5760,
+        type: 3}
+      propertyPath: isOpenDefault
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e42832774e985694083dfe60ad2a5760, type: 3}
 --- !u!114 &404331371 stripped
@@ -5140,6 +5145,11 @@ PrefabInstance:
       propertyPath: interactableController
       value: 
       objectReference: {fileID: 1807290142}
+    - target: {fileID: 1855934539509821928, guid: e42832774e985694083dfe60ad2a5760,
+        type: 3}
+      propertyPath: isOpenDefault
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e42832774e985694083dfe60ad2a5760, type: 3}
 --- !u!4 &1100780605 stripped
@@ -5550,6 +5560,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 441c0316b7c46c240a52ef9f53f61c36, type: 2}
+    - target: {fileID: 2868717674511759047, guid: 82843220a396035469fe3cda889aabb2,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.1414776
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868717674511759047, guid: 82843220a396035469fe3cda889aabb2,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.008231163
+      objectReference: {fileID: 0}
     - target: {fileID: 3144097204243541203, guid: 82843220a396035469fe3cda889aabb2,
         type: 3}
       propertyPath: _isFixed
@@ -5638,7 +5658,7 @@ PrefabInstance:
     - target: {fileID: 5604489266401379271, guid: 82843220a396035469fe3cda889aabb2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7285002722752066984, guid: 82843220a396035469fe3cda889aabb2,
         type: 3}

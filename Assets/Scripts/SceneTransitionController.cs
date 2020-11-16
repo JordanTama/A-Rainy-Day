@@ -25,8 +25,8 @@ public class SceneTransitionController : MonoBehaviour
     public GameObject fogPlane;
 
     public bool isLowerIntoFog = true;
-    
-    
+
+    public bool TestSceneComplete = false;
     
     public bool isNextSceneCinematic = false;
 
@@ -57,18 +57,26 @@ public class SceneTransitionController : MonoBehaviour
     void Start()
     {
         
-        
         SceneManager.sceneLoaded += TransitionToNewScene;
         SceneManager.sceneUnloaded += LoadNewScene;
         
         if(isLowerIntoFog) RaiseOutOfFog();
     }
 
+    private void Update()
+    {
+        if (TestSceneComplete)
+        {
+            _gameLoopManager.OnComplete.Invoke();
+            TestSceneComplete = false;
+        }
+    }
+
     private void LoadTransitionScene()
     {
         _inputManager.ToggleInput(false);
         oldScene = SceneManager.GetActiveScene();
-        nextSceneIndex = oldScene.buildIndex + 1;
+        nextSceneIndex = (oldScene.buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
         SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
     }
 
