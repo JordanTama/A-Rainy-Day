@@ -3355,7 +3355,7 @@ PrefabInstance:
         type: 3}
       propertyPath: interactableController
       value: 
-      objectReference: {fileID: 2106638791}
+      objectReference: {fileID: 0}
     - target: {fileID: 5702950883195641744, guid: aeede37e497e2944c8449b3554a79a3e,
         type: 3}
       propertyPath: bStartExtended
@@ -3847,7 +3847,7 @@ PrefabInstance:
         type: 3}
       propertyPath: interactableController
       value: 
-      objectReference: {fileID: 2106638791}
+      objectReference: {fileID: 0}
     - target: {fileID: 5702950883195641744, guid: aeede37e497e2944c8449b3554a79a3e,
         type: 3}
       propertyPath: childRamp
@@ -6220,7 +6220,7 @@ PrefabInstance:
         type: 3}
       propertyPath: interactableController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2106638791}
     - target: {fileID: 5702950883195641744, guid: aeede37e497e2944c8449b3554a79a3e,
         type: 3}
       propertyPath: childRamp
@@ -6433,7 +6433,7 @@ PrefabInstance:
         type: 3}
       propertyPath: interactableController
       value: 
-      objectReference: {fileID: 2106638791}
+      objectReference: {fileID: 0}
     - target: {fileID: 5702950883195641744, guid: aeede37e497e2944c8449b3554a79a3e,
         type: 3}
       propertyPath: bStartExtended
