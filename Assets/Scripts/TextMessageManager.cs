@@ -103,6 +103,14 @@ public class TextMessageManager : IGameService
             new TextMessage(MessageSender.DAD, "Show it to me sweetheart?"),
             new TextMessage(MessageSender.ANNA, "I’ll send you the link when I’m done :)"),
         } },
+        {"Level3-1", new TextMessage[] {
+            new TextMessage(MessageSender.ANNA, "Do you think it’s the right time to tell my dad?"),
+            new TextMessage(MessageSender.JESSICA, "I’m not sure, you know him best."),
+            new TextMessage(MessageSender.ANNA, "He’s really conservative… maybe I could just hide it."),
+            new TextMessage(MessageSender.JESSICA, "C'mon, I’m sure it’ll be okay. Can’t really hide it forever."),
+            new TextMessage(MessageSender.JESSICA, " I’m sure once you get past this, your relationship with him will reach new heights you never expected."),
+            new TextMessage(MessageSender.ANNA, "mmm, I hope you’re right."),
+        } }, 
         {"Level3-2", new TextMessage[] {
             new TextMessage(MessageSender.ANNA, "Dad, can we talk?"),
             new TextMessage(MessageSender.ANNA, "Could you talk to me, even if it’s the last time?"),

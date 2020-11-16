@@ -24,7 +24,6 @@ public class GameLoopManager:IGameService
         
 
         SceneManager.activeSceneChanged += RestartLevel;
-        // OnLevelReady += RestartLevel;
     }
 
     private void RestartLevel(Scene arg0, Scene arg1)
@@ -63,5 +62,14 @@ public class GameLoopManager:IGameService
         Debug.Log("level complete");
         ChangeState(GameState.Complete);
         OnComplete?.Invoke();
+    }
+
+    private void PrintDelegates()
+    {
+        foreach (var VARIABLE in OnLevelReady.GetInvocationList())
+        {
+            Debug.LogError(VARIABLE.Target.ToString() + ": "+VARIABLE.Method);
+        }
+        
     }
 }

@@ -21,8 +21,8 @@ public class TileBaseController : MonoBehaviour
     private CameraManager cameraManager;
     
     private GameLoopManager _gameLoopManager;
-    private Vector3 _startPosition;
-    private Quaternion _startRotation;
+    [SerializeField] private Vector3 _startPosition;
+    [SerializeField] private Quaternion _startRotation;
     
     private Vector3 startMousePos;
     private float _tileSize = 5;
@@ -46,6 +46,7 @@ public class TileBaseController : MonoBehaviour
         _gameLoopManager = ServiceLocator.Current.Get<GameLoopManager>();
         _gameLoopManager.OnRestart += ResetPosition;
         _gameLoopManager.OnLevelReady += SetStartPosition;
+        
 
         tileManager.OnTileSelect += TileSelect;
         tileManager.OnTileDeselect += TileDeselect;

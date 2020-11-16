@@ -164,6 +164,7 @@ public class SceneTransitionController : MonoBehaviour
         {
             _inputManager.ToggleInput(true);
             _gameLoopManager.OnLevelReady?.Invoke();
+            
             PlayAudio(showAudioClip);
         }).SetEase(Ease.OutCubic);
     }
