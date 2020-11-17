@@ -59,7 +59,8 @@ public class InteractableController : MonoBehaviour
         interactableManager.OnInteractableSelect+=InteractableSelect;
         interactableManager.OnInteractableDeselect+=InteractableDeselect;
 
-        _gameLoopManager.OnPreparation += ResetInteractable;
+        // _gameLoopManager.OnPreparation += ResetInteractable;
+        _gameLoopManager.OnRestart += ResetInteractable;
 
         audioManager.OnAudioStop += StopAudio;
 
